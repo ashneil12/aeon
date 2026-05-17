@@ -6,7 +6,7 @@
 
 skills:
   # --- Morning aggregation (7 AM UTC) ---
-  morning-brief: { enabled: false, schedule: "0 7 * * *" }
+  morning-brief: { enabled: true, schedule: "0 7 * * *" }
   daily-routine: { enabled: false, schedule: "0 7 * * *" }
   rss-digest: { enabled: false, schedule: "0 7 * * *" }
   hacker-news-digest: { enabled: false, schedule: "0 7 * * *" } # top HN stories filtered by MEMORY.md interests
@@ -28,7 +28,7 @@ skills:
 
   # --- Midday (12 PM UTC) ---
   token-alert: { enabled: false, schedule: "0 12 * * *" }
-  token-movers: { enabled: false, schedule: "0 12 * * *" }
+  token-movers: { enabled: true, schedule: "0 12 * * *" }
   on-chain-monitor: { enabled: false, schedule: "0 12 * * *" }
   defi-monitor: { enabled: false, schedule: "0 12 * * *" }
   treasury-info: { enabled: false, schedule: "0 12 * * *" }
@@ -66,7 +66,7 @@ skills:
   push-recap: { enabled: false, schedule: "0 15 * * *" }
   repo-article: { enabled: false, schedule: "0 15 * * *" }
   repo-actions: { enabled: false, schedule: "0 15 * * *" }
-  repo-pulse: { enabled: false, schedule: "0 15 * * *" }
+  repo-pulse: { enabled: true, schedule: "0 15 * * *", var: "ashneil12/hermesdeploy" }
   star-milestone: { enabled: false, schedule: "15 15 * * *" } # daily — announce when watched repos cross star-count milestones
   star-momentum-alert: { enabled: false, schedule: "10 10 * * *", model: "claude-sonnet-4-6", var: "" } # daily — project next milestone crossing date from 14-day repo-pulse history; alert only when projected date lands in 7-14d window on Tue/Wed/Thu (Show HN dispatch slot)
   project-lens: { enabled: false, schedule: "30 15 * * 1,3,5" } # articles through rotating analytical lenses
@@ -121,7 +121,7 @@ skills:
   vercel-projects: { enabled: false, schedule: "0 18 * * 0", model: "claude-sonnet-4-6", var: "" } # Sunday — catalog Vercel projects
 
   # --- Cost tracking (Monday 7 AM UTC, weekly) ---
-  cost-report: { enabled: false, schedule: "0 7 * * 1", model: "claude-sonnet-4-6" } # weekly API cost breakdown by skill and model
+  cost-report: { enabled: true, schedule: "0 7 * * 1", model: "claude-sonnet-4-6" } # weekly API cost breakdown by skill and model
 
   # --- Weekly (Monday only) ---
   ai-framework-watch: { enabled: false, schedule: "30 8 * * 1", model: "claude-sonnet-4-6", var: "" } # Monday 08:30 UTC — weekly competitive-intelligence digest across 9 AI agent frameworks (anchor + 8 peers). Momentum signals, 7d/30d star deltas, release listings, breaking-change flags. Set var to a watchlist slug (e.g. langgraph) for a single-framework deep dive.
@@ -135,7 +135,7 @@ skills:
   spawn-instance: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: "name: purpose"
   fleet-control: { enabled: false, schedule: "0 9,15 * * *" } # fleet health checks twice daily, dispatch via var
   weekly-review: { enabled: false, schedule: "0 19 * * 1" }
-  weekly-shiplog: { enabled: false, schedule: "0 9 * * 1" } # Monday — narrative of everything shipped last week
+  weekly-shiplog: { enabled: true, schedule: "0 9 * * 1" } # Monday — narrative of everything shipped last week
   skill-leaderboard: { enabled: false, schedule: "0 17 * * 0", model: "claude-sonnet-4-6" } # Sunday — rank popular skills across forks
   fork-contributor-leaderboard: { enabled: false, schedule: "30 17 * * 0", model: "claude-sonnet-4-6" } # Sunday — rank community contributors across forks and upstream PRs
   contributor-reward: { enabled: false, schedule: "30 9 * * 1", model: "claude-sonnet-4-6", var: "" } # Monday — turn Sunday's leaderboard into a tier-priced rewards plan in memory/distributions.yml; pass dry-run to preview
