@@ -1,0 +1,233 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Heartbeat"
+      },
+      "children": [
+        "main-stack"
+      ]
+    },
+    "main-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "header-stack",
+        "sep1",
+        "enablement-section",
+        "sep2",
+        "next-section",
+        "sep3",
+        "health-section",
+        "sep4",
+        "status-update"
+      ]
+    },
+    "header-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "status-alert",
+        "time-stat"
+      ]
+    },
+    "status-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "🟡 WATCH",
+        "type": "warning"
+      }
+    },
+    "time-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Check Time",
+        "value": "10:52 UTC"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "enablement-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "enablement-heading",
+        "enablement-text",
+        "skills-grid"
+      ]
+    },
+    "enablement-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fresh Enablement",
+        "level": "h3"
+      }
+    },
+    "enablement-text": {
+      "type": "Text",
+      "props": {
+        "text": "All 7 enabled skills have no entry in cron-state.json yet. State will populate as schedules fire."
+      }
+    },
+    "skills-grid": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "sm"
+      },
+      "children": [
+        "skill-1",
+        "skill-2",
+        "skill-3",
+        "skill-4",
+        "skill-5",
+        "skill-6",
+        "skill-7"
+      ]
+    },
+    "skill-1": {
+      "type": "Badge",
+      "props": {
+        "text": "morning-brief",
+        "variant": "default"
+      }
+    },
+    "skill-2": {
+      "type": "Badge",
+      "props": {
+        "text": "telegram-digest",
+        "variant": "default"
+      }
+    },
+    "skill-3": {
+      "type": "Badge",
+      "props": {
+        "text": "token-movers",
+        "variant": "default"
+      }
+    },
+    "skill-4": {
+      "type": "Badge",
+      "props": {
+        "text": "repo-pulse",
+        "variant": "default"
+      }
+    },
+    "skill-5": {
+      "type": "Badge",
+      "props": {
+        "text": "cost-report",
+        "variant": "default"
+      }
+    },
+    "skill-6": {
+      "type": "Badge",
+      "props": {
+        "text": "weekly-shiplog",
+        "variant": "default"
+      }
+    },
+    "skill-7": {
+      "type": "Badge",
+      "props": {
+        "text": "heartbeat",
+        "variant": "default"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "next-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "next-heading",
+        "next-text"
+      ]
+    },
+    "next-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Next Scheduled",
+        "level": "h3"
+      }
+    },
+    "next-text": {
+      "type": "Text",
+      "props": {
+        "text": "token-movers at 12:00 UTC"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "health-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "health-heading",
+        "health-1",
+        "health-2",
+        "health-3"
+      ]
+    },
+    "health-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Health Status",
+        "level": "h3"
+      }
+    },
+    "health-1": {
+      "type": "Text",
+      "props": {
+        "text": "✓ No failed/stuck skills"
+      }
+    },
+    "health-2": {
+      "type": "Text",
+      "props": {
+        "text": "✓ No open PRs"
+      }
+    },
+    "health-3": {
+      "type": "Text",
+      "props": {
+        "text": "✓ No flagged issues"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {}
+    },
+    "status-update": {
+      "type": "Alert",
+      "props": {
+        "title": "Status Page Updated",
+        "type": "success"
+      }
+    }
+  }
+}

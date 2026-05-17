@@ -1,0 +1,1 @@
+🟡 WATCH — heartbeat 10:52 UTC. Fresh enablement: all 7 enabled skills (morning-brief, telegram-digest, token-movers, repo-pulse, cost-report, weekly-shiplog, heartbeat) have no entry in cron-state.json yet. State will populate as schedules fire — first up: token-movers at 12:00 UTC. No failed/stuck skills, no open PRs, no flagged issues. Status page updated.
