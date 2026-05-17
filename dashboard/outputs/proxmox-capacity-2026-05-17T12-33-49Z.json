@@ -1,0 +1,181 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "Proxmox Capacity"
+      },
+      "children": [
+        "alert-critical",
+        "sep1",
+        "section-host",
+        "sep2",
+        "section-runbook"
+      ]
+    },
+    "alert-critical": {
+      "type": "Alert",
+      "props": {
+        "title": "🔴 PROXMOX pve5",
+        "message": "OK → CRITICAL",
+        "type": "error"
+      },
+      "children": []
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {},
+      "children": []
+    },
+    "section-host": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-pve5",
+        "grid-metrics"
+      ]
+    },
+    "heading-pve5": {
+      "type": "Heading",
+      "props": {
+        "text": "pve5",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "grid-metrics": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-load",
+        "stat-vms",
+        "stack-mem",
+        "stack-disk"
+      ]
+    },
+    "stat-load": {
+      "type": "Stat",
+      "props": {
+        "label": "Load (5-min avg)",
+        "value": "85.06 / 12 vCPU",
+        "delta": "7.09x",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "stat-vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "52",
+        "delta": "49 running"
+      },
+      "children": []
+    },
+    "stack-mem": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-mem-label",
+        "progress-mem"
+      ]
+    },
+    "text-mem-label": {
+      "type": "Text",
+      "props": {
+        "text": "Memory: 105.0/135.0 GB",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "progress-mem": {
+      "type": "Progress",
+      "props": {
+        "value": 77.8,
+        "max": 100,
+        "label": "77.8%"
+      },
+      "children": []
+    },
+    "stack-disk": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text-disk-label",
+        "progress-disk"
+      ]
+    },
+    "text-disk-label": {
+      "type": "Text",
+      "props": {
+        "text": "Disk (local-lvm): 683.5/891.2 GB — WATCH range",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "progress-disk": {
+      "type": "Progress",
+      "props": {
+        "value": 76.7,
+        "max": 100,
+        "label": "76.7%"
+      },
+      "children": []
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {},
+      "children": []
+    },
+    "section-runbook": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-runbook",
+        "text-investigate",
+        "text-pve6"
+      ]
+    },
+    "heading-runbook": {
+      "type": "Heading",
+      "props": {
+        "text": "Runbook",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "text-investigate": {
+      "type": "Text",
+      "props": {
+        "text": "Investigate pve5 load source: 49 VMs running, sustained 1-min load 56.26",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "text-pve6": {
+      "type": "Text",
+      "props": {
+        "text": "pve6 has headroom for rebalance (mem 47%, disk 43%)",
+        "variant": "body"
+      },
+      "children": []
+    }
+  }
+}

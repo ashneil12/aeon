@@ -3,3 +3,4 @@
 One line per run. Format: `YYYY-MM-DD HH:MM | pveN=BUCKET(worst-signal value) ...`
 
 2026-05-17 12:23 | pve1=OK(disk 26%) pve2=OK(mem 43%) pve3=OK(disk 37%) pve4=OK(mem 56%) pve5=CRITICAL(load 13.74x, mem 81%, disk 79%) pve6=OK(mem 47%)
+2026-05-17 12:31 | pve1=OK(disk 24%) pve2=OK(mem 40%) pve3=OK(disk 37%) pve4=OK(mem 56%) pve5=CRITICAL(load 7.09x, mem 78%, disk 77%) pve6=OK(disk 43%) — transition OK→CRITICAL on pve5
