@@ -2,3 +2,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-05-17,heartbeat,claude-opus-4-7,50,7081,339119,32128
 2026-05-17,repo-pulse,claude-opus-4-7,19,6600,542052,13868
 2026-05-17,repo-pulse,claude-opus-4-7,18,5078,483064,22541
+2026-05-17,proxmox-capacity,claude-opus-4-7,25,11694,989246,39351

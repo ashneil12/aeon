@@ -1,0 +1,519 @@
+{
+  "generated_at": "2026-05-17T12:23:52Z",
+  "hosts": {
+    "pve1": {
+      "reachable": true,
+      "status": {
+        "memory": {
+          "used": 13025615872,
+          "free": 53467709440,
+          "available": 54317645824,
+          "total": 67343261696
+        },
+        "rootfs": {
+          "total": 83955703808,
+          "free": 62698946560,
+          "used": 21256757248,
+          "avail": 58387202048
+        },
+        "ksm": {
+          "shared": 5445935104
+        },
+        "current-kernel": {
+          "release": "6.17.13-3-pve",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 6.17.13-3 (2026-03-31T21:50Z)",
+          "machine": "x86_64",
+          "sysname": "Linux"
+        },
+        "swap": {
+          "total": 0,
+          "used": 0,
+          "free": 0
+        },
+        "loadavg": [
+          "0.81",
+          "3.52",
+          "3.30"
+        ],
+        "idle": 0,
+        "cpuinfo": {
+          "sockets": 1,
+          "hvm": "1",
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es",
+          "user_hz": 100,
+          "cores": 6,
+          "model": "AMD Ryzen 5 3600 6-Core Processor",
+          "mhz": "4199.637",
+          "family": "23",
+          "vendor": "AuthenticAMD",
+          "cpus": 12
+        },
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "wait": 0,
+        "kversion": "Linux 6.17.13-3-pve #1 SMP PREEMPT_DYNAMIC PMX 6.17.13-3 (2026-03-31T21:50Z)",
+        "cpu": 0,
+        "uptime": 2025193,
+        "pveversion": "pve-manager/9.1.9/ee7bad0a3d1546c9"
+      },
+      "storage": [
+        {
+          "used_fraction": 0.262999999998343,
+          "used": 111718856392,
+          "storage": "local-lvm",
+          "content": "rootdir,images",
+          "avail": 313067669816,
+          "enabled": 1,
+          "active": 1,
+          "type": "lvmthin",
+          "shared": 0,
+          "total": 424786526208
+        },
+        {
+          "used_fraction": 0.253190150089296,
+          "content": "vztmpl,rootdir,snippets,iso,images,backup",
+          "used": 21256757248,
+          "storage": "local",
+          "avail": 58387202048,
+          "active": 1,
+          "enabled": 1,
+          "total": 83955703808,
+          "type": "dir",
+          "shared": 0
+        }
+      ],
+      "vm_total": 9,
+      "vm_running": 5,
+      "vm_stopped": 4
+    },
+    "pve2": {
+      "reachable": true,
+      "status": {
+        "wait": 0,
+        "loadavg": [
+          "2.66",
+          "1.70",
+          "2.28"
+        ],
+        "cpu": 0,
+        "kversion": "Linux 7.0.0-3-pve #1 SMP PREEMPT_DYNAMIC PMX 7.0.0-3 (2026-04-21T22:56Z)",
+        "swap": {
+          "used": 0,
+          "total": 0,
+          "free": 0
+        },
+        "ksm": {
+          "shared": 0
+        },
+        "current-kernel": {
+          "machine": "x86_64",
+          "sysname": "Linux",
+          "release": "7.0.0-3-pve",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 7.0.0-3 (2026-04-21T22:56Z)"
+        },
+        "pveversion": "pve-manager/9.1.9/ee7bad0a3d1546c9",
+        "cpuinfo": {
+          "vendor": "AuthenticAMD",
+          "user_hz": 100,
+          "model": "AMD Ryzen 5 3600 6-Core Processor",
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es",
+          "mhz": "1723.944",
+          "hvm": "1",
+          "family": "23",
+          "sockets": 1,
+          "cores": 6,
+          "cpus": 12
+        },
+        "rootfs": {
+          "free": 62184558592,
+          "total": 83955703808,
+          "used": 21771145216,
+          "avail": 57872814080
+        },
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "idle": 0,
+        "uptime": 1093395,
+        "memory": {
+          "total": 67342159872,
+          "free": 37082189824,
+          "available": 38376292352,
+          "used": 28965867520
+        }
+      },
+      "storage": [
+        {
+          "total": 935661142016,
+          "used_fraction": 0.251299999999336,
+          "type": "lvmthin",
+          "active": 1,
+          "enabled": 1,
+          "shared": 0,
+          "storage": "local-lvm",
+          "used": 235131644988,
+          "content": "images,rootdir",
+          "avail": 700529497028
+        },
+        {
+          "active": 1,
+          "type": "dir",
+          "used_fraction": 0.259317047306147,
+          "total": 83955703808,
+          "avail": 57872814080,
+          "storage": "local",
+          "used": 21771145216,
+          "content": "iso,images,backup,snippets,vztmpl,rootdir",
+          "shared": 0,
+          "enabled": 1
+        }
+      ],
+      "vm_total": 17,
+      "vm_running": 14,
+      "vm_stopped": 3
+    },
+    "pve3": {
+      "reachable": true,
+      "status": {
+        "idle": 0,
+        "cpuinfo": {
+          "user_hz": 100,
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es ibpb_exit_to_user",
+          "cores": 6,
+          "sockets": 1,
+          "model": "AMD Ryzen 5 3600 6-Core Processor",
+          "mhz": "4050.101",
+          "hvm": "1",
+          "cpus": 12
+        },
+        "wait": 0.00105231509320505,
+        "uptime": 937109,
+        "memory": {
+          "used": 18916921344,
+          "total": 67339251712,
+          "free": 47314173952
+        },
+        "pveversion": "pve-manager/8.4.19/a68fb383814bb1e6",
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "cpu": 0.0746499441628726,
+        "current-kernel": {
+          "machine": "x86_64",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 6.8.12-22 (2026-04-30T07:01Z)",
+          "sysname": "Linux",
+          "release": "6.8.12-22-pve"
+        },
+        "loadavg": [
+          "0.83",
+          "0.64",
+          "1.04"
+        ],
+        "kversion": "Linux 6.8.12-22-pve #1 SMP PREEMPT_DYNAMIC PMX 6.8.12-22 (2026-04-30T07:01Z)",
+        "rootfs": {
+          "free": 65608613888,
+          "avail": 61296869376,
+          "total": 83955703808,
+          "used": 18347089920
+        },
+        "swap": {
+          "used": 0,
+          "total": 0,
+          "free": 0
+        },
+        "ksm": {
+          "shared": 0
+        }
+      },
+      "storage": [
+        {
+          "active": 1,
+          "used": 18347089920,
+          "storage": "local",
+          "total": 83955703808,
+          "avail": 61296869376,
+          "content": "iso,snippets,vztmpl,rootdir,backup,images",
+          "shared": 0,
+          "type": "dir",
+          "enabled": 1,
+          "used_fraction": 0.218532977365759
+        },
+        {
+          "used_fraction": 0.371499999998991,
+          "total": 935661142016,
+          "storage": "local-lvm",
+          "used": 347598114258,
+          "active": 1,
+          "type": "lvmthin",
+          "enabled": 1,
+          "content": "images,rootdir",
+          "shared": 0,
+          "avail": 588063027758
+        }
+      ],
+      "vm_total": 26,
+      "vm_running": 8,
+      "vm_stopped": 18
+    },
+    "pve4": {
+      "reachable": true,
+      "status": {
+        "memory": {
+          "total": 67346812928,
+          "free": 28185341952,
+          "used": 38035030016,
+          "available": 29311782912
+        },
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "current-kernel": {
+          "machine": "x86_64",
+          "sysname": "Linux",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)",
+          "release": "7.0.2-2-pve"
+        },
+        "uptime": 669004,
+        "kversion": "Linux 7.0.2-2-pve #1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)",
+        "rootfs": {
+          "total": 83955703808,
+          "avail": 74608807936,
+          "used": 5035151360,
+          "free": 78920552448
+        },
+        "loadavg": [
+          "2.20",
+          "1.89",
+          "3.31"
+        ],
+        "cpu": 0,
+        "ksm": {
+          "shared": 0
+        },
+        "pveversion": "pve-manager/9.1.9/ee7bad0a3d1546c9",
+        "swap": {
+          "free": 16560058368,
+          "used": 619806720,
+          "total": 17179865088
+        },
+        "wait": 0,
+        "idle": 0,
+        "cpuinfo": {
+          "user_hz": 100,
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es",
+          "cores": 6,
+          "mhz": "4075.036",
+          "vendor": "AuthenticAMD",
+          "cpus": 12,
+          "family": "23",
+          "model": "AMD Ryzen 5 3600 6-Core Processor",
+          "sockets": 1,
+          "hvm": "1"
+        }
+      },
+      "storage": [
+        {
+          "used": 5035151360,
+          "enabled": 1,
+          "active": 1,
+          "storage": "local",
+          "avail": 74608807936,
+          "content": "iso,snippets,backup,rootdir,vztmpl,images",
+          "shared": 0,
+          "type": "dir",
+          "used_fraction": 0.0599739044712792,
+          "total": 83955703808
+        },
+        {
+          "avail": 597909913469,
+          "storage": "local-lvm",
+          "active": 1,
+          "enabled": 1,
+          "used": 293295800451,
+          "total": 891205713920,
+          "used_fraction": 0.329099999999919,
+          "type": "lvmthin",
+          "content": "rootdir,images",
+          "shared": 0
+        }
+      ],
+      "vm_total": 22,
+      "vm_running": 19,
+      "vm_stopped": 3
+    },
+    "pve5": {
+      "reachable": true,
+      "status": {
+        "memory": {
+          "free": 24806948864,
+          "used": 109388099584,
+          "total": 134972284928,
+          "available": 25584185344
+        },
+        "loadavg": [
+          "154.95",
+          "164.89",
+          "150.27"
+        ],
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "rootfs": {
+          "avail": 66037055488,
+          "free": 70348800000,
+          "used": 13606903808,
+          "total": 83955703808
+        },
+        "pveversion": "pve-manager/9.1.9/ee7bad0a3d1546c9",
+        "idle": 0,
+        "cpu": 0,
+        "ksm": {
+          "shared": 0
+        },
+        "swap": {
+          "free": 17179222016,
+          "total": 17179865088,
+          "used": 643072
+        },
+        "current-kernel": {
+          "machine": "x86_64",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)",
+          "sysname": "Linux",
+          "release": "7.0.2-2-pve"
+        },
+        "wait": 0,
+        "cpuinfo": {
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es",
+          "cpus": 12,
+          "cores": 6,
+          "vendor": "AuthenticAMD",
+          "sockets": 1,
+          "mhz": "4065.973",
+          "family": "23",
+          "user_hz": 100,
+          "hvm": "1",
+          "model": "AMD Ryzen 5 3600 6-Core Processor"
+        },
+        "uptime": 517432,
+        "kversion": "Linux 7.0.2-2-pve #1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)"
+      },
+      "storage": [
+        {
+          "used_fraction": 0.786399999999228,
+          "total": 891205713920,
+          "active": 1,
+          "type": "lvmthin",
+          "used": 700844173426,
+          "enabled": 1,
+          "storage": "local-lvm",
+          "shared": 0,
+          "avail": 190361540494,
+          "content": "rootdir,images"
+        },
+        {
+          "type": "dir",
+          "total": 83955703808,
+          "active": 1,
+          "used_fraction": 0.162072416653405,
+          "content": "images,snippets,rootdir,iso,vztmpl,backup",
+          "shared": 0,
+          "avail": 66037055488,
+          "storage": "local",
+          "used": 13606903808,
+          "enabled": 1
+        }
+      ],
+      "vm_total": 52,
+      "vm_running": 49,
+      "vm_stopped": 3
+    },
+    "pve6": {
+      "reachable": true,
+      "status": {
+        "rootfs": {
+          "total": 83955703808,
+          "free": 71299076096,
+          "avail": 66987331584,
+          "used": 12656627712
+        },
+        "kversion": "Linux 7.0.2-2-pve #1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)",
+        "loadavg": [
+          "5.49",
+          "4.80",
+          "10.60"
+        ],
+        "ksm": {
+          "shared": 0
+        },
+        "pveversion": "pve-manager/9.1.9/ee7bad0a3d1546c9",
+        "uptime": 517414,
+        "idle": 0,
+        "swap": {
+          "total": 17179865088,
+          "free": 17179865088,
+          "used": 0
+        },
+        "boot-info": {
+          "mode": "legacy-bios"
+        },
+        "current-kernel": {
+          "release": "7.0.2-2-pve",
+          "version": "#1 SMP PREEMPT_DYNAMIC PMX 7.0.2-2 (2026-05-08T06:08Z)",
+          "machine": "x86_64",
+          "sysname": "Linux"
+        },
+        "wait": 0,
+        "cpu": 0,
+        "memory": {
+          "available": 71795499008,
+          "total": 134992470016,
+          "free": 63131492352,
+          "used": 63196971008
+        },
+        "cpuinfo": {
+          "cpus": 12,
+          "sockets": 1,
+          "family": "23",
+          "model": "AMD Ryzen 5 3600 6-Core Processor",
+          "user_hz": 100,
+          "hvm": "1",
+          "cores": 6,
+          "vendor": "AuthenticAMD",
+          "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip rdpid overflow_recov succor smca sev sev_es",
+          "mhz": "3975.237"
+        }
+      },
+      "storage": [
+        {
+          "content": "vztmpl,iso,rootdir,images,snippets,backup",
+          "storage": "local",
+          "type": "dir",
+          "enabled": 1,
+          "avail": 66987331584,
+          "used": 12656627712,
+          "active": 1,
+          "shared": 0,
+          "used_fraction": 0.150753637191163,
+          "total": 83955703808
+        },
+        {
+          "avail": 515473384932,
+          "enabled": 1,
+          "storage": "local-lvm",
+          "type": "lvmthin",
+          "content": "images,rootdir",
+          "total": 891205713920,
+          "shared": 0,
+          "active": 1,
+          "used": 375732328988,
+          "used_fraction": 0.421599999999246
+        }
+      ],
+      "vm_total": 35,
+      "vm_running": 29,
+      "vm_stopped": 6
+    }
+  },
+  "hetzner": null
+}
