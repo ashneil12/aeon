@@ -153,6 +153,9 @@ skills:
   schedule-ads: { enabled: false, schedule: "0 8 * * *", model: "claude-sonnet-4-6", var: "" } # daily 08:00 UTC — schedule paid ads across Meta/TikTok/Snapchat/Pinterest/LinkedIn from skills/schedule-ads/config.yaml; launches PAUSED by default
   create-campaign: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — provision Meta campaigns/ad sets on AdManage.ai (PAUSED) and write IDs back so schedule-ads can launch into them
 
+  # --- Infra (Hermes Proxmox/Hetzner) ---
+  proxmox-capacity: { enabled: false, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across pve1-pve6 + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
+
   # --- Utilities ---
   auto-workflow: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: URL to analyze
   onboard: { enabled: false, schedule: "workflow_dispatch", var: "" } # one-shot setup validator — checks secrets/workflows/memory writability and notifies a checklist with fix commands; pair with ./onboard CLI
