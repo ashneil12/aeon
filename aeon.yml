@@ -154,7 +154,7 @@ skills:
   create-campaign: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — provision Meta campaigns/ad sets on AdManage.ai (PAUSED) and write IDs back so schedule-ads can launch into them
 
   # --- Infra (Hermes Proxmox/Hetzner) ---
-  proxmox-capacity: { enabled: false, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across pve1-pve6 + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
+  proxmox-capacity: { enabled: true, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across pve1-pve6 + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
 
   # --- Utilities ---
   auto-workflow: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: URL to analyze
