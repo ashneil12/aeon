@@ -71,8 +71,31 @@ Special-case the pve1-style scenario explicitly: if any thin-pool `used/total > 
 4. Always:
    - Overwrite `memory/proxmox-state.json` with new buckets + timestamps.
    - Append a one-line entry to `memory/topics/proxmox-capacity.md` with the daily history (format: `YYYY-MM-DD HH:MM | pve1=OK(disk 65%) pve2=WATCH(mem 84%) ...`).
-   - Emit a json-render card via `./notify-jsonrender proxmox-capacity "<markdown>"` so the dashboard feed renders it.
-5. If notifying: `./notify "<message>"` (Telegram + any other channels configured).
+5. If notifying: call `./notify` and `./notify-jsonrender` as **single bash invocations**, with the message as a single double-quoted argument. Multi-line content inside double quotes is fine.
+
+   **Required notify call shape — exactly this pattern**:
+   ```
+   ./notify "🔴 PROXMOX [WATCH→CRITICAL] pve5
+   load: 164.89 / 12 vCPU = 13.74x (5-min avg)
+   mem: 109.4/135.0 GB (81.0%)
+   disk: local-lvm 700.8/891.2 GB (78.6%)
+   vms: 52 (49 running)
+   runbook: investigate pve5 load source; pve6 has headroom for rebalance"
+   ```
+   Then immediately:
+   ```
+   ./notify-jsonrender proxmox-capacity "🔴 PROXMOX [WATCH→CRITICAL] pve5
+   ...same body..."
+   ```
+
+   **Do NOT**:
+   - Write the message to a file first and `cat` it into notify
+   - Use `$(...)` command substitution to build the argument
+   - Use heredocs (`<<EOF`), pipes, or subshells
+   - Call `bash`, `sh`, or any wrapper script to execute notify
+   - Stage scripts in `/tmp/` for later execution
+
+   Just call `./notify "...full message text..."` directly. The notify script handles channel fan-out, dedup, and post-run delivery.
 
 ## Output format
 
