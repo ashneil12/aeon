@@ -1,0 +1,320 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Repo Pulse — 2026-05-17"
+      },
+      "children": [
+        "status_badge",
+        "repo_info",
+        "sep1",
+        "notable_section",
+        "sep2",
+        "other_stargazers_section",
+        "sep3",
+        "forks_section",
+        "sep4",
+        "source_note"
+      ]
+    },
+    "status_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "SURGE",
+        "variant": "default"
+      }
+    },
+    "repo_info": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "repo_link",
+        "stars_stat",
+        "forks_stat"
+      ]
+    },
+    "repo_link": {
+      "type": "Link",
+      "props": {
+        "label": "aaronjmars/aeon",
+        "href": "https://github.com/aaronjmars/aeon"
+      }
+    },
+    "stars_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Stars",
+        "value": "351",
+        "delta": "+8",
+        "trend": "up"
+      }
+    },
+    "forks_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Forks",
+        "value": "61",
+        "delta": "+5",
+        "trend": "up"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "notable_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "notable_heading",
+        "notable_users_grid"
+      ]
+    },
+    "notable_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Notable new stargazers",
+        "level": "h3"
+      }
+    },
+    "notable_users_grid": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "notable_user_1",
+        "notable_user_2"
+      ]
+    },
+    "notable_user_1": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "user_link_1",
+        "followers_1"
+      ]
+    },
+    "user_link_1": {
+      "type": "Link",
+      "props": {
+        "label": "Uziniii",
+        "href": "https://github.com/Uziniii"
+      }
+    },
+    "followers_1": {
+      "type": "Text",
+      "props": {
+        "text": "16 followers",
+        "variant": "caption"
+      }
+    },
+    "notable_user_2": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "user_link_2",
+        "followers_2"
+      ]
+    },
+    "user_link_2": {
+      "type": "Link",
+      "props": {
+        "label": "khalidelborai",
+        "href": "https://github.com/khalidelborai"
+      }
+    },
+    "followers_2": {
+      "type": "Text",
+      "props": {
+        "text": "22 followers",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "other_stargazers_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "other_heading",
+        "other_users_grid"
+      ]
+    },
+    "other_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Other new stargazers",
+        "level": "h3"
+      }
+    },
+    "other_users_grid": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "other_user_1",
+        "other_user_2",
+        "other_user_3",
+        "other_user_4",
+        "other_user_5",
+        "other_user_6"
+      ]
+    },
+    "other_user_1": {
+      "type": "Link",
+      "props": {
+        "label": "RebelBroJasper",
+        "href": "https://github.com/RebelBroJasper"
+      }
+    },
+    "other_user_2": {
+      "type": "Link",
+      "props": {
+        "label": "ddkluchnikov",
+        "href": "https://github.com/ddkluchnikov"
+      }
+    },
+    "other_user_3": {
+      "type": "Link",
+      "props": {
+        "label": "yooml",
+        "href": "https://github.com/yooml"
+      }
+    },
+    "other_user_4": {
+      "type": "Link",
+      "props": {
+        "label": "psyd3x",
+        "href": "https://github.com/psyd3x"
+      }
+    },
+    "other_user_5": {
+      "type": "Link",
+      "props": {
+        "label": "zuoqiyuan0531",
+        "href": "https://github.com/zuoqiyuan0531"
+      }
+    },
+    "other_user_6": {
+      "type": "Link",
+      "props": {
+        "label": "olddqn",
+        "href": "https://github.com/olddqn"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "forks_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "forks_heading",
+        "forks_grid"
+      ]
+    },
+    "forks_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "New forks",
+        "level": "h3"
+      }
+    },
+    "forks_grid": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "fork_1",
+        "fork_2",
+        "fork_3",
+        "fork_4",
+        "fork_5"
+      ]
+    },
+    "fork_1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "lioapple/aeon",
+        "href": "https://github.com/lioapple/aeon"
+      }
+    },
+    "fork_2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "ashneil12/aeon",
+        "href": "https://github.com/ashneil12/aeon"
+      }
+    },
+    "fork_3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "jiamicuisi-a11y/aeon",
+        "href": "https://github.com/jiamicuisi-a11y/aeon"
+      }
+    },
+    "fork_4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "madebyshun/aeon",
+        "href": "https://github.com/madebyshun/aeon"
+      }
+    },
+    "fork_5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "meichuanyi/aeon",
+        "href": "https://github.com/meichuanyi/aeon"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "source_note": {
+      "type": "Text",
+      "props": {
+        "text": "Source: events",
+        "variant": "muted"
+      }
+    }
+  }
+}
