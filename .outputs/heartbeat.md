@@ -1,19 +1,15 @@
-HEARTBEAT_OK · STATUS_PAGE=WATCH
+Heartbeat complete. `HEARTBEAT_OK · STATUS_PAGE=WATCH`
 
 ## Summary
 
-Ran heartbeat at 14:53 UTC.
+- **P0:** All 4 tracked skills (`heartbeat`, `repo-pulse`, `proxmox-capacity`, `token-movers`) green — 100% success, 0 consecutive failures. Heartbeat self-check fresh (5.6h ago).
+- **P1:** 0 open PRs; issues disabled on repo.
+- **P2:** Nothing flagged in `memory/MEMORY.md`.
+- **P3:** `morning-brief` (daily 07:00 UTC) still has no entry in `cron-state.json` — already logged at the 10:52 and 14:53 UTC heartbeats today, so **dedup applied, no notification**. `cost-report` and `weekly-shiplog` are Monday-only — tomorrow is Monday — not flagged. `telegram-digest` is now disabled in `aeon.yml` and removed from the missing-skill list.
+- **Overall:** 🟡 WATCH
 
-**Findings:**
-- **P0 (failures/stuck):** Clean. 4 tracked skills in `cron-state.json` (heartbeat, repo-pulse, proxmox-capacity, token-movers) all `success`, 100% success rate, no consecutive failures. Heartbeat self-check fresh (~4h since last success).
-- **P1 (PRs/issues):** 0 open PRs; repo issues disabled.
-- **P2 (memory flags):** None.
-- **P3 (missing skills):** `morning-brief` and `telegram-digest` (daily 07:00/07:30 UTC) still have no `cron-state.json` entry — today's slots passed ~8h ago. `cost-report`/`weekly-shiplog` are Monday-only so absence is expected (Monday tomorrow).
+**Files modified:**
+- `docs/status.md` — regenerated with the 20:30 UTC snapshot (overall WATCH, next scheduled run = `proxmox-capacity` at 00:00 UTC, 7 enabled skills shown sorted by last-run desc).
+- `memory/logs/2026-05-17.md` — appended a Heartbeat (20:30 UTC) entry.
 
-**Notification:** Skipped — the missing-daily-skills finding was already logged in today's 10:52 UTC heartbeat run (dedup rule).
-
-**Files updated:**
-- `docs/status.md` — overall 🟡 WATCH, next run `repo-pulse at 15:00 UTC`, skill table sorted by last-run desc, Token pulse section omitted (no `articles/token-report-*.md` present).
-- `memory/logs/2026-05-17.md` — appended heartbeat entry.
-
-**Follow-up:** Operator may want to confirm whether `morning-brief` and `telegram-digest` are actually wired into the scheduler — they've now missed two daily slots since the enablement commit.
+**Follow-up:** `morning-brief` has now missed three daily slots since enablement on Sunday — if it stays absent past tomorrow's 07:00 UTC firing, the next heartbeat will lose dedup cover and escalate. Worth checking why its workflow dispatch isn't landing.
