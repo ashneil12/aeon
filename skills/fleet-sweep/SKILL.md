@@ -1,99 +1,130 @@
 ---
 name: Fleet Sweep
-description: Comprehensive HermesOS Proxmox fleet audit — host capacity drift, per-VM config drift, auto-fix safe items (cpulimit only), report the rest with operator runbooks
+description: Comprehensive HermesOS Proxmox fleet audit — auto-fix every safe VM-config drift, only escalate host capacity issues that require operator decisions
 var: ""
 tags: [ops, infra]
 ---
-> **${var}** — Optional comma-separated host slugs to scope (e.g. "pve5,pve6"). If empty, sweeps all hosts in the prefetched snapshot. Pass `dry-run` to suppress notify and the auto-fix pending writes.
+> **${var}** — Optional comma-separated host slugs (e.g. "pve5,pve6"). If empty, sweeps all hosts in the snapshot. Pass `dry-run` to suppress notify + skip pending fix writes (no auto-apply).
 
 ## Goal
 
-One periodic sweep that touches every drift surface I care about across pve1-pve6, separates "auto-fixable safely" from "needs your eyes," and gives a single clean report. Companion to `proxmox-capacity` (which only watches host-level capacity transitions) — this one looks INSIDE each VM's config.
+Run a comprehensive audit, **fix every config drift that's safe to fix without operator approval**, and only escalate to Telegram when there's something a human actually needs to decide. Operator preference: silent on clean fleet; quiet "here's what I fixed" report when I auto-correct things; loud only when capacity decisions are needed.
 
-Auto-fix scope is intentionally narrow: **only cpulimit drift**. Everything else (aio=io_uring, missing discard, balloon mismatch, capacity overload) reports with the exact runbook command but does not act. The PVE operator token has VM.Config.CPU and nothing else; rebuilding broader auto-fix requires explicit approval.
+Auto-fix scope is bounded by the AeonOperator PVE role: VM.Config.{CPU,Memory,Disk,Options}. Token is verified blocked from VM.Allocate (destroy), VM.Migrate, VM.PowerMgmt (start/stop/reboot). Config writes that require a runtime restart to actually take effect (aio, discard) are applied to *config* immediately and flagged with `needs_reboot: true` — the operator does the reboot when convenient.
 
 ## Inputs
 
-`.proxmox-cache/snapshot.json` — written by `scripts/prefetch-proxmox-capacity.sh` before this skill runs. Each `hosts[slug]` entry now also contains `vm_configs: [...]` — one object per running VM with the full `qm config` payload (cpulimit, cores, memory, balloon, scsi0, boot, etc.). If snapshot is missing → notify `fleet-sweep: PREFETCH_MISSING` and exit.
+`.proxmox-cache/snapshot.json` — written by prefetch. Each host entry has `vm_configs: [...]` — one object per running VM with the full qm config payload. If missing → notify `fleet-sweep: PREFETCH_MISSING` and exit.
 
-`memory/proxmox-state.json` (optional) — same shape used by proxmox-capacity. Read for historical bucket comparison; do not overwrite (proxmox-capacity owns that file).
+## Auto-fix rules (apply via `.pending-vm-config-fix/<slug>-<vmid>.json`)
 
-## Checks
+For each running VM, check these conditions IN ORDER. If multiple drifts apply to the same VM, write ONE pending file with all corrections combined into the `changes` object.
 
-### Host level (per host)
-
-| Severity | Trigger | Action |
-|---|---|---|
-| CRITICAL | thin-pool data fill > 85% | Report. Suggest: pause placement (`UPDATE proxmox_hosts SET status='maintenance' WHERE id='<slug>'`) + migrate per `reference_proxmox_vm_migration.md` |
-| CRITICAL | 5-min loadavg / vCPU > 1.3 | Report. Suggest: pause placement, investigate top consumers via `ssh root@<ip> 'top -bn1'` |
-| CRITICAL | host unreachable in snapshot | Report. Suggest: `ssh root@<ip> 'uptime; systemctl status pveproxy'` |
-| WATCH | thin-pool 70-85% | Report. Suggest: monitor trend, prep migration plan |
-| WATCH | RAM > 80% | Report. Suggest: check for runaway VMs, pause placement if approaches 92% |
-| WATCH | running VM count within 3 of `max_tenant_instances` cap | Report. Suggest: stand up new pve host per `reference_proxmox.md` standup recipe |
-
-### VM level (per running VM, per host)
-
-| Severity | Trigger | Auto-fix? | Runbook |
+| Trigger | Correction | needs_reboot | Notes |
 |---|---|---|---|
-| WARN | `cpulimit` field absent from qm config | **AUTO-FIX** | Write `.pending-cpulimit-fix/<slug>-<vmid>.json` with target=cores (paid tier) or 0.5 (mem<=1024 free tier). Postprocess applies via API. |
-| INFO | `cpulimit` ≠ `cores` (e.g. cores=4 cpulimit=2) | No | Suggest: `qm set <vmid> --cpulimit <cores>` IF user wants the tier-pattern alignment. Some tenants may have intentional throttling. |
-| WARN | `scsi0` contains `aio=io_uring` | No | Per memory: `aio=io_uring` drops UNMAP on Hermes VMs — fstrim doesn't reclaim thin-pool blocks. Runbook: `qm set <vmid> --scsi0 '...,aio=threads'` + VM reboot. |
-| WARN | `scsi0` missing `discard=on` | No | fstrim won't release blocks back to LVM-thin pool. Runbook: `qm set <vmid> --scsi0 '...,discard=on'` + VM stop/start (hot-apply config-only doesn't take effect until requ). |
-| INFO | `balloon` set, value > `memory` | No | Misconfigured ballooning — balloon should be ≤ memory. Surface for review. |
-| INFO | `onboot` ≠ 1 on tenant VM | No | VM won't restart with host. Probably intentional for staging VMs but worth surfacing. |
+| `cpulimit` field absent | `cpulimit = cores` (paid) OR `cpulimit = 0.5` (free-tier: mem ≤ 1024) | false | Hot, no impact |
+| `balloon` set AND `balloon > memory` | `balloon = memory` | false | PVE handles balloon change hot |
+| `onboot ≠ 1` AND VM name starts with `hermes-` | `onboot = 1` | false | Takes effect next boot; no current impact |
+| `scsi0` config contains `aio=io_uring` | rewrite scsi0 with `aio=threads` (preserve all other params) | true | Per memory: io_uring drops UNMAP; this is the fstrim-blackhole root cause |
+| `scsi0` config lacks `discard=on` | rewrite scsi0 adding `discard=on` (preserve all other params) | true | fstrim won't reclaim until stop/start |
 
-Special case: if ANY thin-pool exceeds 95%, surface it FIRST in the message — the pve1 incident class (2026-05-12 hit 99.99% overcommit).
+**Special-case skips** (do NOT auto-fix, leave alone):
+- `cpulimit = 0.5, cores = 1, mem ≤ 1024` — that IS the free-tier pattern, not drift
+- VMs not starting with `hermes-` — could be operator-owned (templates, debug VMs); leave config alone
+
+**Pending file schema** (write via the Write tool to `.pending-vm-config-fix/<slug>-<vmid>.json`):
+```json
+{
+  "slug": "pve5",
+  "vmid": 311,
+  "ip": "78.46.44.246",
+  "changes": {
+    "cpulimit": 2,
+    "balloon": 4096
+  },
+  "reason": "cpulimit absent (cores=2 mem=4GB → tier expects cpulimit=2); balloon>memory",
+  "needs_reboot": false
+}
+```
+
+For scsi0 rewrites, the postprocess script does an HTTP PUT with `--data-urlencode "scsi0=..."`. The `changes.scsi0` value should be the FULL new scsi0 string — read the current value from the snapshot (vm_configs[i].scsi0), modify the aio/discard portion, preserve everything else (storage, size, all other params).
+
+## Host-level checks (alert only — operator must decide)
+
+These are NOT auto-fixable. Aeon doesn't migrate, doesn't pause placement, doesn't power things off. Report only.
+
+| Severity | Trigger | What to suggest |
+|---|---|---|
+| CRITICAL | thin-pool data fill > 85% | "pause placement: `UPDATE proxmox_hosts SET status='maintenance' WHERE id='<slug>'`; consider migrating tenants per reference_proxmox_vm_migration.md" |
+| CRITICAL | 5-min loadavg / vCPU > 1.3 | "investigate top consumers: `ssh root@<ip> 'top -bn1'`. Consider pausing placement." |
+| CRITICAL | host unreachable in snapshot | "check host: `ssh root@<ip> 'uptime; systemctl status pveproxy'`" |
+| WATCH | thin-pool 70-85% | "prep migration plan; watch trend" |
+| WATCH | RAM > 80% | "watch for runaway VMs; consider pausing placement if approaches 92%" |
+| WATCH | running VM count within 3 of `max_tenant_instances` cap | "stand up new pve host per reference_proxmox.md standup recipe" |
+
+Surface thin-pool > 95% FIRST in any message — that's the pve1 incident class.
 
 ## Steps
 
-1. Read inputs. If `.proxmox-cache/snapshot.json` missing → notify PREFETCH_MISSING and exit.
-2. If `${var}` looks like `dry-run`, set DRY_RUN=true and proceed (skip notify + pending fix writes at the end).
-3. Iterate hosts (filtered by `${var}` if it looks like a comma-separated slug list). For each host, run host-level checks then iterate `vm_configs` for VM-level checks. Accumulate findings into structured groups (CRITICAL_HOSTS, WATCH_HOSTS, AUTO_FIX_QUEUE, MANUAL_RUNBOOK_QUEUE).
-4. For each item in AUTO_FIX_QUEUE (cpulimit drift): if NOT DRY_RUN, write `.pending-cpulimit-fix/<slug>-<vmid>.json` with `{slug, vmid, ip, cpulimit, reason}`. The postprocess script applies it after this run.
-5. Build the output. Skip notify entirely if no findings (truly clean fleet). Otherwise build a single message + a json-render card.
-6. If NOT DRY_RUN and findings exist: call `./notify "..."` and `./notify-jsonrender fleet-sweep "..."` exactly per the pattern below.
-7. Append a one-line entry to `memory/topics/fleet-sweep.md` with the summary regardless of notify mode.
+1. Read `.proxmox-cache/snapshot.json`. If missing, notify PREFETCH_MISSING and exit.
+2. Parse `${var}`: if it equals `dry-run`, set DRY_RUN=true. If it's a comma-separated slug list, scope the iteration. Otherwise sweep all hosts.
+3. For each host (filtered if scoped):
+   - Run host-level checks → accumulate findings into CRITICAL/WATCH lists.
+   - For each VM in `vm_configs`, apply the auto-fix rules → accumulate corrections per VM.
+4. For each VM with at least one correction, write a single pending file at `.pending-vm-config-fix/<slug>-<vmid>.json` (unless DRY_RUN). Combine all corrections for that VM into one `changes` object.
+5. Decide notification mode:
+   - **Silent**: zero host findings AND zero corrections queued → print `FLEET_SWEEP_CLEAN` to stdout, no notify.
+   - **Quiet "what I fixed"**: corrections queued, zero CRITICAL host findings → one concise notification covering AUTO-FIXED + (optional) WATCH list.
+   - **Loud "needs you"**: any CRITICAL host finding → notification leads with CRITICAL, then AUTO-FIXED, then WATCH.
+   - DRY_RUN overrides all of the above to silent (but still produce the would-be message in stdout for inspection).
+6. Build the notification body. Call `./notify` once and `./notify-jsonrender fleet-sweep` once (per the explicit pattern below).
+7. Append a one-line entry to `memory/topics/fleet-sweep.md` regardless.
 
-## Output format
+Note: the actual API writes happen in `scripts/postprocess-proxmox-fix.sh` AFTER Claude finishes. The skill only queues the pending files. The postprocess script also generates a separate `🔧 PROXMOX auto-fix applied` notification listing what actually got applied — that arrives via the same Telegram channel.
 
-**Single notify call shape — exactly this pattern, one bash invocation, do not pipe or subshell:**
+## Notify call shape — EXACTLY this pattern, one bash invocation, no pipes/subshells/heredocs
 
+When corrections were queued AND no CRITICAL host findings:
 ```
-./notify "🔧 FLEET SWEEP — N findings (M auto-fixed, K need ops)
+./notify "🔧 FLEET SWEEP — queued N config corrections, 0 host issues
 
-🔴 CRITICAL
-pve5: load 12.4x vCPU — investigate
-pve1: thin-pool local-lvm 87% — migrate prep needed
+✅ AUTO-FIX QUEUED (apply on next postprocess run)
+pve3 VMID 311 cpulimit=2 (was unset)
+pve6 VMID 622 cpulimit=0.5 (was unset)
+pve5 VMID 533 onboot=1 (was 0); balloon=4096 (was 8000)
+pve1 VMID 247 scsi0 aio=threads (was io_uring) ⟳ needs reboot
 
 🟡 WATCH
-pve6: RAM 84%
-pve2: 47/50 VM cap
-
-✅ AUTO-FIXED
-pve3 VMID 311: cpulimit set to 2 (was unset)
-pve6 VMID 622: cpulimit set to 0.5 (was unset)
-
-🛠 MANUAL RUNBOOK
-pve1 VMID 247: aio=io_uring → qm set 247 --scsi0 ...,aio=threads + reboot
-pve4 VMID 412: discard=off → qm set 412 --scsi0 ...,discard=on + stop/start"
+pve5 mem 82% (1-2 ticks under CRITICAL)"
 ```
 
-Then immediately:
+When there are CRITICAL host findings:
 ```
-./notify-jsonrender fleet-sweep "...same body..."
+./notify "🔧 FLEET SWEEP — 2 CRITICAL, N queued fixes
+
+🔴 CRITICAL — operator action required
+pve5 thin-pool local-lvm 87% — pause placement / migrate prep
+pve2 load 14.2x vCPU — investigate top consumers
+
+✅ AUTO-FIX QUEUED
+...
+
+🟡 WATCH
+..."
 ```
+
+When nothing to report: print `FLEET_SWEEP_CLEAN` to stdout, do NOT call notify.
 
 **Do NOT**:
-- Write the message to /tmp first
-- Use $(...) command substitution or heredocs
-- Call bash to execute a notify wrapper script
-
-If there are zero findings, print `FLEET_SWEEP_CLEAN` to stdout instead and skip both notify calls — silent on no news.
+- Write the notify message to /tmp first or use `$(...)` substitution
+- Use heredocs (`<<EOF`) or pipes
+- Call `bash` or `sh` to execute a wrapper script
+- Apply fixes directly via curl from this skill — the sandbox blocks env-var-auth headers; that's what the postprocess script is for
 
 ## Sandbox note
 
-Never call the PVE API directly from inside this skill — env-var-based curl auth is blocked. The prefetch fetched everything you need (read side). The write side (cpulimit fixes) lives in `scripts/postprocess-proxmox-fix.sh`, which runs OUTSIDE the sandbox after Claude finishes. You communicate with it by writing `.pending-cpulimit-fix/*.json` files.
+No direct PVE API access from this skill. Read state from the prefetched snapshot. Queue auto-fixes by writing JSON pending files. The postprocess step handles all API writes outside the sandbox.
 
 ## Summary
 
-End with a `## Summary` listing: hosts swept, findings by severity, auto-fix queue size, manual-runbook queue size, notify mode (sent / silent / dry-run).
+End with `## Summary` listing: hosts swept, VMs swept, CRITICAL count, WATCH count, queued-fix count (and breakdown by type), needs_reboot count, notify mode (silent / quiet / loud / dry-run).
