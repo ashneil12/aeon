@@ -1,0 +1,374 @@
+{
+  "root": "main-card",
+  "state": {},
+  "elements": {
+    "main-card": {
+      "type": "Card",
+      "props": {
+        "title": "Proxmox Capacity Alert",
+        "description": "Fleet-wide load spike detected"
+      },
+      "children": [
+        "alert",
+        "sep1",
+        "critical-header",
+        "pve5-section",
+        "pve6-section",
+        "pve7-section",
+        "sep2",
+        "healthy-header",
+        "healthy-table",
+        "sep3",
+        "runbook-header",
+        "runbook-text"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "OK → CRITICAL",
+        "message": "pve5 + pve6 + pve7 — fleet-wide load spike",
+        "type": "error"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "critical-header": {
+      "type": "Heading",
+      "props": {
+        "text": "Critical Hosts",
+        "level": "h2"
+      }
+    },
+    "pve5-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve5-title",
+        "pve5-load",
+        "pve5-mem-row",
+        "pve5-disk-row",
+        "pve5-vms"
+      ]
+    },
+    "pve5-title": {
+      "type": "Heading",
+      "props": {
+        "text": "pve5",
+        "level": "h3"
+      }
+    },
+    "pve5-load": {
+      "type": "Stat",
+      "props": {
+        "label": "Load (5-min avg)",
+        "value": "12.39x (148.69 / 12 vCPU)",
+        "delta": "was 0.32x at 05:54",
+        "trend": "up"
+      }
+    },
+    "pve5-mem-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve5-mem-progress",
+        "pve5-mem-text"
+      ]
+    },
+    "pve5-mem-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 72.0,
+        "label": "Memory"
+      }
+    },
+    "pve5-mem-text": {
+      "type": "Text",
+      "props": {
+        "text": "97.2/135.0 GB (72.0%)",
+        "variant": "caption"
+      }
+    },
+    "pve5-disk-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve5-disk-progress",
+        "pve5-disk-text"
+      ]
+    },
+    "pve5-disk-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 59.6,
+        "label": "Disk (local-lvm)"
+      }
+    },
+    "pve5-disk-text": {
+      "type": "Text",
+      "props": {
+        "text": "531.3/891.2 GB (59.6%)",
+        "variant": "caption"
+      }
+    },
+    "pve5-vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "50 (47 running)"
+      }
+    },
+    "pve6-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve6-title",
+        "pve6-load",
+        "pve6-mem-row",
+        "pve6-disk-row",
+        "pve6-vms"
+      ]
+    },
+    "pve6-title": {
+      "type": "Heading",
+      "props": {
+        "text": "pve6",
+        "level": "h3"
+      }
+    },
+    "pve6-load": {
+      "type": "Stat",
+      "props": {
+        "label": "Load (5-min avg)",
+        "value": "2.87x (34.42 / 12 vCPU)",
+        "delta": "was OK (no prior load number)",
+        "trend": "up"
+      }
+    },
+    "pve6-mem-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve6-mem-progress",
+        "pve6-mem-text"
+      ]
+    },
+    "pve6-mem-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 38.4,
+        "label": "Memory"
+      }
+    },
+    "pve6-mem-text": {
+      "type": "Text",
+      "props": {
+        "text": "51.9/135.0 GB (38.4%)",
+        "variant": "caption"
+      }
+    },
+    "pve6-disk-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve6-disk-progress",
+        "pve6-disk-text"
+      ]
+    },
+    "pve6-disk-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 41.8,
+        "label": "Disk (local-lvm)"
+      }
+    },
+    "pve6-disk-text": {
+      "type": "Text",
+      "props": {
+        "text": "372.4/891.2 GB (41.8%)",
+        "variant": "caption"
+      }
+    },
+    "pve6-vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "36 (31 running)"
+      }
+    },
+    "pve7-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve7-title",
+        "pve7-status",
+        "pve7-load",
+        "pve7-mem-row",
+        "pve7-disk-row",
+        "pve7-vms"
+      ]
+    },
+    "pve7-title": {
+      "type": "Heading",
+      "props": {
+        "text": "pve7",
+        "level": "h3"
+      }
+    },
+    "pve7-status": {
+      "type": "Badge",
+      "props": {
+        "text": "UNKNOWN → CRITICAL (new host)",
+        "variant": "destructive"
+      }
+    },
+    "pve7-load": {
+      "type": "Stat",
+      "props": {
+        "label": "Load (5-min avg)",
+        "value": "3.14x (37.72 / 12 vCPU)"
+      }
+    },
+    "pve7-mem-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve7-mem-progress",
+        "pve7-mem-text"
+      ]
+    },
+    "pve7-mem-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 49.2,
+        "label": "Memory"
+      }
+    },
+    "pve7-mem-text": {
+      "type": "Text",
+      "props": {
+        "text": "66.4/135.0 GB (49.2%)",
+        "variant": "caption"
+      }
+    },
+    "pve7-disk-row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "pve7-disk-progress",
+        "pve7-disk-text"
+      ]
+    },
+    "pve7-disk-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 34.4,
+        "label": "Disk (local-lvm)"
+      }
+    },
+    "pve7-disk-text": {
+      "type": "Text",
+      "props": {
+        "text": "306.7/891.2 GB (34.4%)",
+        "variant": "caption"
+      }
+    },
+    "pve7-vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "36 (34 running)"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "healthy-header": {
+      "type": "Heading",
+      "props": {
+        "text": "Healthy Hosts (all OK)",
+        "level": "h2"
+      }
+    },
+    "healthy-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Host",
+          "Load (5-min avg)",
+          "Disk"
+        ],
+        "rows": [
+          [
+            "pve1",
+            "0.57x",
+            "26%"
+          ],
+          [
+            "pve2",
+            "0.48x",
+            "21%"
+          ],
+          [
+            "pve3",
+            "0.07x",
+            "15%"
+          ],
+          [
+            "pve4",
+            "0.25x",
+            "27%"
+          ]
+        ]
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "runbook-header": {
+      "type": "Heading",
+      "props": {
+        "text": "Runbook & Analysis",
+        "level": "h2"
+      }
+    },
+    "runbook-text": {
+      "type": "Text",
+      "props": {
+        "text": "3 hosts CRITICAL on load only — mem/disk fine on all. Suspect shared trigger (cron storm, mass migration, backup job hitting multiple hosts at once). pve5 has been flapping since 2026-05-17 (OK→CRITICAL→WATCH→OK→CRITICAL). Investigate load source on pve5 first, then check whether pve6/pve7 share the same workload pattern. pve1/pve3/pve4 have headroom if rebalance needed.",
+        "variant": "body"
+      }
+    }
+  }
+}
