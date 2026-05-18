@@ -2,7 +2,7 @@
     "version": "1.0",
     "generated": "2026-05-11T00:00:00Z",
     "repo": "aaronjmars/aeon",
-    "total": 118,
+    "total": 119,
     "categories": {
         "research": "Research & Content",
         "dev": "Dev & Code",
@@ -408,6 +408,18 @@
             "install": "./add-skill aaronjmars/aeon fork-contributor-leaderboard"
         },
         {
+            "slug": "fork-first-run-alert",
+            "name": "fork-first-run-alert",
+            "description": "Daily — named same-day alert the first time a fork completes a workflow run. Reads fork-cohort cache when fresh, live-fallback otherwise. Per-fork at 1–3 activators, batch at 4+.",
+            "category": "dev",
+            "schedule": "30 20 * * *",
+            "var": "",
+            "files": 0,
+            "sha": "pending",
+            "updated": "2026-05-17",
+            "install": "./add-skill aaronjmars/aeon fork-first-run-alert"
+        },
+        {
             "slug": "fork-fleet",
             "name": "fork-fleet",
             "description": "Inventory active Aeon forks, detect diverged work, surface upstream contribution candidates",
@@ -430,6 +442,18 @@
             "sha": "a14eb44",
             "updated": "2026-04-23",
             "install": "./add-skill aaronjmars/aeon fork-skill-digest"
+        },
+        {
+            "slug": "fork-skill-gap",
+            "name": "fork-skill-gap",
+            "description": "Weekly cross-fork skill adoption digest \u2014 per-fork table of upstream skills the fork hasn't enabled, top forks by gap size called out, silent on small-gap weeks",
+            "category": "dev",
+            "schedule": "0 21 * * 0",
+            "var": "",
+            "files": 0,
+            "sha": "pending",
+            "updated": "2026-05-16",
+            "install": "./add-skill aaronjmars/aeon fork-skill-gap"
         },
         {
             "slug": "github-issues",
