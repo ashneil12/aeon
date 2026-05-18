@@ -7,3 +7,4 @@ One line per run. Format: `YYYY-MM-DD HH:MM | pveN=BUCKET(worst-signal value) ..
 2026-05-17 13:52 | pve1=OK(disk 24%) pve2=OK(mem 49%) pve3=OK(disk 38%) pve4=OK(mem 66%) pve5=WATCH(load 0.83x, mem 79%, disk 58%) pve6=OK(mem 48%) — improvement CRITICAL→WATCH on pve5 (silent)
 2026-05-17 17:06 | pve1=OK(mem 20%) pve2=OK(mem 46%) pve3=OK(mem 29%) pve4=OK(mem 66%) pve5=OK(mem 78%, load 0.34x, disk 58%) pve6=OK(mem 42%) — improvement WATCH→OK on pve5 (silent)
 2026-05-17 20:30 | pve1=OK(disk 20%) pve2=OK(mem 15%) pve3=OK(disk 15%) pve4=OK(disk 32%) pve5=OK(mem 78%, disk 58%, load 0.37x) pve6=OK(mem 39%) — no transitions (silent)
+2026-05-18 01:34 | pve1=OK(disk 20%) pve2=OK(mem 15%) pve3=OK(disk 15%) pve4=OK(disk 32%) pve5=OK(mem 75%, disk 58%, load 0.34x) pve6=OK(disk 40%) — no transitions (silent)
