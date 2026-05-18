@@ -25,7 +25,7 @@ For each running VM, check these conditions IN ORDER. If multiple drifts apply t
 | `cpulimit` field absent | `cpulimit = cores` (paid) OR `cpulimit = 0.5` (free-tier: mem ≤ 1024) | false | Hot, no impact |
 | `balloon` set AND `balloon > memory` | `balloon = memory` | false | PVE handles balloon change hot |
 | `onboot ≠ 1` AND VM name starts with `hermes-` | `onboot = 1` | false | Takes effect next boot; no current impact |
-| `scsi0` config contains `aio=io_uring` | rewrite scsi0 with `aio=threads` (preserve all other params) | true | Per memory: io_uring drops UNMAP; this is the fstrim-blackhole root cause |
+| `scsi0` contains `aio=io_uring` OR has **no** explicit `aio=` clause (PVE default = io_uring) | rewrite scsi0 with `aio=threads` (preserve all other params; add `,aio=threads` if missing, else replace) | true | Per memory: io_uring drops UNMAP; missing-clause means runtime defaults to io_uring — same hazard |
 | `scsi0` config lacks `discard=on` | rewrite scsi0 adding `discard=on` (preserve all other params) | true | fstrim won't reclaim until stop/start |
 
 **Special-case skips** (do NOT auto-fix, leave alone):
