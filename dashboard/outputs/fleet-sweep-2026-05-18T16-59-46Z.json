@@ -1,0 +1,122 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "FLEET SWEEP",
+        "description": "3 CRITICAL, 3 queued fixes"
+      },
+      "children": [
+        "stack-main"
+      ]
+    },
+    "stack-main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "critical-heading",
+        "critical-stack",
+        "separator-1",
+        "fixes-heading",
+        "fixes-stack"
+      ]
+    },
+    "critical-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "🔴 CRITICAL — operator action required",
+        "level": "h2"
+      }
+    },
+    "critical-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "alert-pve5",
+        "alert-pve6",
+        "alert-pve7"
+      ]
+    },
+    "alert-pve5": {
+      "type": "Alert",
+      "props": {
+        "title": "pve5 load5 148.06 / 12 vCPU = 12.3x",
+        "message": "Investigate top consumers: ssh root@78.46.44.246 'top -bn1'. Consider pausing placement.",
+        "type": "error"
+      }
+    },
+    "alert-pve6": {
+      "type": "Alert",
+      "props": {
+        "title": "pve6 load5 33.67 / 12 vCPU = 2.8x",
+        "message": "Investigate top consumers: ssh root@46.4.68.151 'top -bn1'.",
+        "type": "error"
+      }
+    },
+    "alert-pve7": {
+      "type": "Alert",
+      "props": {
+        "title": "pve7 load5 37.58 / 12 vCPU = 3.1x",
+        "message": "Investigate top consumers: ssh root@37.27.55.81 'top -bn1'.",
+        "type": "error"
+      }
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "fixes-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "✅ AUTO-FIX QUEUED (apply on next postprocess run)",
+        "level": "h2"
+      }
+    },
+    "fixes-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fix-744",
+        "fix-745",
+        "fix-746"
+      ]
+    },
+    "fix-744": {
+      "type": "Alert",
+      "props": {
+        "title": "pve7 VMID 744",
+        "message": "scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot",
+        "type": "info"
+      }
+    },
+    "fix-745": {
+      "type": "Alert",
+      "props": {
+        "title": "pve7 VMID 745",
+        "message": "scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot",
+        "type": "info"
+      }
+    },
+    "fix-746": {
+      "type": "Alert",
+      "props": {
+        "title": "pve7 VMID 746",
+        "message": "scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot",
+        "type": "info"
+      }
+    }
+  }
+}
