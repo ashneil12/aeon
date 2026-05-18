@@ -38,5 +38,9 @@
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1
+  },
+  "weekly-shiplog": {
+    "last_dispatch": "2026-05-18T10:09:04Z",
+    "last_status": "dispatched"
   }
 }
