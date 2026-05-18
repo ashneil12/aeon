@@ -1,11 +1,21 @@
-🔧 FLEET SWEEP — 3 CRITICAL, 3 queued fixes
+`FLEET_SWEEP_CLEAN`
 
-🔴 CRITICAL — operator action required
-pve5 load5 148.06 / 12 vCPU = 12.3x — investigate top consumers: ssh root@78.46.44.246 'top -bn1'. Consider pausing placement.
-pve6 load5 33.67 / 12 vCPU = 2.8x — investigate top consumers: ssh root@46.4.68.151 'top -bn1'.
-pve7 load5 37.58 / 12 vCPU = 3.1x — investigate top consumers: ssh root@37.27.55.81 'top -bn1'.
+## Summary
 
-✅ AUTO-FIX QUEUED (apply on next postprocess run)
-pve7 VMID 744 scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot
-pve7 VMID 745 scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot
-pve7 VMID 746 scsi0 aio=threads (was missing — defaulted io_uring) ⟳ needs reboot
+- **Hosts swept:** 7 (pve1–pve7, all reachable per snapshot at 2026-05-18T21:45:24Z)
+- **VMs swept:** 173 running hermes-* VMs (pve1=10, pve2=15, pve3=19, pve4=18, pve5=46, pve6=31, pve7=34)
+- **CRITICAL host findings:** 0
+- **WATCH host findings:** 0
+- **Auto-fix corrections queued:** 0 (no `.pending-vm-config-fix/` files written)
+- **needs_reboot count:** 0
+- **Notify mode:** silent (printed `FLEET_SWEEP_CLEAN` to stdout, no `./notify` call)
+
+### Why silent
+Every running hermes-* VM already has explicit `cpulimit`, `onboot=1`, `scsi0` with both `aio=threads` and `discard=on`, and `balloon ≤ memory`. The earlier 16:55 load spike on pve5/pve6/pve7 has fully recovered (pve5 load5/vCPU 12.34x → 0.42x). All host capacity signals are well under WATCH thresholds (max thin-pool 55.9% on pve5, max mem 70.4% on pve5, max load 0.42x on pve5). The prior pve7 vmid 744/745/746 scsi0 `aio=threads` rewrites from 16:55 confirmed persisted.
+
+### Files modified
+- `memory/topics/fleet-sweep.md` — appended one-line history entry
+- `memory/logs/2026-05-18.md` — appended `21:46 — fleet-sweep` block
+
+### Follow-ups
+None — fleet is in good shape; next run on schedule.
