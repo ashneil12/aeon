@@ -1,0 +1,72 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "🔧 FLEET SWEEP",
+        "description": "queued 4 config corrections, 0 host issues"
+      },
+      "children": [
+        "status_alert",
+        "separator_1",
+        "table_corrections"
+      ]
+    },
+    "status_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "AUTO-FIX QUEUED",
+        "message": "apply on next postprocess run",
+        "type": "success"
+      },
+      "children": []
+    },
+    "separator_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "table_corrections": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Host",
+          "VMID",
+          "cpulimit",
+          "onboot"
+        ],
+        "rows": [
+          [
+            "pve7",
+            "727",
+            "2 (was unset)",
+            "1 (was 0)"
+          ],
+          [
+            "pve7",
+            "744",
+            "2 (was unset)",
+            "1 (was 0)"
+          ],
+          [
+            "pve7",
+            "745",
+            "2 (was unset)",
+            "1 (was 0)"
+          ],
+          [
+            "pve7",
+            "746",
+            "2 (was unset)",
+            "1 (was 0)"
+          ]
+        ]
+      },
+      "children": []
+    }
+  }
+}
