@@ -1,0 +1,67 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Heartbeat",
+        "description": "14:03 UTC"
+      },
+      "children": [
+        "stack-main"
+      ]
+    },
+    "stack-main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "badge-status",
+        "alert-cost-report",
+        "stat-skills",
+        "alert-morning-brief",
+        "text-status"
+      ]
+    },
+    "badge-status": {
+      "type": "Badge",
+      "props": {
+        "text": "🟡 WATCH",
+        "variant": "secondary"
+      }
+    },
+    "alert-cost-report": {
+      "type": "Alert",
+      "props": {
+        "title": "cost-report didn't fire today",
+        "message": "Scheduled: Monday 07:00 UTC. No entry in cron-state.json.",
+        "type": "warning"
+      }
+    },
+    "stat-skills": {
+      "type": "Stat",
+      "props": {
+        "label": "Tracked skills clean",
+        "value": "6/6"
+      }
+    },
+    "alert-morning-brief": {
+      "type": "Alert",
+      "props": {
+        "title": "morning-brief still missing",
+        "message": "Dedup already logged 3x in 48h.",
+        "type": "warning"
+      }
+    },
+    "text-status": {
+      "type": "Text",
+      "props": {
+        "text": "Status page refreshed.",
+        "variant": "muted"
+      }
+    }
+  }
+}
