@@ -1,0 +1,260 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "FLEET SWEEP",
+        "description": "4 drift VMs identified, AUTO-FIX BLOCKED by infra gap (0 host issues)"
+      },
+      "children": [
+        "alert",
+        "sep1",
+        "drift-section",
+        "sep2",
+        "capacity-section"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "AUTO-FIX BLOCKED",
+        "message": "snapshot lacks host IPs (.pending-vm-config-fix schema requires .ip; prefetch-proxmox-capacity.sh has it but drops it). Fix: add IP to host entry in prefetch. Skipping queue write this run to avoid garbage pending files.",
+        "type": "warning"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "drift-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "drift-heading",
+        "drift-table",
+        "drift-notes"
+      ]
+    },
+    "drift-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "DRIFT IDENTIFIED",
+        "level": "h3"
+      }
+    },
+    "drift-table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Host",
+          "VMID",
+          "cpulimit",
+          "onboot",
+          "Previous State"
+        ],
+        "rows": [
+          [
+            "pve7",
+            "727",
+            "2",
+            "1",
+            "unset (was 0)"
+          ],
+          [
+            "pve7",
+            "744",
+            "2",
+            "1",
+            "unset (was 0)"
+          ],
+          [
+            "pve7",
+            "745",
+            "2",
+            "1",
+            "unset (was 0)"
+          ],
+          [
+            "pve7",
+            "746",
+            "2",
+            "1",
+            "unset (was 0)"
+          ]
+        ]
+      }
+    },
+    "drift-notes": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "note-reboot",
+        "note-uuid"
+      ]
+    },
+    "note-reboot": {
+      "type": "Text",
+      "props": {
+        "text": "All hot-fixes, needs_reboot=0",
+        "variant": "caption"
+      }
+    },
+    "note-uuid": {
+      "type": "Text",
+      "props": {
+        "text": "All share name UUID 2e132799…",
+        "variant": "caption"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "capacity-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "capacity-heading",
+        "capacity-summary",
+        "capacity-metrics",
+        "capacity-footer"
+      ]
+    },
+    "capacity-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "CAPACITY CLEAN",
+        "level": "h3"
+      }
+    },
+    "capacity-summary": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "lg"
+      },
+      "children": [
+        "stat-hosts",
+        "stat-vms"
+      ]
+    },
+    "stat-hosts": {
+      "type": "Stat",
+      "props": {
+        "label": "Hosts Swept",
+        "value": "7"
+      }
+    },
+    "stat-vms": {
+      "type": "Stat",
+      "props": {
+        "label": "Running VMs",
+        "value": "157"
+      }
+    },
+    "capacity-metrics": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "metric-mem",
+        "metric-pool",
+        "metric-load"
+      ]
+    },
+    "metric-mem": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "metric-mem-label",
+        "metric-mem-progress"
+      ]
+    },
+    "metric-mem-label": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 Memory (WATCH@80%, ~2pp under)",
+        "variant": "body"
+      }
+    },
+    "metric-mem-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 78,
+        "max": 100
+      }
+    },
+    "metric-pool": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "metric-pool-label",
+        "metric-pool-progress"
+      ]
+    },
+    "metric-pool-label": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 Thin-pool",
+        "variant": "body"
+      }
+    },
+    "metric-pool-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 58,
+        "max": 100
+      }
+    },
+    "metric-load": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "metric-load-label",
+        "metric-load-value"
+      ]
+    },
+    "metric-load-label": {
+      "type": "Text",
+      "props": {
+        "text": "pve4 load5/vCPU (CRIT@1.3)",
+        "variant": "body"
+      }
+    },
+    "metric-load-value": {
+      "type": "Stat",
+      "props": {
+        "value": "0.47"
+      }
+    },
+    "capacity-footer": {
+      "type": "Text",
+      "props": {
+        "text": "All hosts reachable on PVE 9.1.14",
+        "variant": "caption"
+      }
+    }
+  }
+}
