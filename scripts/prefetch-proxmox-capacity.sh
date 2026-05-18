@@ -45,7 +45,7 @@ for SLUG in $HOSTS; do
 
   if [ -z "$IP" ] || [ -z "$TOKEN" ]; then
     echo "  $SLUG: missing ip or token, marking unreachable" >&2
-    jq --arg s "$SLUG" '.hosts[$s] = {"reachable": false, "error": "no_config"}' \
+    jq --arg s "$SLUG" --arg ip "$IP" '.hosts[$s] = {"reachable": false, "ip": $ip, "error": "no_config"}' \
       "$SNAPSHOT" > "$SNAPSHOT.tmp" && mv "$SNAPSHOT.tmp" "$SNAPSHOT"
     continue
   fi
@@ -59,7 +59,7 @@ for SLUG in $HOSTS; do
 
   if [ "$STATUS" = "null" ]; then
     echo "  $SLUG: API unreachable" >&2
-    jq --arg s "$SLUG" '.hosts[$s] = {"reachable": false, "error": "api_unreachable"}' \
+    jq --arg s "$SLUG" --arg ip "$IP" '.hosts[$s] = {"reachable": false, "ip": $ip, "error": "api_unreachable"}' \
       "$SNAPSHOT" > "$SNAPSHOT.tmp" && mv "$SNAPSHOT.tmp" "$SNAPSHOT"
     continue
   fi
@@ -84,12 +84,14 @@ for SLUG in $HOSTS; do
   done
 
   HOST_ENTRY=$(jq -n \
+    --arg ip "$IP" \
     --argjson status "$STATUS" \
     --argjson storage "$STORAGE" \
     --argjson vms "$VMS" \
     --argjson vm_configs "$VM_CONFIGS" \
     '{
       reachable: true,
+      ip: $ip,
       status: $status,
       storage: $storage,
       vm_total: ($vms | length),
