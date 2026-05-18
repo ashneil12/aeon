@@ -18,8 +18,11 @@ set -euo pipefail
 SKILL="${1:-}"
 VAR="${2:-}"
 
-# Only run for the proxmox-capacity skill.
-[ "$SKILL" = "proxmox-capacity" ] || exit 0
+# Run for any skill that consumes the Proxmox snapshot.
+case "$SKILL" in
+  proxmox-capacity|fleet-sweep) ;;
+  *) exit 0 ;;
+esac
 
 if [ -z "${PROXMOX_API_TOKENS:-}" ]; then
   echo "proxmox-capacity prefetch: PROXMOX_API_TOKENS not set, skipping" >&2
@@ -69,17 +72,30 @@ for SLUG in $HOSTS; do
   VMS=$(curl -sk --max-time 10 -H "$AUTH_HDR" "$BASE/nodes/$SLUG/qemu" 2>/dev/null \
     | jq '.data // []' 2>/dev/null || echo "[]")
 
+  # Per-VM config fetch (only needed by fleet-sweep skill, but lightweight enough to always do).
+  # Adds ~5-10s for a heavily-populated host. Sequential is fine; PVE API isn't rate-limited at this volume.
+  VM_CONFIGS="[]"
+  for VMID in $(echo "$VMS" | jq -r 'map(select(.status == "running")) | .[].vmid'); do
+    CFG=$(curl -sk --max-time 5 -H "$AUTH_HDR" "$BASE/nodes/$SLUG/qemu/$VMID/config" 2>/dev/null \
+      | jq --argjson vmid "$VMID" '.data // null | if . == null then null else . + {vmid: $vmid} end' 2>/dev/null)
+    if [ -n "$CFG" ] && [ "$CFG" != "null" ]; then
+      VM_CONFIGS=$(echo "$VM_CONFIGS" | jq --argjson c "$CFG" '. + [$c]')
+    fi
+  done
+
   HOST_ENTRY=$(jq -n \
     --argjson status "$STATUS" \
     --argjson storage "$STORAGE" \
     --argjson vms "$VMS" \
+    --argjson vm_configs "$VM_CONFIGS" \
     '{
       reachable: true,
       status: $status,
       storage: $storage,
       vm_total: ($vms | length),
       vm_running: ($vms | map(select(.status == "running")) | length),
-      vm_stopped: ($vms | map(select(.status == "stopped")) | length)
+      vm_stopped: ($vms | map(select(.status == "stopped")) | length),
+      vm_configs: $vm_configs
     }')
 
   jq --arg s "$SLUG" --argjson e "$HOST_ENTRY" '.hosts[$s] = $e' \

@@ -155,6 +155,7 @@ skills:
 
   # --- Infra (Hermes Proxmox/Hetzner) ---
   proxmox-capacity: { enabled: true, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across pve1-pve6 + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
+  fleet-sweep: { enabled: true, schedule: "30 6 * * *", var: "" } # daily 06:30 UTC — comprehensive HermesOS fleet audit: host capacity + per-VM config drift (cpulimit/aio/discard/balloon), auto-fixes cpulimit, reports rest with runbooks
 
   # --- Utilities ---
   auto-workflow: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: URL to analyze
