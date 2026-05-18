@@ -1,0 +1,159 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Weekly Shiplog — 2026-05-18"
+      },
+      "children": [
+        "stack_content"
+      ]
+    },
+    "stack_content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text_intro",
+        "sep_1",
+        "heading_themes",
+        "stack_themes",
+        "sep_2",
+        "heading_metrics",
+        "stack_metrics",
+        "sep_3",
+        "storylink_article"
+      ]
+    },
+    "text_intro": {
+      "type": "Text",
+      "props": {
+        "text": "HermesOS rolled out the xAI Grok SuperGrok OAuth flow end-to-end across all three fork repos while simultaneously firefighting a Cloudflare 200-record cap that had been silently leaking DNS on every tenant destroy — and Aeon completed its fork-intelligence layer with four new skills.",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "sep_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading_themes": {
+      "type": "Heading",
+      "props": {
+        "text": "Themes",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "stack_themes": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge_theme1",
+        "badge_theme2",
+        "badge_theme3"
+      ]
+    },
+    "badge_theme1": {
+      "type": "Badge",
+      "props": {
+        "text": "SuperGrok OAuth ships end-to-end across the stack",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "badge_theme2": {
+      "type": "Badge",
+      "props": {
+        "text": "A Cloudflare cap fired, pve5 buckled, fleet got tougher",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "badge_theme3": {
+      "type": "Badge",
+      "props": {
+        "text": "Aeon's fork-intelligence layer fills out",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "sep_2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading_metrics": {
+      "type": "Heading",
+      "props": {
+        "text": "Metrics",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "stack_metrics": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat_commits",
+        "stat_prs",
+        "stat_changes"
+      ]
+    },
+    "stat_commits": {
+      "type": "Stat",
+      "props": {
+        "label": "Commits",
+        "value": "~1,300"
+      },
+      "children": []
+    },
+    "stat_prs": {
+      "type": "Stat",
+      "props": {
+        "label": "Pull Requests",
+        "value": "65"
+      },
+      "children": []
+    },
+    "stat_changes": {
+      "type": "Stat",
+      "props": {
+        "label": "Code Changes",
+        "value": "+25k / −5k"
+      },
+      "children": []
+    },
+    "sep_3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "storylink_article": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Weekly Shiplog — 2026-05-18",
+        "href": "https://github.com/ashneil12/aeon/blob/main/articles/weekly-shiplog-2026-05-18.md",
+        "source": "GitHub"
+      },
+      "children": []
+    }
+  }
+}
