@@ -50,10 +50,10 @@
     "success_rate": 1
   },
   "fleet-sweep": {
-    "last_status": "dispatched",
-    "last_success": "2026-05-18T21:51:58Z",
-    "total_runs": 7,
-    "total_successes": 7,
+    "last_status": "success",
+    "last_success": "2026-05-19T13:46:12Z",
+    "total_runs": 8,
+    "total_successes": 8,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
