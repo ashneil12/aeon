@@ -1,17 +1,15 @@
-Per the skill's silent-mode contract, printing the clean sentinel and skipping notify:
-
-```
-FLEET_SWEEP_CLEAN
-```
+`FLEET_SWEEP_CLEAN` — silent run, nothing to escalate or fix.
 
 ## Summary
 
-- **Hosts swept:** 7 (pve1–pve7), all reachable.
-- **VMs swept:** 207 running (all `hermes-` named; zero non-hermes VMs).
-- **CRITICAL findings:** 0 — max thin-pool pve5=56.85% (<85), max load5/vCPU pve5=0.40x (<1.3), no unreachable hosts.
-- **WATCH findings:** 0 — max mem pve5=62.6% (<80), no thin-pool 70–85%. `max_tenant_instances` absent from snapshot → that WATCH skipped (per established precedent).
-- **Queued fixes:** 0 — all 5 drift rules (cpulimit-absent / balloon>memory / onboot≠1 / scsi0 aio / scsi0 discard) returned zero hits. Every VM already has explicit `cpulimit`, `onboot=1`, `balloon≤memory`, and `scsi0` with `aio=threads`+`discard=on`.
-- **needs_reboot count:** 0.
-- **Notify mode:** silent (zero host findings AND zero corrections → `FLEET_SWEEP_CLEAN`, no `./notify`, no pending-fix files written).
-- **Files modified:** `memory/topics/fleet-sweep.md` (one-line run row), `memory/logs/2026-05-20.md` (activity entry).
-- **Follow-up:** none required. Fleet is flat vs. the prior 21:53 run.
+**Fleet Sweep — 2026-05-20 17:30 UTC** (snapshot generated 2026-05-20T17:30:32Z)
+
+- **Hosts swept:** 7 (pve1–pve7), all reachable. Scope: full live sweep (`var` empty → not dry-run, not slug-filtered).
+- **VMs swept:** 207 running, all `hermes-`-named (0 non-hermes).
+- **CRITICAL:** 0 — max thin-pool pve5=58.9% (<85), max load5/vCPU pve5=0.34x (4.12/12, <1.3), all hosts up.
+- **WATCH:** 0 — max mem pve5=64.7% (<80); `max_tenant_instances` absent so that WATCH is skipped.
+- **Queued fixes:** 0 — zero hits on every drift rule (cpulimit-absent / balloon>memory / onboot≠1 / scsi0 aio=io_uring-or-missing / scsi0 missing discard=on, each = 0). No `.pending-vm-config-fix/` files written.
+- **needs_reboot:** 0.
+- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN` to stdout, no `notify` / `notify-jsonrender`.
+
+**Files modified:** `memory/topics/fleet-sweep.md` (one-line run entry), `memory/logs/2026-05-20.md` (daily log entry). No follow-up actions needed.

@@ -29,4 +29,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-05-20,fleet-sweep,claude-opus-4-7,31,10662,663658,34382
 2026-05-20,proxmox-capacity,claude-opus-4-7,31,11693,606451,31912
 2026-05-20,heartbeat,claude-opus-4-7,23,16186,558606,68820
-2026-05-20,proxmox-capacity,claude-opus-4-7,33,9822,735850,61915
+2026-05-20,fleet-sweep,claude-opus-4-7,23,7590,444498,28566
