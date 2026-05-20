@@ -1,19 +1,23 @@
-HEARTBEAT_OK · STATUS_PAGE=WATCH — wrote docs/status.md
+Heartbeat run complete.
 
 ## Summary
 
-Ran heartbeat skill at 20:18 UTC (2026-05-19, Tuesday).
+Ran the `heartbeat` skill (08:18 UTC, 2026-05-20). All priority checks performed against `memory/cron-state.json` (authoritative), `gh`, `memory/MEMORY.md`, and `aeon.yml`.
 
 **Findings:**
-- **P0:** clean — all 6 tracked skills at 100% success rate, no failures, no stuck dispatches, no API degradation. Heartbeat self-check fresh (~24h since last success, under 36h threshold).
-- **P1:** clean — 0 open PRs, issues disabled.
-- **P2:** clean — nothing flagged in MEMORY.md.
-- **P3:** `morning-brief` (daily 07:00) and `cost-report` (Mondays 07:00) still have **no entries** in `cron-state.json` — same persistent pattern. Both already logged in the last 48h, so dedup applies and no new notification sent. Also noted: today's 08:00 and 14:00 UTC heartbeat slots themselves didn't dispatch (this 20:18 run is the first today) — same cron-dispatch reliability theme, but under 36h self-check threshold.
+- **P0** (failed/stuck/degraded skills): clean — all 6 tracked skills `success`, 100% rate, 0 consecutive failures. Heartbeat self-check ~12h, under 36h.
+- **P1**: 0 open PRs; repo issues disabled.
+- **P2**: nothing flagged needing follow-up.
+- **P3**: `morning-brief` (daily 07:00) and `cost-report` (Mon 07:00) still never dispatched — no cron-state entry. Both dedup-suppressed (flagged in last 48h logs).
 
-**Status page verdict:** 🟡 WATCH — wrote `docs/status.md` with current run state, sorted skill table (fleet-sweep / proxmox-capacity / repo-pulse / token-movers / heartbeat / weekly-shiplog), morning-brief + cost-report sunk to bottom as never-run. Token pulse section omitted (no `articles/token-report-*.md` exists).
+**Overall verdict:** 🟡 WATCH
 
 **Files modified:**
-- `docs/status.md` (regenerated, WATCH state, timestamp 2026-05-19 20:18 UTC)
-- `memory/logs/2026-05-19.md` (appended Heartbeat 20:18 UTC entry)
+- `docs/status.md` — regenerated (WATCH, 8 skills listed, Token pulse omitted since no `articles/token-report-*.md` exists).
+- `memory/logs/2026-05-20.md` — appended heartbeat run entry.
 
-**No notification sent** — both P3 findings already in last 48h of logs.
+**Notification:** none sent — both P3 findings are dedup-suppressed.
+
+No follow-up actions required by me. The persistent open item is the scheduler never having dispatched `morning-brief`/`cost-report` (a cron-dispatch reliability pattern), but it's been flagged repeatedly and falls outside heartbeat's remit to fix.
+
+`HEARTBEAT_OK · STATUS_PAGE=WATCH`
