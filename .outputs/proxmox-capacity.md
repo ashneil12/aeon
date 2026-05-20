@@ -1,11 +1,13 @@
-PROXMOX_CAPACITY_OK
+Executed the proxmox-capacity skill. Fresh snapshot (generated 04:41 UTC, 7 hosts) — all computed to **OK**, no transitions from prior state, no thin-pool over 0.95, and hour 4 ≠ the 09:00 digest slot. So this was a **silent run**: no notification sent.
 
 ## Summary
-- Hosts checked: pve1, pve2, pve3, pve4, pve5, pve6, pve7 (snapshot generated 2026-05-20T00:15:10Z).
-- Buckets: all 7 = OK. Worst signals — pve5 mem 62% / disk 56% / load5 0.30x; remaining hosts ≤44% mem, ≤40% disk, ≤0.20x load. Hetzner traffic data null this cycle (not a contributing signal).
-- Transitions detected: none (prior state was all OK).
-- Notification mode: silent (hour 00 UTC ≠ 09 digest slot; no transitions).
-- State file updated: `memory/proxmox-state.json` (timestamps refreshed to 2026-05-20T00:00:00Z).
-- History appended: `memory/topics/proxmox-capacity.md`.
-- Log: `memory/logs/2026-05-20.md` created.
-- Follow-ups: none. Hetzner traffic block keeps returning null — worth checking `scripts/prefetch-proxmox-capacity.sh` Robot API auth if this persists into the next digest cycle.
+- **Hosts checked:** pve1–pve7 (all reachable). Worst signals — pve5 disk 56.8%, pve5 mem 62.6%, pve5 load 0.41x. Hetzner traffic data empty (consistent with recent runs).
+- **Buckets:** all 7 = OK.
+- **Transitions detected:** none (prior state was all OK).
+- **Notification mode:** silent (no transition; not the 09:00 UTC digest slot).
+- **Files updated:**
+  - `memory/proxmox-state.json` — refreshed buckets/timestamps to 2026-05-20T04:41:08Z.
+  - `memory/topics/proxmox-capacity.md` — appended history row.
+  - `memory/logs/2026-05-20.md` — appended 04:41 run log.
+- **Output:** `PROXMOX_CAPACITY_OK`.
+- **Follow-up:** none.
