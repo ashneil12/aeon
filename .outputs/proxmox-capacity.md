@@ -1,14 +1,14 @@
-Done. This was a **silent** run — no notification fired, which is the correct behavior.
+Skill executed. All clean — no notification sent.
 
 ## Summary
 
-- **Hosts checked:** all 7 in the snapshot (pve1–pve7), all reachable. Source: `.proxmox-cache/snapshot.json` (generated 2026-05-21T04:44:55Z).
-- **Buckets:** every host computes to **OK** on all evaluable signals (disk, memory, 5-min load ÷ 12 vCPU). No thin-pool above 95% — worst disk is pve5 at 62% (used 549/891 GB). Worst memory is pve5 at 67%. Worst load is pve5 at 0.33×.
-- **Hetzner signal:** `hetzner.traffic` and `hetzner.servers` are `null` this run, so the traffic signal wasn't evaluated (not a PREFETCH_MISSING condition — the snapshot itself is present and valid).
-- **Transitions:** none. Prior state (`memory/proxmox-state.json`) was all-OK; all hosts remain OK, none unreachable.
-- **Notification mode:** **silent** — no transition, and current hour is 04 UTC (not the 09:00 digest slot). No `./notify` call made. Printed `PROXMOX_CAPACITY_OK`.
+- **Hosts checked:** 7 (pve1–pve7) from `.proxmox-cache/snapshot.json` (generated 2026-05-21T08:24:02Z, ~2 min old).
+- **Buckets:** all `OK` on every evaluated signal (disk/mem/load). Hetzner block was `null`, so the traffic signal was skipped.
+- **Transitions detected:** none. Prior state was all-OK; no host worsened or became unreachable.
+- **Special-case check:** max thin-pool is pve5 `local-lvm` at 60.4% (537.9/891.2 GB) — well below the 0.70 WATCH threshold and the 0.95 alarm line.
+- **Notification mode:** **silent** (hour 08 UTC, not the 09:00 digest slot; no transition). Printed `PROXMOX_CAPACITY_OK`.
 - **Files updated:**
-  - `memory/proxmox-state.json` — refreshed all 7 buckets + `checked_at` timestamps.
-  - `memory/topics/proxmox-capacity.md` — appended 2026-05-21 04:47 history line.
-  - `memory/logs/2026-05-21.md` — appended run log entry.
-- **Follow-up:** none required. The recurring `hetzner` null is worth keeping an eye on if Hetzner traffic ever needs to gate a bucket, but it's been null across recent runs and isn't alert-grade.
+  - `memory/proxmox-state.json` — refreshed buckets + `checked_at` timestamps.
+  - `memory/topics/proxmox-capacity.md` — appended the 08:26 history line.
+  - `memory/logs/2026-05-21.md` — appended the run log entry.
+- **Follow-up:** none. Hetzner traffic data remains null across recent runs — worth checking the prefetch script if it stays that way, but not blocking.
