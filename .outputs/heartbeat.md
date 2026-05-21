@@ -1,23 +1,18 @@
-Heartbeat complete. All P0/P1/P2 checks are clean; the only watch item is the known, dedup-suppressed P3.
+Heartbeat complete.
 
 ## Summary
 
-Ran the heartbeat skill at 21:26 UTC (the 20:00 slot, late per the documented cron-dispatch pattern).
+Ran the full heartbeat check at 2026-05-21 08:24 UTC (08:00 slot, ~24m late per the documented dispatch lag).
 
-**Findings:**
-- **P0 (skills):** Clean. All 7 tracked skills `last_status=success`, 100% success rate, 0 consecutive failures. Heartbeat self-check OK (last success ~7.3h ago).
-- **P1 (PRs/issues):** 0 open PRs; repo issues disabled.
-- **P2 (memory):** Nothing flagged.
-- **P3 (missing skills):** `cost-report` (weekly Monday) still never dispatched — lone watch item, already logged repeatedly in the last 48h, so dedup-suppressed. `fleet-sweep` **recovered** (succeeded 17:33 UTC) after its earlier 08:30/12:30 slot misses.
+- **P0 — Failed/stuck skills:** Clean. All 7 tracked skills (heartbeat, repo-pulse, proxmox-capacity, token-movers, weekly-shiplog, fleet-sweep, morning-brief) at 100% success, 0 consecutive failures, none stuck. Heartbeat self-check fine (~11h since last success).
+- **P1 — PRs/issues:** 0 open PRs; repo issues disabled.
+- **P2 — Memory:** Nothing actionable (only stale template defaults in MEMORY.md).
+- **P3 — Missing scheduled skills:** `cost-report` (weekly Mon) still never dispatched — lone watch item, already logged repeatedly so dedup-suppressed. `token-movers` (~42.5h) and `repo-pulse` (~39.7h) approaching but under the 48h staleness threshold; today's slots will clear them.
 
-**Overall:** 🟡 WATCH (cost-report never-dispatched).
+**Overall: 🟡 WATCH** — no notification sent (dedup).
 
-**Files modified:**
-- `docs/status.md` — regenerated public status page (WATCH, 7 skills + cost-report, next run proxmox-capacity at 00:00 UTC).
-- `memory/logs/2026-05-20.md` — appended heartbeat log entry.
+Files modified:
+- `docs/status.md` — regenerated public status page (WATCH, 8 enabled skills, fleet-sweep next at 08:30 UTC, Token pulse omitted since no token-report exists).
+- `memory/logs/2026-05-21.md` — appended heartbeat log entry.
 
-**Notification:** Skipped per dedup rule (no new findings since last 48h).
-
-`HEARTBEAT_OK · STATUS_PAGE=WATCH`
-
-**Follow-up:** `cost-report` has never dispatched (its Monday 07:00 UTC scheduler slot keeps getting missed) — worth investigating the scheduler's handling of weekly crons if it misses again next Monday.
+Both land on `main` via the workflow's auto-commit step.
