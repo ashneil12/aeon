@@ -1,13 +1,13 @@
 {
   "heartbeat": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-05-21T08:25:57Z",
     "total_runs": 10,
     "total_successes": 10,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
-    "last_dispatch": "2026-05-21T08:23:46Z"
+    "last_dispatch": "2026-05-21T14:30:44Z"
   },
   "repo-pulse": {
     "last_status": "success",
