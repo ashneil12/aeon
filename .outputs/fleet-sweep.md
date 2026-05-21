@@ -1,15 +1,13 @@
-Fleet sweep complete. Clean fleet → silent mode, no notification sent, no fix files queued.
+Fleet sweep complete — clean fleet, silent run (no notify, no pending fix writes).
 
 ## Summary
 
-- **Hosts swept:** 7 (pve1–pve7), all reachable
-- **VMs swept:** 207 running (all `hermes-`-named, 0 non-hermes)
+- **Hosts swept:** 7 (pve1–pve7), all reachable; snapshot fresh (2026-05-21T04:44:59Z)
+- **VMs swept:** 208 running (all hermes-named, 0 non-hermes)
 - **CRITICAL host findings:** 0
-- **WATCH host findings:** 0 — max thin-pool pve5=58.6% (<70), max mem pve5=63.1% (<80), max load5/vCPU pve5=0.36x (4.32/12, <1.3); `max_tenant_instances` absent → that WATCH skipped
-- **Queued fixes:** 0 — zero hits on all 5 drift rules (cpulimit-absent, balloon>memory, onboot≠1, scsi0 aio io_uring-or-missing, scsi0 missing discard=on); all 207 scsi0 carry `aio=threads`+`discard=on`
+- **WATCH host findings:** 0 — max thin-pool pve5=61.6% (WATCH at 70%), max mem pve5=66.9% (WATCH at 80%), max load5/vCPU pve5=0.33x (CRIT at 1.3x); `max_tenant_instances` absent so that WATCH is skipped
+- **Queued fixes:** 0 — every rule clean (208/208 have cpulimit set, onboot=1, scsi0 with aio=threads + discard=on; 0 with balloon>memory)
 - **needs_reboot:** 0
-- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN`, no `./notify`, no pending-fix writes
+- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN`, no `./notify`, no pending files written
 
-**Files modified:** `memory/topics/fleet-sweep.md` (one-line run row), `memory/logs/2026-05-20.md` (21:26 UTC detail entry).
-
-**Follow-up:** none.
+Files modified: `memory/topics/fleet-sweep.md` (one-line run entry), `memory/logs/2026-05-21.md` (daily log entry). No follow-up actions needed.
