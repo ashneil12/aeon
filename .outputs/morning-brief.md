@@ -1,25 +1,18 @@
-The morning brief is composed, queued for delivery, and logged. Here's the recap.
+Morning brief complete. The brief is staged for delivery and logged.
 
 ## Summary
 
-Executed `skills/morning-brief/SKILL.md` for 2026-05-20 (Wednesday).
+Ran the **morning-brief** skill for 2026-05-21 (Thursday). State is quiet — all 7 tracked skills at 100% success, 0 consecutive failures, infra fully clean (7/7 hosts OK, 208 VMs zero drift).
 
-**What I did**
-- Gathered candidates from MEMORY.md, the 2026-05-19 log, `memory/cron-state.json`, `gh pr list` (0 open), GitHub issues (disabled), and `aeon.yml` crons matching today.
-- Ranked on leverage × urgency. Only one item cleared the "why now" bar, so the brief carries 1 focus + 1 background item (per the skill's quiet-day rule) rather than padding to 3.
-- Ran 2 WebSearch queries (crypto + AI). Nothing met the inclusion bar — crypto is constructive-but-quiet, AI news is thematic agentic-security, neither implies a concrete action today — so the **Watch section was omitted** (no filler).
-- Soul files are unpopulated templates → used a direct, neutral tone.
+**3 focus items surfaced:**
+1. **token-movers + repo-pulse** both skipped yesterday's daily slot (~42h / ~40h stale) — today's 12:00 / 15:00 runs decide whether they cross the 48h threshold.
+2. **cost-report** still never dispatched — only Monday slot (5/18) missed; next chance Mon 5/25.
+3. **Cron-dispatch reliability** — 07:00–14:00 UTC slots keep slipping; this very brief fired ~1h25m late (08:25 vs 07:00), and today's 08:00 proxmox/heartbeat slots hadn't logged yet — day-5 confirmation of the documented pattern.
 
-**The brief**
-- Focus #1: Cron-dispatch reliability — 07:00–14:00 UTC slots keep missing dispatch (morning-brief, cost-report, heartbeat), 3rd day running.
-- Focus #2 (background): Stale MEMORY.md — never consolidated; Next Priorities cite already-done work.
-- Since yesterday: infra all green (7 hosts/207 VMs, zero drift), token-movers quiet green tape, repo-pulse quiet, heartbeat WATCH.
-- Running today: fleet-sweep, proxmox-capacity, token-movers, heartbeat, repo-pulse with UTC times.
+**Watch:** 1 of 2 headlines qualified — CLARITY Act hard deadline today (5/21), Senate Banking Committee approved; ties to token-movers @12:00. AI headlines were thematic, not action-implying → dropped.
 
-**Files created/modified**
-- `.pending-notify/morning-brief-2026-05-20.md` — the brief, queued for the workflow's post-run delivery loop.
-- `memory/logs/2026-05-20.md` — appended a `### morning-brief` entry (focus items, headline count, cron-state flags).
+**Files:**
+- Created `.pending-notify/morning-brief-2026-05-21.md` (delivery via `./notify` needed approval unavailable in this run; the workflow's post-run loop drains pending-notify).
+- Appended `### morning-brief (08:25 UTC)` entry to `memory/logs/2026-05-21.md`.
 
-**Follow-up**
-- Delivery used the `.pending-notify/` fallback because the `./notify` shell call required an approval that isn't available in this run; the workflow post-run loop will fan it out to configured channels.
-- The flagged cron-dispatch reliability (07:00–14:00 UTC band) and the stale, never-consolidated MEMORY.md both warrant a dedicated pass — neither was acted on here, only surfaced.
+**Follow-up:** The cron-dispatch reliability pattern (focus #3) remains the highest-leverage unresolved item — it's the root cause behind focus #1, #2, and the late brief, and self-recovering symptoms have masked it for 5 days.
