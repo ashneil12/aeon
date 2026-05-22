@@ -29,6 +29,8 @@ skills.lock
 # Scratch / temp files
 tmp_*
 *.tmp
+*_tmp.txt
+hashcheck.py
 .tmp-*
 .pending-*.sh
 .run-*.sh
