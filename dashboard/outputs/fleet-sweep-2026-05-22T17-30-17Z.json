@@ -1,0 +1,93 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "fleet-sweep"
+      },
+      "children": [
+        "stat_stack",
+        "separator1",
+        "section_heading",
+        "section_subtext",
+        "table_fixes"
+      ]
+    },
+    "stat_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat_corrections",
+        "stat_issues"
+      ]
+    },
+    "stat_corrections": {
+      "type": "Stat",
+      "props": {
+        "label": "Config Corrections Queued",
+        "value": "2"
+      },
+      "children": []
+    },
+    "stat_issues": {
+      "type": "Stat",
+      "props": {
+        "label": "Host Issues",
+        "value": "0"
+      },
+      "children": []
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {},
+      "children": []
+    },
+    "section_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "✅ AUTO-FIX QUEUED",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "section_subtext": {
+      "type": "Text",
+      "props": {
+        "text": "Apply on next postprocess run",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "table_fixes": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Host",
+          "VMID",
+          "Changes",
+          "Status"
+        ],
+        "rows": [
+          [
+            "pve2",
+            "233",
+            "cpulimit=2 (was unset); onboot=1 (was 0); scsi0 aio=threads",
+            "⟳ needs reboot"
+          ],
+          [
+            "pve2",
+            "247",
+            "cpulimit=2 (was unset); onboot=1 (was 0); scsi0 aio=threads",
+            "⟳ needs reboot"
+          ]
+        ]
+      },
+      "children": []
+    }
+  }
+}
