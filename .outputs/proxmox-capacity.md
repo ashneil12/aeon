@@ -1,10 +1,14 @@
-📊 PROXMOX 09:00 UTC — fleet snapshot (7/7 reachable)
-🟢 OK  pve1 — disk 35% · mem 16% · 15 vms (14 run)
-🟢 OK  pve2 — disk 35% · mem 43% · 30 vms (29 run)
-🟢 OK  pve3 — disk 35% · mem 45% · 34 vms (31 run)
-🟢 OK  pve4 — disk 45% · mem 46% · 33 vms (31 run)
-🟢 OK  pve5 — disk 64% · mem 66% · 49 vms (45 run) ← fleet-hottest, disk creeping (58→64% in 5d)
-🟢 OK  pve6 — disk 41% · mem 34% · 34 vms (30 run)
-🟢 OK  pve7 — disk 34% · mem 39% · 33 vms (31 run)
-hetzner traffic: n/a (not in snapshot)
-all OK — no bucket transitions
+All done.
+
+## Summary
+
+- **Hosts checked:** 7 (pve1–pve7) from `.proxmox-cache/snapshot.json` generated 2026-05-22T12:10:16Z.
+- **Buckets:** All **OK**. Worst-loaded host is pve5 (disk 67.2%, mem 68.6%, load 0.33x) — all under WATCH thresholds. No thin-pool >0.95, so no special-case alert.
+- **Transitions detected:** None (prior state was all-OK).
+- **Notification mode:** **Silent** — hour is 12 UTC (not the 09:00 digest slot) and no host deteriorated. No `./notify` call. Printed `PROXMOX_CAPACITY_OK`.
+- **Hetzner traffic:** `null` in this snapshot, so that signal did not contribute.
+- **Files updated:**
+  - `memory/proxmox-state.json` — refreshed buckets + timestamps (2026-05-22T12:12:23Z).
+  - `memory/topics/proxmox-capacity.md` — appended the 12:12 history line.
+  - `memory/logs/2026-05-22.md` — appended a run entry.
+- **Follow-up:** None needed.
