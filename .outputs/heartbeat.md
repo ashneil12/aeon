@@ -1,10 +1,24 @@
-Heartbeat complete.
+Heartbeat run complete.
 
-**HEARTBEAT_OK · STATUS_PAGE=WATCH**
+## Summary
 
-- **P0 (skills):** clean — all 7 tracked skills `success`, 100% rate, 0 consecutive failures, none stuck. Heartbeat self-check ~12.6h (under 36h).
-- **P1:** 0 open PRs; issues disabled.
-- **P2:** nothing flagged.
-- **P3:** `token-movers` (~68h, >2× daily), `repo-pulse` (~65h, >2× daily), and `cost-report` (never dispatched) all stale from the ongoing intermittent cron-dispatch lag — same root cause, all already in last-48h logs → **dedup-suppressed, no notification sent**. `proxmox-capacity`/`fleet-sweep` ~7.9h, just under their 8h threshold — watching, not yet flagged.
+Ran the **heartbeat** skill for the 2026-05-22 14:00 UTC slot (executed 15:25 UTC, ~1h25m late — consistent with the documented cron-dispatch lag).
 
-Regenerated `docs/status.md` (🟡 WATCH, updated 09:48 UTC, next run proxmox-capacity at 12:00 UTC) and appended the heartbeat entry to `memory/logs/2026-05-22.md`. No new attention items beyond the persistent dispatch-timing gaps.
+**Checks:**
+- **P0 (failed/stuck skills):** Clean. All 7 tracked skills in `cron-state.json` show `last_status=success`, 100% success rate, 0 consecutive failures. Heartbeat self-check fresh (~5.6h).
+- **P1 (PRs/issues):** 0 open PRs; repo issues disabled.
+- **P2 (memory flags):** Nothing actionable (only stale template defaults).
+- **P3 (missing schedules):**
+  - ✅ **token-movers CLEARED** — ran at 12:14 UTC today, ending the multi-day staleness breach flagged since 5/20.
+  - 🟡 **repo-pulse BREACHED** — last success 2026-05-19 16:43 UTC (~71h, >48h); today's 15:00 slot ~25m overdue.
+  - 🟡 **cost-report** — never dispatched; next chance Mon 2026-05-25.
+
+**Overall: 🟡 WATCH** — both open P3 flags already appear in the last 48h of logs, so the notification was **dedup-suppressed** (no `./notify` sent).
+
+**Files modified:**
+- `docs/status.md` — regenerated (WATCH verdict, 8 enabled skills, token-movers moved to top after clearing, Token pulse omitted — no token-report article exists). Auto-committed to `main` by the workflow.
+- `memory/logs/2026-05-22.md` — appended the heartbeat run log.
+
+**Follow-up:** None required — root cause remains the intermittent cron-dispatch timing pattern (active since 5/17), not skill failures. repo-pulse/cost-report will clear on their next successful dispatch.
+
+`HEARTBEAT_OK · STATUS_PAGE=WATCH`
