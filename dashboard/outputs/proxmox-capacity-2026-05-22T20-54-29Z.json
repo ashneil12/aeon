@@ -1,0 +1,258 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "proxmox-capacity"
+      },
+      "children": [
+        "alert_main",
+        "sep0",
+        "pve5_section",
+        "sep1",
+        "pve7_section",
+        "sep2",
+        "pve3_section",
+        "sep3",
+        "context_text",
+        "sep4",
+        "runbook_heading",
+        "runbook_text"
+      ]
+    },
+    "alert_main": {
+      "type": "Alert",
+      "props": {
+        "title": "PROXMOX [transitions x3] load spike across fleet",
+        "type": "error"
+      }
+    },
+    "sep0": {
+      "type": "Separator"
+    },
+    "pve5_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve5_alert",
+        "pve5_stats"
+      ]
+    },
+    "pve5_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "pve5 [OK→CRITICAL] ⚠ severe",
+        "type": "error"
+      }
+    },
+    "pve5_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_pve5_load",
+        "stat_pve5_mem",
+        "stat_pve5_disk",
+        "stat_pve5_vms"
+      ]
+    },
+    "stat_pve5_load": {
+      "type": "Stat",
+      "props": {
+        "label": "CPU Load",
+        "value": "141.51 / 12 vCPU",
+        "delta": "11.79x (5-min)",
+        "trend": "up"
+      }
+    },
+    "stat_pve5_mem": {
+      "type": "Stat",
+      "props": {
+        "label": "Memory",
+        "value": "89.1 / 135.0 GB",
+        "delta": "66%"
+      }
+    },
+    "stat_pve5_disk": {
+      "type": "Stat",
+      "props": {
+        "label": "Disk (local-lvm)",
+        "value": "582.9 / 891.2 GB",
+        "delta": "65%"
+      }
+    },
+    "stat_pve5_vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "49 total, 44 running"
+      }
+    },
+    "sep1": {
+      "type": "Separator"
+    },
+    "pve7_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve7_alert",
+        "pve7_stats"
+      ]
+    },
+    "pve7_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "pve7 [OK→CRITICAL]",
+        "type": "error"
+      }
+    },
+    "pve7_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_pve7_load",
+        "stat_pve7_mem",
+        "stat_pve7_disk",
+        "stat_pve7_vms"
+      ]
+    },
+    "stat_pve7_load": {
+      "type": "Stat",
+      "props": {
+        "label": "CPU Load",
+        "value": "19.06 / 12 vCPU",
+        "delta": "1.59x (5-min)",
+        "trend": "up"
+      }
+    },
+    "stat_pve7_mem": {
+      "type": "Stat",
+      "props": {
+        "label": "Memory",
+        "value": "54.5 / 135.0 GB",
+        "delta": "40%"
+      }
+    },
+    "stat_pve7_disk": {
+      "type": "Stat",
+      "props": {
+        "label": "Disk",
+        "value": "313.8 / 891.2 GB",
+        "delta": "35%"
+      }
+    },
+    "stat_pve7_vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "32 total, 31 running"
+      }
+    },
+    "sep2": {
+      "type": "Separator"
+    },
+    "pve3_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "pve3_alert",
+        "pve3_stats"
+      ]
+    },
+    "pve3_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "pve3 [OK→WATCH]",
+        "type": "warning"
+      }
+    },
+    "pve3_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_pve3_load",
+        "stat_pve3_mem",
+        "stat_pve3_disk",
+        "stat_pve3_vms"
+      ]
+    },
+    "stat_pve3_load": {
+      "type": "Stat",
+      "props": {
+        "label": "CPU Load",
+        "value": "14.90 / 12 vCPU",
+        "delta": "1.24x (5-min)",
+        "trend": "up"
+      }
+    },
+    "stat_pve3_mem": {
+      "type": "Stat",
+      "props": {
+        "label": "Memory",
+        "value": "64.2 / 135.0 GB",
+        "delta": "48%"
+      }
+    },
+    "stat_pve3_disk": {
+      "type": "Stat",
+      "props": {
+        "label": "Disk",
+        "value": "350.9 / 935.7 GB",
+        "delta": "38%"
+      }
+    },
+    "stat_pve3_vms": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "34 total, 31 running"
+      }
+    },
+    "sep3": {
+      "type": "Separator"
+    },
+    "context_text": {
+      "type": "Text",
+      "props": {
+        "text": "All three were OK at 17:25 UTC. Disk/memory healthy fleet-wide — spike is CPU-only.",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator"
+    },
+    "runbook_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Runbook",
+        "level": "h3"
+      }
+    },
+    "runbook_text": {
+      "type": "Text",
+      "props": {
+        "text": "Triage pve5 first (11.8x = runaway-process territory). pve3/pve7 mildly over. pve1/pve4/pve6 idle (<0.8x) for VM rebalance.",
+        "variant": "body"
+      }
+    }
+  }
+}
