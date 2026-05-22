@@ -1,10 +1,10 @@
-Skill executed. Silent run — no notification needed.
-
-## Summary
-
-- **Hosts checked:** pve1–pve7 (7 hosts) from fresh snapshot (`generated_at: 2026-05-22T01:51:34Z`).
-- **Buckets:** All 7 = **OK**. Worst-utilized is pve5 (mem 68%, disk 63%, load 0.31x), still under WATCH thresholds. No thin-pool exceeded 0.95, so no pve1-style special-case alert.
-- **Transitions detected:** None (prior state was all-OK).
-- **Notification mode:** **Silent** — no worse-bucket transition and hour=1 UTC (not the 09:00 digest slot). Emitted `PROXMOX_CAPACITY_OK`. Hetzner traffic was null this run, so that signal didn't contribute.
-- **State updated:** `memory/proxmox-state.json` overwritten (all OK, `checked_at` 2026-05-22T01:53:49Z); appended history line to `memory/topics/proxmox-capacity.md`; created daily log `memory/logs/2026-05-22.md`.
-- **Follow-up:** None. pve5 continues a slow upward drift (mem ~68%, disk ~63%) worth watching but well within OK.
+📊 PROXMOX 09:00 UTC — fleet snapshot (7/7 reachable)
+🟢 OK  pve1 — disk 35% · mem 16% · 15 vms (14 run)
+🟢 OK  pve2 — disk 35% · mem 43% · 30 vms (29 run)
+🟢 OK  pve3 — disk 35% · mem 45% · 34 vms (31 run)
+🟢 OK  pve4 — disk 45% · mem 46% · 33 vms (31 run)
+🟢 OK  pve5 — disk 64% · mem 66% · 49 vms (45 run) ← fleet-hottest, disk creeping (58→64% in 5d)
+🟢 OK  pve6 — disk 41% · mem 34% · 34 vms (30 run)
+🟢 OK  pve7 — disk 34% · mem 39% · 33 vms (31 run)
+hetzner traffic: n/a (not in snapshot)
+all OK — no bucket transitions
