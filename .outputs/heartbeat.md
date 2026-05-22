@@ -1,19 +1,10 @@
 Heartbeat complete.
 
-## Summary
+**HEARTBEAT_OK · STATUS_PAGE=WATCH**
 
-Ran the heartbeat skill for the 20:00 UTC slot (executed 21:12 UTC, ~1h12m late — consistent with the documented cron-dispatch lag).
+- **P0 (skills):** clean — all 7 tracked skills `success`, 100% rate, 0 consecutive failures, none stuck. Heartbeat self-check ~12.6h (under 36h).
+- **P1:** 0 open PRs; issues disabled.
+- **P2:** nothing flagged.
+- **P3:** `token-movers` (~68h, >2× daily), `repo-pulse` (~65h, >2× daily), and `cost-report` (never dispatched) all stale from the ongoing intermittent cron-dispatch lag — same root cause, all already in last-48h logs → **dedup-suppressed, no notification sent**. `proxmox-capacity`/`fleet-sweep` ~7.9h, just under their 8h threshold — watching, not yet flagged.
 
-**Checks:**
-- **P0 (failed/stuck skills):** Clean. All 7 tracked skills show `last_status=success`, 100% success rate, 0 consecutive failures. Heartbeat self-check healthy (last success ~6.6h ago).
-- **P1 (PRs/issues):** 0 open PRs; issues disabled.
-- **P2 (memory):** Nothing new flagged.
-- **P3 (missing schedules):** Two daily skills now past 2× staleness — `token-movers` (~55h) and `repo-pulse` (~52.5h), both from missed dispatch slots; `cost-report` still never dispatched. All caused by the ongoing cron-dispatch reliability pattern.
-
-**Overall: 🟡 WATCH** — all P3 flags already appear in the last 48h of logs, so notification was dedup-suppressed (no `./notify` sent).
-
-**Files modified:**
-- `docs/status.md` — regenerated (WATCH state, 8 skills, token-pulse section omitted as no token-report exists)
-- `memory/logs/2026-05-21.md` — appended heartbeat entry
-
-**Follow-up:** The cron-dispatch lag is the root cause behind all three P3 items; it's a dispatch-timing issue (not skill failures) and continues to be tracked across daily logs. No action needed beyond monitoring whether tomorrow's slots fire.
+Regenerated `docs/status.md` (🟡 WATCH, updated 09:48 UTC, next run proxmox-capacity at 12:00 UTC) and appended the heartbeat entry to `memory/logs/2026-05-22.md`. No new attention items beyond the persistent dispatch-timing gaps.
