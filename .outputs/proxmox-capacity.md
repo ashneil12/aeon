@@ -1,9 +1,14 @@
-🔴 PROXMOX [transitions x3] load spike across fleet
-[OK->CRITICAL] pve5 — load 141.51/12 vCPU = 11.79x (5-min) ⚠ severe
-  mem 89.1/135.0 GB (66%) · disk local-lvm 582.9/891.2 GB (65%) · 49 vms (44 run)
-[OK->CRITICAL] pve7 — load 19.06/12 vCPU = 1.59x (5-min)
-  mem 54.5/135.0 GB (40%) · disk 313.8/891.2 GB (35%) · 32 vms (31 run)
-[OK->WATCH] pve3 — load 14.90/12 vCPU = 1.24x (5-min)
-  mem 64.2/135.0 GB (48%) · disk 350.9/935.7 GB (38%) · 34 vms (31 run)
-all three were OK at 17:25 UTC; disk/mem healthy fleet-wide — spike is CPU-only.
-runbook: triage pve5 first (11.8x = runaway-process territory); pve3/pve7 mildly over. pve1/pve4/pve6 idle (<0.8x) for VM rebalance.
+## Summary
+
+Ran the **proxmox-capacity** skill against `.proxmox-cache/snapshot.json` (generated 2026-05-23T00:17:06Z) at hour 0 UTC, no host-scope filter.
+
+- **Hosts checked:** pve1–pve7 (all reachable, 12 vCPU each). Hetzner block was `null` this run, so the traffic signal was skipped.
+- **Buckets:** all 7 hosts → **OK**. Highest pressure is pve5 (disk 67.8%, mem 66.1%) — still below WATCH. No thin-pool >0.95, so no special pve1-style surfacing.
+- **Transitions:** only improvements — pve5 CRITICAL→OK, pve7 CRITICAL→OK, pve3 WATCH→OK. The 2026-05-22 20:52 load spike has subsided. Improvements are not alert-grade, and hour ≠ 9 (not the digest slot).
+- **Notification mode:** **silent** — no `./notify` call. Printed `PROXMOX_CAPACITY_OK`.
+- **Files updated:**
+  - `memory/proxmox-state.json` — all hosts set to OK @ 2026-05-23T00:19:37Z
+  - `memory/topics/proxmox-capacity.md` — appended the 00:19 history line (recovery noted)
+  - `memory/logs/2026-05-23.md` — new daily log entry
+
+No follow-up actions needed.
