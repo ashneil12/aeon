@@ -2,13 +2,12 @@ REPO_PULSE_QUIET
 
 ## Summary
 
-Ran the **repo-pulse** skill for `ashneil12/hermesdeploy` (var override).
+Ran **repo-pulse** for `ashneil12/hermesdeploy` (single-repo via `var` override).
 
-- **Counts:** stars 0, forks 0, watchers 0 — unchanged from prior runs (flat at 0 since 5/17).
-- **24h activity:** All events in the window were owner development activity (pushes, PRs, branch create/delete by `ashneil12`, plus `vercel[bot]` PR comments). Zero `WatchEvent`, `ForkEvent`, or `ReleaseEvent`.
-- **Verdict:** `QUIET` (0 stars / 0 forks / 0 releases).
-- **Notification:** Skipped — no growth signals and not a first run. Printed `REPO_PULSE_QUIET`.
+- **Current counts:** stars=0, forks=0, subscribers=0 — unchanged since 2026-05-17.
+- **24h window** (cutoff `2026-05-22T15:40:36Z`, source=`events`): 30 events, all owner dev activity (ashneil12 push/PR/create/delete) plus vercel[bot] comments. **Zero** WatchEvent / ForkEvent / ReleaseEvent.
+- **Verdict:** `QUIET` (0 stars, 0 forks, 0 releases; avg7=0).
+- **Notification:** none — not a first run and no activity, so skipped `./notify` and printed `REPO_PULSE_QUIET`.
+- **File modified:** appended the Repo Pulse entry to `memory/logs/2026-05-23.md`.
 
-**Files modified:** `memory/logs/2026-05-22.md` (appended Repo Pulse log entry).
-
-**Follow-up:** None needed. The repo is in active development but has no external traction (stars/forks) yet.
+No follow-up needed.
