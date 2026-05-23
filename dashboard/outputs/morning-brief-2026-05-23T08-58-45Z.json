@@ -1,0 +1,194 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Morning Brief",
+        "description": "2026-05-23"
+      },
+      "children": [
+        "stack_main"
+      ]
+    },
+    "stack_main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "heading_focus",
+        "focus_content",
+        "separator_1",
+        "heading_since",
+        "since_content",
+        "separator_2",
+        "heading_running",
+        "running_content"
+      ]
+    },
+    "heading_focus": {
+      "type": "Heading",
+      "props": {
+        "text": "Focus today",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "focus_content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "focus_1",
+        "focus_2",
+        "focus_3"
+      ]
+    },
+    "focus_1": {
+      "type": "Text",
+      "props": {
+        "text": "1. Root-cause cost-report (never dispatched) — why now: enabled but 0 runs since 5/18, Mon slot next"
+      },
+      "children": []
+    },
+    "focus_2": {
+      "type": "Text",
+      "props": {
+        "text": "2. pve5 recurring load spikes — why now: 2nd CRITICAL load pile-up in 5d, cause unknown"
+      },
+      "children": []
+    },
+    "focus_3": {
+      "type": "Text",
+      "props": {
+        "text": "3. Consolidate stale MEMORY.md — why now: dead template priorities mis-flag every heartbeat"
+      },
+      "children": []
+    },
+    "separator_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading_since": {
+      "type": "Heading",
+      "props": {
+        "text": "Since yesterday",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "since_content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "since_1",
+        "since_2",
+        "since_3",
+        "since_4"
+      ]
+    },
+    "since_1": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 hit 12x load5 (CRITICAL), pve7 1.6x, pve3 WATCH @ 20:50 UTC — all recovered to OK by 00:19 (transient process pile-up, not CPU/IO-bound)"
+      },
+      "children": []
+    },
+    "since_2": {
+      "type": "Text",
+      "props": {
+        "text": "repo-pulse + token-movers both cleared their multi-day staleness breach (ran 5/22) — all daily skills healthy again"
+      },
+      "children": []
+    },
+    "since_3": {
+      "type": "Text",
+      "props": {
+        "text": "fleet-sweep auto-fixed 2 new pve2 VMs (233/247: cpulimit/onboot/aio); 20:50 sweep confirms 214/214 compliant, fix queue empty"
+      },
+      "children": []
+    },
+    "since_4": {
+      "type": "Text",
+      "props": {
+        "text": "cost-report still never-dispatched (lone open watch item since 5/18) — likely cron/config"
+      },
+      "children": []
+    },
+    "separator_2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "heading_running": {
+      "type": "Heading",
+      "props": {
+        "text": "Running today",
+        "level": "h2"
+      },
+      "children": []
+    },
+    "running_content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "running_1",
+        "running_2",
+        "running_3",
+        "running_4",
+        "running_5"
+      ]
+    },
+    "running_1": {
+      "type": "Text",
+      "props": {
+        "text": "proxmox-capacity @ 12:00, then every 4h"
+      },
+      "children": []
+    },
+    "running_2": {
+      "type": "Text",
+      "props": {
+        "text": "fleet-sweep @ 12:30, then every 4h"
+      },
+      "children": []
+    },
+    "running_3": {
+      "type": "Text",
+      "props": {
+        "text": "token-movers @ 12:00 UTC"
+      },
+      "children": []
+    },
+    "running_4": {
+      "type": "Text",
+      "props": {
+        "text": "repo-pulse @ 15:00 UTC"
+      },
+      "children": []
+    },
+    "running_5": {
+      "type": "Text",
+      "props": {
+        "text": "heartbeat @ 14:00, 20:00 UTC"
+      },
+      "children": []
+    }
+  }
+}
