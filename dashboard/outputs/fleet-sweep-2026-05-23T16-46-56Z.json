@@ -1,0 +1,186 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "🔧 FLEET SWEEP"
+      },
+      "children": [
+        "summary-stack",
+        "separator1",
+        "config-section",
+        "separator2",
+        "watch-section"
+      ]
+    },
+    "summary-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-fixes",
+        "stat-watch",
+        "stat-critical"
+      ]
+    },
+    "stat-fixes": {
+      "type": "Stat",
+      "props": {
+        "label": "Fixes Needed",
+        "value": "0"
+      }
+    },
+    "stat-watch": {
+      "type": "Stat",
+      "props": {
+        "label": "Watch Items",
+        "value": "1"
+      }
+    },
+    "stat-critical": {
+      "type": "Stat",
+      "props": {
+        "label": "Critical",
+        "value": "0"
+      }
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "config-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "config-header",
+        "config-details"
+      ]
+    },
+    "config-header": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "config-heading",
+        "config-badge"
+      ]
+    },
+    "config-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "✅ CONFIG CLEAN",
+        "level": "h3"
+      }
+    },
+    "config-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "All Compliant",
+        "variant": "default"
+      }
+    },
+    "config-details": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "config-vms",
+        "config-drift",
+        "config-hosts"
+      ]
+    },
+    "config-vms": {
+      "type": "Text",
+      "props": {
+        "text": "222/222 running VMs compliant (cpulimit set, onboot=1, scsi0 aio=threads+discard=on)",
+        "variant": "body"
+      }
+    },
+    "config-drift": {
+      "type": "Text",
+      "props": {
+        "text": "0 drift, 0 non-hermes",
+        "variant": "body"
+      }
+    },
+    "config-hosts": {
+      "type": "Text",
+      "props": {
+        "text": "All 7 hosts reachable",
+        "variant": "body"
+      }
+    },
+    "separator2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "watch-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "watch-heading",
+        "watch-item"
+      ]
+    },
+    "watch-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 WATCH",
+        "level": "h3"
+      }
+    },
+    "watch-item": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "watch-title",
+        "watch-progress",
+        "watch-alert"
+      ]
+    },
+    "watch-title": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 thin-pool local-lvm",
+        "variant": "lead"
+      }
+    },
+    "watch-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 70.2,
+        "max": 100,
+        "label": "Storage Usage"
+      }
+    },
+    "watch-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "First crossing of the 70% band",
+        "message": "Rising 67.6% → 70.2% over today. Prep migration plan, watch trend per reference_proxmox_vm_migration.md",
+        "type": "warning"
+      }
+    }
+  }
+}
