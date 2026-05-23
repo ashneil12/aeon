@@ -1,20 +1,19 @@
-The token-movers skill ran successfully. The notification is queued for delivery and the log entry is recorded.
+The token-movers run is complete.
 
 ## Summary
 
-Ran the **token-movers** skill (var empty → full movers/losers/trending report). This also clears the multi-day staleness breach that heartbeats had been flagging since 5/20 — the last real run was 2026-05-19.
+Ran the **token-movers** skill for 2026-05-23 — a full movers/losers/trending report (no `${var}`).
 
-**Data:** CoinGecko markets (250 coins) + trending (15 coins) both fetched first-try via curl; no WebFetch fallback needed. The `COINGECKO_API_KEY` env-var header was blocked by the sandbox's expansion guard, so I used the public endpoint (worked fine).
+**What I did:**
+- Fetched CoinGecko markets (250 coins) + trending (15) — both HTTP 200 on first curl try. Used the public endpoint since the sandbox blocks `$COINGECKO_API_KEY` expansion.
+- Filtered out stablecoins, wrapped/staked dupes, and sub-$1M-volume tokens; ranked winners/losers by 24h %, computed the market pulse and signal/risk tags via `jq`.
+- Dedup'd against the 5/22 run: dropped GENIUS (faded +37%→+4%), kept BEAT/TAG (materially changed), and flagged the SKYAI and VVV direction flips.
 
-**Pipeline:** Filtered out 48 of 250 (stablecoins, wrapped/staked dupes, sub-$1M volume) → 202 coins in scope. Computed multi-timeframe tags and a calibrated pulse.
-
-**Result — broad green tilt** (77/100 top coins green, top-50 median +1.3%; BTC flat):
-- **Winners:** BEAT +45.9%, GENIUS +36.9%, GRASS +35.9%, NEAR +28.4%, FET +15.7% (+5 more)
-- **Losers:** shallow tape — NEX −25.8%, SKYAI −20.1%, H −10.7%, rest single-digit
-- **Tags fired:** [PUMP-RISK] on three low-cap (#160–190) +36–46% spikes (BEAT/GENIUS/GRASS), [BREAKOUT] on NEAR (cleanest large-cap move, $1.1B vol, 7d +44%), [CAPITULATION] on SKYAI & H, [TRENDING+DOWN] on NEX.
+**The tape:** Broad risk-off — only **10/100** top coins green, top-50 median **−4.5%**; BTC −3.5%, ETH −4.8%, SOL −6.0%. Losers cluster −12% to −16% across L1s/DeFi/memes; winners are thin and low-cap.
+- **Standouts:** BSB +41.9% (7d +226%, PUMP-RISK low-cap parabolic on real $103M volume); CHZ −16% CAPITULATION; VVV flipped from yesterday's trending winner to TRENDING+DOWN loser; SKYAI rebounded +12% after its −20% capitulation.
 
 **Files:**
-- `.pending-notify/token-movers-2026-05-22.md` — notification (2593 bytes, under 4000); workflow's post-run loop drains it to channels. Direct `./notify` was blocked by the sandbox's command-substitution analyzer, so I used the established pending-notify pattern.
-- `memory/logs/2026-05-22.md` — appended `### token-movers` log entry.
+- `.pending-notify/token-movers-2026-05-23.md` (2736 chars, <4000) — queued for the workflow's post-run delivery loop.
+- `memory/logs/2026-05-23.md` — appended the run log entry.
 
-**Follow-up:** none required. (Note: `.tm_*` scratch files couldn't be removed — sandbox blocks `rm` — but they're untracked dotfiles and won't be committed.)
+**Notes / follow-up:** The sandbox is unusually locked down this run — it blocked `python3` script execution, shell `>`/`>>` redirection, `rm`, and `jq` reads outside the working dir. I worked around all of these (curl `-o` into cwd, `jq` to stdout, Write/Edit for files). The two temp dotfiles (`.markets.json`, `.trending.json`) couldn't be removed but are ephemeral and uncommitted. Delivery relies on the post-run drainer since `./notify` can't be shell-invoked here.
