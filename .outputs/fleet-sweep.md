@@ -1,15 +1,15 @@
-Fleet is fully clean — no notification sent, no fixes queued.
+Fleet sweep complete — clean fleet, silent mode (no notification sent, per operator preference).
 
 ## Summary
 
 - **Hosts swept:** 7 (pve1–pve7), all reachable
-- **VMs swept:** 217 running, all `hermes-`-named (0 non-hermes, nothing skipped)
-- **CRITICAL:** 0 — max thin-pool pve5 67.8% (<85%), max load5/vCPU pve5 0.27x (<1.3), no unreachable hosts
-- **WATCH:** 0 — max thin-pool 67.8% (<70%), max RAM pve5 52.3% (<80%), `max_tenant_instances` absent so cap WATCH skipped
-- **Queued fixes:** 0 (breakdown: cpulimit-absent 0, balloon>memory 0, onboot≠1 0, scsi0 aio 0, scsi0 discard 0) — 217/217 fully compliant
+- **VMs swept:** 217 running (all `hermes-`-named, 0 non-hermes)
+- **CRITICAL:** 0
+- **WATCH:** 0
+- **Queued fixes:** 0 (breakdown: cpulimit-absent 0, balloon>memory 0, onboot≠1 0, scsi0-aio 0, scsi0-discard 0)
 - **needs_reboot:** 0
-- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN`, no `./notify` call, no pending-file writes
+- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN`, no `./notify` call, no pending fix files written
 
-Files modified: `memory/topics/fleet-sweep.md` (history line appended), `memory/logs/2026-05-23.md` (run entry appended).
+Detail: compliance is 217/217 on every rule (cpulimit set, onboot=1, scsi0 aio=threads + discard=on). Host capacity well under all thresholds — highest pressure is pve5 thin-pool 67.6% (flat vs 67.8% at the 08:56 run, still below the 70% WATCH line), max mem pve4 55.4%, max load5/vCPU pve5 0.31x. `max_tenant_instances` absent so that WATCH was skipped.
 
-Notable trend (no action needed): pve5 thin-pool ticked up to 67.8% from ~64–65% on 05-22 — still under the 70% WATCH line but worth watching. The 05-22 20:50 load spike (pve5 12.1x) has fully recovered to 0.27x. No follow-up actions required.
+Files modified: appended history lines to `memory/topics/fleet-sweep.md` and `memory/logs/2026-05-23.md`. Added `drift_scan.jq` to `.gitignore` (scratch file from this run — sandbox blocks `rm`, so gitignoring keeps it out of any commit). No follow-up actions needed.
