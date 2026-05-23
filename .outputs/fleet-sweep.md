@@ -1,10 +1,15 @@
-🔧 FLEET SWEEP — 2 CRITICAL, 0 queued fixes
+Fleet is fully clean — no notification sent, no fixes queued.
 
-🔴 CRITICAL — operator action required
-pve5 load 12.1x vCPU (145/12; 1-min 180=15x & RISING; cpu 42%, iowait <1% → runnable/D-state pile-up, not CPU/IO bound) — investigate: ssh root@78.46.44.246 'top -bn1'; consider pausing placement (UPDATE proxmox_hosts SET status='maintenance' WHERE id='pve5')
-pve7 load 1.71x vCPU (20.5/12; 1-min 2.67x, rising) — investigate: ssh root@37.27.55.81 'top -bn1'
+## Summary
 
-🟡 WATCH
-pve3 load 1.28x vCPU — just under CRIT but trending DOWN (15-min was 1.71x); watch only, no action
+- **Hosts swept:** 7 (pve1–pve7), all reachable
+- **VMs swept:** 217 running, all `hermes-`-named (0 non-hermes, nothing skipped)
+- **CRITICAL:** 0 — max thin-pool pve5 67.8% (<85%), max load5/vCPU pve5 0.27x (<1.3), no unreachable hosts
+- **WATCH:** 0 — max thin-pool 67.8% (<70%), max RAM pve5 52.3% (<80%), `max_tenant_instances` absent so cap WATCH skipped
+- **Queued fixes:** 0 (breakdown: cpulimit-absent 0, balloon>memory 0, onboot≠1 0, scsi0 aio 0, scsi0 discard 0) — 217/217 fully compliant
+- **needs_reboot:** 0
+- **Notify mode:** silent — printed `FLEET_SWEEP_CLEAN`, no `./notify` call, no pending-file writes
 
-Config CLEAN: 214/214 VMs compliant, 0 drift, 0 fixes queued. Thin-pool & RAM under all WATCH (max pve5 thin 65%, mem 66%). 7/7 hosts reachable.
+Files modified: `memory/topics/fleet-sweep.md` (history line appended), `memory/logs/2026-05-23.md` (run entry appended).
+
+Notable trend (no action needed): pve5 thin-pool ticked up to 67.8% from ~64–65% on 05-22 — still under the 70% WATCH line but worth watching. The 05-22 20:50 load spike (pve5 12.1x) has fully recovered to 0.27x. No follow-up actions required.
