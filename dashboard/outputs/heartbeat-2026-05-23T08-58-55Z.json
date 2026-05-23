@@ -1,0 +1,173 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Aeon WATCH",
+        "description": "2026-05-23 08:56 UTC — 2 scheduled skills went stale (dispatch gap, not failures)"
+      },
+      "children": [
+        "alert",
+        "content-stack"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "message": "All skills still 100% success / 0 consecutive failures. Dispatcher alive; specific skills didn't fire."
+      }
+    },
+    "content-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "fleet-section",
+        "sep1",
+        "morning-section",
+        "sep2",
+        "cost-section"
+      ]
+    },
+    "fleet-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fleet-badge",
+        "fleet-info"
+      ]
+    },
+    "fleet-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "fleet-sweep",
+        "variant": "destructive"
+      }
+    },
+    "fleet-info": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "fleet-status",
+        "fleet-cadence",
+        "fleet-details"
+      ]
+    },
+    "fleet-status": {
+      "type": "Text",
+      "props": {
+        "text": "No run since 05-22 21:02 UTC (~12h)",
+        "variant": "lead"
+      }
+    },
+    "fleet-cadence": {
+      "type": "Text",
+      "props": {
+        "text": "Exceeds 4h cadence by >2×",
+        "variant": "body"
+      }
+    },
+    "fleet-details": {
+      "type": "Text",
+      "props": {
+        "text": "Missed the 00:30 & 04:30 slots that sibling proxmox-capacity (00:19/04:12) hit — dispatcher was alive, fleet-sweep specifically didn't fire.",
+        "variant": "body"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "morning-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "morning-badge",
+        "morning-info"
+      ]
+    },
+    "morning-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "morning-brief",
+        "variant": "destructive"
+      }
+    },
+    "morning-info": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "morning-status",
+        "morning-cadence",
+        "morning-details"
+      ]
+    },
+    "morning-status": {
+      "type": "Text",
+      "props": {
+        "text": "No run since 05-21 08:26 UTC (~48h)",
+        "variant": "lead"
+      }
+    },
+    "morning-cadence": {
+      "type": "Text",
+      "props": {
+        "text": "Exceeds daily cadence by >2×",
+        "variant": "body"
+      }
+    },
+    "morning-details": {
+      "type": "Text",
+      "props": {
+        "text": "Missed both the 05-22 and 05-23 07:00 slots.",
+        "variant": "body"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "cost-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "cost-badge",
+        "cost-text"
+      ]
+    },
+    "cost-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "cost-report",
+        "variant": "secondary"
+      }
+    },
+    "cost-text": {
+      "type": "Text",
+      "props": {
+        "text": "Still never-dispatched. Next chance Mon 05-25.",
+        "variant": "body"
+      }
+    }
+  }
+}
