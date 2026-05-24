@@ -1,19 +1,21 @@
-Heartbeat complete. All checks green except one persistent, already-known flag.
+Heartbeat complete. All checks green, no notification warranted.
 
 ## Summary
 
-**HEARTBEAT_OK · STATUS_PAGE=WATCH** — ran 2026-05-24 09:33 UTC (Sunday).
+Ran the heartbeat skill for the 14:00 UTC slot (executed 14:33 UTC, ~33m dispatch lag).
 
-**Findings by tier:**
-- **P0 (skill health):** All 11 tracked skills at 100% success, 0 consecutive failures — no failed, stuck, degraded, or chronic skills. Heartbeat self-check healthy (last success ~12.5h ago). Four skills logged first-ever runs today (posthog-session-analyzer, hermesos-growth-desk, hermesos-backup-restore-watch, hermesos-finance-risk-review).
-- **P1:** 0 open PRs; issues disabled on repo.
-- **P2:** MEMORY.md stale-template flag (already surfaced by morning-brief; cleanup item, not alert-grade).
-- **P3:** `cost-report` (weekly Monday) still never dispatched — no cron-state entry, next chance Mon 2026-05-25. Sole standing flag → drives WATCH.
+**Findings (all priority tiers):**
+- **🔴 P0 — Failed/stuck skills:** None. All 11 tracked skills in `cron-state.json` are `success`, 100% rate, 0 consecutive failures. No stuck/dispatched, no API degradation, no chronic failures. Heartbeat self-check healthy (last success ~5h ago).
+- **🟡 P1 — Stalled PRs/urgent issues:** Clean. 0 open PRs; issues disabled on the repo.
+- **🔵 P2 — Memory flags:** Only the stale MEMORY.md template (consolidation item, dedup-suppressed).
+- **🔵 P3 — Missing scheduled skills:** `cost-report` (weekly Mon 07:00) still has no cron-state entry — never dispatched. Already in last-48h logs → dedup, no re-notify. Next chance Mon 2026-05-25.
 
-**Notification:** None sent. `cost-report` is dedup-suppressed (in last 48h of logs); today's two ACTION verdicts (backup-restore-watch, finance-risk-review) were already notified by their own skills.
+**Overall:** 🟡 WATCH (driven solely by the dedup-suppressed `cost-report` flag).
+
+**Notification:** None sent — no new alert-grade items.
 
 **Files modified:**
-- `docs/status.md` — regenerated: 🟡 WATCH, 12 enabled skills (11 tracked + cost-report not-yet-run), Token pulse omitted (no token-report article), next run proxmox-capacity at 12:00 UTC.
+- `docs/status.md` — regenerated (WATCH, 11 skills sorted by last-run desc, cost-report at bottom, 0 open issues, next run repo-pulse 15:00 UTC, Token pulse omitted as no token-report file exists).
 - `memory/logs/2026-05-24.md` — appended heartbeat log entry.
 
-**Follow-up for operator:** Unblock `cost-report` cron dispatch (open since 5/18) — flagged again today by both morning-brief and the finance-risk review.
+**Follow-up (not new, standing):** `cost-report` has never dispatched; watch the Monday 2026-05-25 07:00 UTC slot to confirm it fires. The workflow auto-commits `docs/status.md` and the log to `main`.
