@@ -83,6 +83,7 @@ skills:
   create-skill: { enabled: false, schedule: "workflow_dispatch", var: "" } # one-shot skill creator — set var to a description prompt
 
   # --- X / social (5 PM UTC) ---
+  hermesos-growth-desk: { enabled: true, schedule: "0 17 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom daily growth/comms desk; drafts only, no posting without Ash approval
   fetch-tweets: { enabled: false, schedule: "0 17 * * *" }
   refresh-x: { enabled: false, schedule: "0 17 * * *" }
   list-digest: { enabled: false, schedule: "0 17 * * *" }
@@ -121,6 +122,7 @@ skills:
   vercel-projects: { enabled: false, schedule: "0 18 * * 0", model: "claude-sonnet-4-6", var: "" } # Sunday — catalog Vercel projects
 
   # --- Cost tracking (Monday 7 AM UTC, weekly) ---
+  hermesos-finance-risk-review: { enabled: true, schedule: "30 7 * * 1", model: "claude-opus-4-7", var: "" } # Anselm weekly infra/cost/revenue/regulatory risk review
   cost-report: { enabled: true, schedule: "0 7 * * 1", model: "claude-sonnet-4-6" } # weekly API cost breakdown by skill and model
 
   # --- Weekly (Monday only) ---
@@ -157,6 +159,8 @@ skills:
   create-campaign: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — provision Meta campaigns/ad sets on AdManage.ai (PAUSED) and write IDs back so schedule-ads can launch into them
 
   # --- Infra (Hermes Proxmox/Hetzner) ---
+  posthog-session-analyzer: { enabled: true, schedule: "30 8 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom/Aquinas daily UX+privacy analysis; no-ops with setup checklist until POSTHOG secrets exist
+  hermesos-backup-restore-watch: { enabled: true, schedule: "0 8 * * 2", model: "claude-opus-4-7", var: "" } # Benedict weekly backup/restore audit; never uploads secrets
   proxmox-capacity: { enabled: true, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across the active Proxmox token set (currently pve1-pve9 plus pve11-pve12; pve10 is canary/control-plane) + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
   fleet-sweep: { enabled: true, schedule: "30 */4 * * *", var: "" } # every 4h at :30 (offset from proxmox-capacity's :00) — comprehensive HermesOS fleet audit: host capacity + per-VM config drift (cpulimit/aio/discard/balloon), auto-fixes cpulimit, reports rest with runbooks
 

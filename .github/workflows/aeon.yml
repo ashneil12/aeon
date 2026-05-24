@@ -173,6 +173,9 @@ jobs:
           HETZNER_ROBOT_USER: ${{ secrets.HETZNER_ROBOT_USER }}
           HETZNER_ROBOT_PASS: ${{ secrets.HETZNER_ROBOT_PASS }}
           HETZNER_CLOUD_TOKEN: ${{ secrets.HETZNER_CLOUD_TOKEN }}
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          POSTHOG_PROJECT_ID: ${{ secrets.POSTHOG_PROJECT_ID }}
+          POSTHOG_HOST: ${{ secrets.POSTHOG_HOST }}
           SKILL_VAR: ${{ inputs.var }}
         run: |
           # Run all scripts/prefetch-*.sh before Claude starts (outside sandbox).
