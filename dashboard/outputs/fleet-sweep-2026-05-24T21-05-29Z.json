@@ -1,0 +1,190 @@
+{
+  "root": "card-fleet",
+  "state": {},
+  "elements": {
+    "card-fleet": {
+      "type": "Card",
+      "props": {
+        "title": "FLEET SWEEP"
+      },
+      "children": [
+        "stack-main"
+      ]
+    },
+    "stack-main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "lg"
+      },
+      "children": [
+        "stack-status",
+        "sep-1",
+        "section-watch",
+        "sep-2",
+        "section-config"
+      ]
+    },
+    "stack-status": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "badge-critical",
+        "badge-watch",
+        "badge-config"
+      ]
+    },
+    "badge-critical": {
+      "type": "Badge",
+      "props": {
+        "text": "0 critical",
+        "variant": "default"
+      }
+    },
+    "badge-watch": {
+      "type": "Badge",
+      "props": {
+        "text": "1 watch",
+        "variant": "outline"
+      }
+    },
+    "badge-config": {
+      "type": "Badge",
+      "props": {
+        "text": "config clean",
+        "variant": "secondary"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-watch": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-watch",
+        "alert-pve5"
+      ]
+    },
+    "heading-watch": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 WATCH",
+        "level": "h2"
+      }
+    },
+    "alert-pve5": {
+      "type": "Alert",
+      "props": {
+        "title": "pve5 thin-pool local-lvm: 71.0% (70–85% band)",
+        "message": "Flat vs 71.3% last sweep, eased from today's 77.3% peak. Only host in band (next: pve1 62%). Prep migration plan; pause new placement on pve5 only if it climbs toward 85% CRIT.",
+        "type": "warning"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-config": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-config",
+        "stack-config-content"
+      ]
+    },
+    "heading-config": {
+      "type": "Heading",
+      "props": {
+        "text": "✅ CONFIG CLEAN",
+        "level": "h2"
+      }
+    },
+    "stack-config-content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text-vms",
+        "text-compliance",
+        "text-drift",
+        "text-hosts",
+        "stack-metrics",
+        "text-wellunder"
+      ]
+    },
+    "text-vms": {
+      "type": "Text",
+      "props": {
+        "text": "344/344 running VMs hermes-named & fully compliant",
+        "variant": "lead"
+      }
+    },
+    "text-compliance": {
+      "type": "Text",
+      "props": {
+        "text": "cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory"
+      }
+    },
+    "text-drift": {
+      "type": "Text",
+      "props": {
+        "text": "0 drift, 0 corrections queued"
+      }
+    },
+    "text-hosts": {
+      "type": "Text",
+      "props": {
+        "text": "All 11 hosts reachable"
+      }
+    },
+    "stack-metrics": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-mem",
+        "stat-load"
+      ]
+    },
+    "stat-mem": {
+      "type": "Stat",
+      "props": {
+        "label": "Max memory (pve4)",
+        "value": "57.2%"
+      }
+    },
+    "stat-load": {
+      "type": "Stat",
+      "props": {
+        "label": "Max load5/vCPU (pve9)",
+        "value": "0.26x"
+      }
+    },
+    "text-wellunder": {
+      "type": "Text",
+      "props": {
+        "text": "Both well under WATCH threshold",
+        "variant": "caption"
+      }
+    }
+  }
+}
