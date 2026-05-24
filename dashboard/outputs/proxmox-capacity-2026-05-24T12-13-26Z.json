@@ -1,0 +1,137 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "PROXMOX [OK→WATCH] pve5"
+      },
+      "children": [
+        "alert-header",
+        "separator-1",
+        "metrics-stack",
+        "separator-2",
+        "runbook-alert"
+      ]
+    },
+    "alert-header": {
+      "type": "Badge",
+      "props": {
+        "text": "🟡 Status: OK→WATCH",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "metrics-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "disk-group",
+        "mem-group",
+        "load-metric",
+        "vms-metric"
+      ]
+    },
+    "disk-group": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "disk-stat",
+        "disk-progress"
+      ]
+    },
+    "disk-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Disk (local-lvm)",
+        "value": "682.7 / 891.2 GB",
+        "delta": "+9.3% from 67.3%",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "disk-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 76.6,
+        "max": 100,
+        "label": "76.6% used"
+      },
+      "children": []
+    },
+    "mem-group": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "mem-stat",
+        "mem-progress"
+      ]
+    },
+    "mem-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Memory",
+        "value": "71.0 / 135.0 GB"
+      },
+      "children": []
+    },
+    "mem-progress": {
+      "type": "Progress",
+      "props": {
+        "value": 52.6,
+        "max": 100,
+        "label": "52.6% used"
+      },
+      "children": []
+    },
+    "load-metric": {
+      "type": "Stat",
+      "props": {
+        "label": "Load (5-min avg)",
+        "value": "2.70 / 12 vCPU = 0.23x"
+      },
+      "children": []
+    },
+    "vms-metric": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs",
+        "value": "48 total (43 running)"
+      },
+      "children": []
+    },
+    "separator-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "runbook-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Runbook",
+        "message": "slow thin-pool fill, not load; watch toward 85% critical; pve11/pve12 near-empty for rebalance",
+        "type": "warning"
+      },
+      "children": []
+    }
+  }
+}
