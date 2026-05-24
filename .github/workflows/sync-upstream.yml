@@ -2,7 +2,8 @@ name: Sync from upstream
 
 on:
   schedule:
-    - cron: '0 9 * * 1'
+    # Daily upstream watch. Opens a PR on change rather than force-merging so HermesOS custom skills/secrets stay protected.
+    - cron: '15 8 * * *'
   workflow_dispatch:
 
 permissions:
