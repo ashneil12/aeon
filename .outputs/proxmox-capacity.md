@@ -1,12 +1,13 @@
-The proxmox-capacity skill ran in **silent mode** — no transitions, not the digest slot, so no notification was sent (correct per the skill).
-
-## Summary
-
-- **Hosts checked:** 9 (pve1–pve9), all reachable. Source: `.proxmox-cache/snapshot.json` (generated 08:13:26Z).
-- **Buckets:** all **OK**. Worst signals were pve5 thin-pool at 67.3% (still under the 70% WATCH line) and pve4 memory at 57%. No thin-pool anywhere near the 95% pve1-style danger threshold.
-- **Fleet change:** pve8 and pve9 are **new** — absent from prior state (UNKNOWN→OK). Per the skill, new hosts coming up OK is not a deterioration, so it is not alert-grade.
-- **Transitions:** none (no host moved to a worse bucket; none unreachable).
-- **Notification mode:** **silent** — hour is 08 UTC, not the 09:00 digest slot, and no deterioration. Printed `PROXMOX_CAPACITY_OK`.
-- **Hetzner traffic:** null in snapshot (prefetch returned no Robot data); traffic signal skipped, as in prior runs.
-- **Files updated:** `memory/proxmox-state.json` (now tracks all 9 hosts), `memory/topics/proxmox-capacity.md` (history line appended), `memory/logs/2026-05-24.md` (activity log entry).
-- **Follow-up:** none urgent. pve5 thin-pool has hovered near 70% all week — worth keeping the migration plan noted in the morning brief in view, but it's currently OK.
+📊 PROXMOX 09:00 UTC — fleet snapshot (11 hosts · all 🟢 OK)
+🟢 pve5  — disk 67% · mem 51% · 48 vms (43 run) ⚠ highest disk in fleet
+🟢 pve1  — disk 52% · mem 20% · 21 vms (20 run)
+🟢 pve2  — disk 49% · mem 43% · 41 vms (38 run)
+🟢 pve6  — disk 49% · mem 52% · 39 vms (36 run)
+🟢 pve4  — disk 48% · mem 57% · 33 vms (31 run)
+🟢 pve8  — disk 46% · mem 46% · 41 vms (40 run)
+🟢 pve7  — disk 42% · mem 50% · 38 vms (37 run)
+🟢 pve9  — disk 42% · mem 40% · 40 vms (39 run)
+🟢 pve3  — disk 40% · mem 51% · 35 vms (32 run)
+🟢 pve11 — disk 2% · mem 9% · 3 vms (2 run) · new node
+🟢 pve12 — disk 1% · mem 3% · 2 vms (1 run) · new node
+no transitions · hetzner traffic unavailable in snapshot
