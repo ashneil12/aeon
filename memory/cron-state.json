@@ -1,13 +1,13 @@
 {
   "heartbeat": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-05-23T21:05:04Z",
     "total_runs": 18,
     "total_successes": 18,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
-    "last_dispatch": "2026-05-23T21:03:24Z"
+    "last_dispatch": "2026-05-24T09:33:08Z"
   },
   "repo-pulse": {
     "last_status": "success",
@@ -21,14 +21,14 @@
     "last_quality_score": 4
   },
   "proxmox-capacity": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-05-24T09:09:07Z",
     "total_runs": 37,
     "total_successes": 37,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
-    "last_dispatch": "2026-05-24T04:41:35Z"
+    "last_dispatch": "2026-05-24T09:33:08Z"
   },
   "token-movers": {
     "last_dispatch": "2026-05-23T12:48:03Z",
@@ -51,14 +51,14 @@
     "success_rate": 1
   },
   "fleet-sweep": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-05-24T09:05:54Z",
     "total_runs": 27,
     "total_successes": 27,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
-    "last_dispatch": "2026-05-24T04:41:35Z"
+    "last_dispatch": "2026-05-24T09:33:08Z"
   },
   "morning-brief": {
     "last_dispatch": "2026-05-24T07:42:45Z",
@@ -71,13 +71,14 @@
     "success_rate": 1
   },
   "posthog-session-analyzer": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-05-24T09:19:13Z",
     "total_runs": 1,
     "total_successes": 1,
     "total_failures": 0,
     "consecutive_failures": 0,
-    "success_rate": 1
+    "success_rate": 1,
+    "last_dispatch": "2026-05-24T09:33:08Z"
   },
   "hermesos-growth-desk": {
     "last_status": "success",
