@@ -1,0 +1,284 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "HermesOS Finance & Risk Review — 2026-05-24",
+        "description": "Anselm"
+      },
+      "children": [
+        "verdict-badge",
+        "sep1",
+        "infra-section",
+        "sep2",
+        "finance-section",
+        "sep3",
+        "monitoring-section",
+        "sep4",
+        "regulatory-section",
+        "sep5",
+        "full-article-link"
+      ]
+    },
+    "verdict-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "ACTION",
+        "variant": "destructive"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "infra-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "infra-heading",
+        "infra-status",
+        "infra-capacity",
+        "infra-vms"
+      ]
+    },
+    "infra-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Infrastructure",
+        "level": "h3"
+      }
+    },
+    "infra-status": {
+      "type": "Text",
+      "props": {
+        "text": "Status: Healthy"
+      }
+    },
+    "infra-capacity": {
+      "type": "Text",
+      "props": {
+        "text": "RAM headroom: Good"
+      }
+    },
+    "infra-vms": {
+      "type": "Text",
+      "props": {
+        "text": "Infrastructure: 11 hosts / 319 VMs; pve11-12 adding fresh capacity"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "finance-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "finance-heading",
+        "finance-lever-1",
+        "finance-lever-2"
+      ]
+    },
+    "finance-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Finance Levers (Need Owners)",
+        "level": "h3"
+      }
+    },
+    "finance-lever-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "lever1-title",
+        "lever1-content1",
+        "lever1-content2",
+        "lever1-stat1",
+        "lever1-stat2"
+      ]
+    },
+    "lever1-title": {
+      "type": "Heading",
+      "props": {
+        "text": "(1) Model Spend Concentration",
+        "level": "h4"
+      }
+    },
+    "lever1-content1": {
+      "type": "Text",
+      "props": {
+        "text": "100% of model spend is on Opus"
+      }
+    },
+    "lever1-content2": {
+      "type": "Text",
+      "props": {
+        "text": "Drivers: proxmox-capacity + fleet-sweep (every 4h, mechanical)"
+      }
+    },
+    "lever1-stat1": {
+      "type": "Stat",
+      "props": {
+        "label": "Current run-rate",
+        "value": "~$875/mo"
+      }
+    },
+    "lever1-stat2": {
+      "type": "Stat",
+      "props": {
+        "label": "Downgrade potential (to Sonnet)",
+        "value": "~$350–500/mo"
+      }
+    },
+    "finance-lever-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "lever2-title",
+        "lever2-alert",
+        "lever2-content",
+        "lever2-blocked"
+      ]
+    },
+    "lever2-title": {
+      "type": "Heading",
+      "props": {
+        "text": "(2) Revenue Dark (Margin Uncomputable)",
+        "level": "h4"
+      }
+    },
+    "lever2-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Missing keys",
+        "message": "No Stripe/Bankr keys — margin is uncomputable",
+        "type": "warning"
+      }
+    },
+    "lever2-content": {
+      "type": "Text",
+      "props": {
+        "text": "Cost-report has never dispatched (due Mon 5/25)"
+      }
+    },
+    "lever2-blocked": {
+      "type": "Badge",
+      "props": {
+        "text": "BLOCKED",
+        "variant": "destructive"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "monitoring-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "monitoring-heading",
+        "monitoring-alert"
+      ]
+    },
+    "monitoring-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Monitoring",
+        "level": "h3"
+      }
+    },
+    "monitoring-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "pve5 thin-pool capacity",
+        "message": "Slow-creep near 70% — stays on watch",
+        "type": "warning"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "regulatory-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "regulatory-heading",
+        "regulatory-status"
+      ]
+    },
+    "regulatory-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Regulatory & Comms",
+        "level": "h3"
+      }
+    },
+    "regulatory-status": {
+      "type": "Text",
+      "props": {
+        "text": "OK — Drafts-only posture holds"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "full-article-link": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "full-article-label",
+        "full-article-url"
+      ]
+    },
+    "full-article-label": {
+      "type": "Heading",
+      "props": {
+        "text": "Full Report",
+        "level": "h4"
+      }
+    },
+    "full-article-url": {
+      "type": "StoryLink",
+      "props": {
+        "title": "HermesOS Finance & Risk Review — 2026-05-24",
+        "href": "articles/hermesos-finance-risk-review-2026-05-24.md",
+        "source": "Internal Report"
+      }
+    }
+  }
+}
