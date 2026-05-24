@@ -1,0 +1,152 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "FLEET SWEEP",
+        "description": "🟡 1 WATCH, 0 critical, config clean"
+      },
+      "children": [
+        "stack_main"
+      ]
+    },
+    "stack_main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "alert_pve5",
+        "sep1",
+        "stack_storage",
+        "sep2",
+        "stack_config"
+      ]
+    },
+    "alert_pve5": {
+      "type": "Alert",
+      "props": {
+        "title": "Storage Watch: pve5 thin-pool local-lvm",
+        "message": "77.3% capacity (WATCH band 70-85%)",
+        "type": "warning"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_storage": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "stat_storage",
+        "text_storage_trend",
+        "text_storage_action"
+      ]
+    },
+    "stat_storage": {
+      "type": "Stat",
+      "props": {
+        "label": "pve5 Capacity",
+        "value": "77.3%",
+        "delta": "+10pts from 67.3%",
+        "trend": "up"
+      }
+    },
+    "text_storage_trend": {
+      "type": "Text",
+      "props": {
+        "text": "Up ~4.5h ago",
+        "variant": "caption"
+      }
+    },
+    "text_storage_action": {
+      "type": "Text",
+      "props": {
+        "text": "Action: Prep migration plan; pause new placement on pve5 if it keeps climbing toward 85%.",
+        "variant": "lead"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_config": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_config",
+        "text_compliance",
+        "grid_config_stats"
+      ]
+    },
+    "heading_config": {
+      "type": "Heading",
+      "props": {
+        "text": "Configuration Compliance",
+        "level": "h3"
+      }
+    },
+    "text_compliance": {
+      "type": "Text",
+      "props": {
+        "text": "332/332 running VMs compliant: cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory",
+        "variant": "body"
+      }
+    },
+    "grid_config_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_drift",
+        "stat_fixes",
+        "stat_repair_intents",
+        "stat_hosts"
+      ]
+    },
+    "stat_drift": {
+      "type": "Stat",
+      "props": {
+        "label": "Config Drift",
+        "value": "0"
+      }
+    },
+    "stat_fixes": {
+      "type": "Stat",
+      "props": {
+        "label": "Fixes Queued",
+        "value": "0"
+      }
+    },
+    "stat_repair_intents": {
+      "type": "Stat",
+      "props": {
+        "label": "Repair Intents",
+        "value": "0"
+      }
+    },
+    "stat_hosts": {
+      "type": "Stat",
+      "props": {
+        "label": "Hosts Reachable",
+        "value": "11/11"
+      }
+    }
+  }
+}
