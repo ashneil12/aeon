@@ -1,20 +1,19 @@
-Heartbeat complete. All checks ran; nothing alert-grade, so no notification was sent.
+Heartbeat complete. All checks green except one persistent, already-known flag.
 
 ## Summary
 
-**Verdict:** `HEARTBEAT_OK · STATUS_PAGE=WATCH` — 20:00 UTC slot, ran ~63m late (the same intermittent cron-dispatch lag seen all week).
+**HEARTBEAT_OK · STATUS_PAGE=WATCH** — ran 2026-05-24 09:33 UTC (Sunday).
 
-**Checks:**
-- **P0 (failed/stuck skills):** Clean. All 7 tracked skills are `last_status=success`, 100% success rate, 0 consecutive failures. No stuck/dispatched entries. Heartbeat self-check OK (last success ~6.7h ago, well under 36h).
-- **P1 (PRs/issues):** 0 open PRs; issues disabled on the repo.
-- **P2 (memory):** Nothing actionable (only stale template defaults).
-- **P3 (missing skills):** One standing flag — `cost-report` (weekly Monday) still never dispatched; next chance Mon 2026-05-25. Already in the last 48h of logs → dedup-suppressed, no re-notify. This keeps overall at 🟡 WATCH.
-- **FYI:** `proxmox-capacity` + `fleet-sweep` both flagged pve5's thin-pool crossing the 70% WATCH band (70.2%, slow disk fill) — already notified by those skills, not a heartbeat skill-health concern, so not re-notified.
+**Findings by tier:**
+- **P0 (skill health):** All 11 tracked skills at 100% success, 0 consecutive failures — no failed, stuck, degraded, or chronic skills. Heartbeat self-check healthy (last success ~12.5h ago). Four skills logged first-ever runs today (posthog-session-analyzer, hermesos-growth-desk, hermesos-backup-restore-watch, hermesos-finance-risk-review).
+- **P1:** 0 open PRs; issues disabled on repo.
+- **P2:** MEMORY.md stale-template flag (already surfaced by morning-brief; cleanup item, not alert-grade).
+- **P3:** `cost-report` (weekly Monday) still never dispatched — no cron-state entry, next chance Mon 2026-05-25. Sole standing flag → drives WATCH.
+
+**Notification:** None sent. `cost-report` is dedup-suppressed (in last 48h of logs); today's two ACTION verdicts (backup-restore-watch, finance-risk-review) were already notified by their own skills.
 
 **Files modified:**
-- `docs/status.md` — regenerated (WATCH, updated timestamps, skill table re-sorted by last run, Token pulse omitted since no token-report article exists).
-- `memory/logs/2026-05-23.md` — appended the 21:03 UTC heartbeat entry.
+- `docs/status.md` — regenerated: 🟡 WATCH, 12 enabled skills (11 tracked + cost-report not-yet-run), Token pulse omitted (no token-report article), next run proxmox-capacity at 12:00 UTC.
+- `memory/logs/2026-05-24.md` — appended heartbeat log entry.
 
-**Notification:** None sent — no new alert-grade items.
-
-**Follow-up:** Watch whether `cost-report` actually dispatches on Monday 2026-05-25; if it misses again, that's worth escalating beyond the dedup-suppressed WATCH.
+**Follow-up for operator:** Unblock `cost-report` cron dispatch (open since 5/18) — flagged again today by both morning-brief and the finance-risk review.
