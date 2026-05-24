@@ -1,0 +1,71 @@
+{
+  "guild": {
+    "id": "1441937325121867879",
+    "name": "Operator's Hub"
+  },
+  "channels": {
+    "augustine_briefs": "1508015918679195718",
+    "ops_alerts": "1508015921942233228",
+    "dev_review": "1508015925616578591",
+    "growth_desk": "1508015929295114252",
+    "finance_risk": "1508015932721860689",
+    "agent_runs": "1508015936207327282",
+    "incidents": "1508015939445198979",
+    "ash_approval": "1508015942603636766"
+  },
+  "roles": {
+    "ash": "1475273682350768179",
+    "team": "1475280026638483486"
+  },
+  "bots": {
+    "augustine": {
+      "id": "1475231715298639932",
+      "username": "Augustine ⚡",
+      "env": "DISCORD_BOT_TOKEN"
+    },
+    "anselm": {
+      "id": "1475267561867317298",
+      "username": "Anselm 🗺",
+      "env": "DISCORD_BOT_TOKEN_ANSELM"
+    },
+    "aquinas": {
+      "id": "1475269739168272496",
+      "username": "Aquinas",
+      "env": "DISCORD_BOT_TOKEN_AQUINAS"
+    },
+    "benedict": {
+      "id": "1475270170493714504",
+      "username": "Benedict",
+      "env": "DISCORD_BOT_TOKEN_BENEDICT"
+    },
+    "chrysostom": {
+      "id": "1475557087239999599",
+      "username": "Chrysostom",
+      "env": "DISCORD_BOT_TOKEN_CHRYSOSTOM"
+    },
+    "gabriel": {
+      "id": "1472693001431289937",
+      "username": "Gabriel",
+      "env": "DISCORD_BOT_TOKEN_GABRIEL"
+    }
+  },
+  "routes": [
+    {"match": ["fleet-sweep", "proxmox-capacity", "hermesos-backup-restore-watch", "security", "backup", "restore", "incident"], "owner": "benedict", "channel": "ops_alerts"},
+    {"match": ["posthog-session-analyzer", "hermesos-growth-desk", "growth", "posthog", "activation", "social"], "owner": "chrysostom", "channel": "growth_desk"},
+    {"match": ["hermesos-finance-risk-review", "cost-report", "finance", "risk", "stripe", "revenue"], "owner": "anselm", "channel": "finance_risk"},
+    {"match": ["upstream", "code-health", "repo-pulse", "pr-review", "ci", "github"], "owner": "aquinas", "channel": "dev_review"}
+  ],
+  "fallback": {
+    "owner": "gabriel",
+    "channel": "agent_runs"
+  },
+  "approval": {
+    "owner": "augustine",
+    "channel": "ash_approval",
+    "mention_role": "ash"
+  },
+  "critical": {
+    "owner": "augustine",
+    "channel": "incidents"
+  }
+}
