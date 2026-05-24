@@ -1,0 +1,193 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "🟡 FLEET SWEEP"
+      },
+      "children": [
+        "header_stack",
+        "separator_1",
+        "watch_section",
+        "separator_2",
+        "config_section"
+      ]
+    },
+    "header_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "watch_badge",
+        "critical_badge",
+        "config_fixes_badge"
+      ]
+    },
+    "watch_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "1 WATCH",
+        "variant": "secondary"
+      }
+    },
+    "critical_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "0 critical",
+        "variant": "outline"
+      }
+    },
+    "config_fixes_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "0 config fixes",
+        "variant": "outline"
+      }
+    },
+    "separator_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "watch_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "watch_heading",
+        "watch_pool_item"
+      ]
+    },
+    "watch_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "🟡 WATCH",
+        "level": "h3"
+      }
+    },
+    "watch_pool_item": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "pool_name",
+        "pool_progress",
+        "pool_details"
+      ]
+    },
+    "pool_name": {
+      "type": "Heading",
+      "props": {
+        "text": "pve5 thin-pool local-lvm",
+        "level": "h4"
+      }
+    },
+    "pool_progress": {
+      "type": "Progress",
+      "props": {
+        "value": 71.3,
+        "max": 100,
+        "label": "Storage utilization (70–85% band)"
+      }
+    },
+    "pool_details": {
+      "type": "Text",
+      "props": {
+        "text": "Easing from 77.3% earlier today but still above 70%. Prep migration plan; pause new placement on pve5 if it climbs toward 85% CRIT.",
+        "variant": "body"
+      }
+    },
+    "separator_2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "config_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "config_heading",
+        "config_stats_row",
+        "config_compliance_text",
+        "config_issues"
+      ]
+    },
+    "config_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "✅ Config Clean",
+        "level": "h3"
+      }
+    },
+    "config_stats_row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "lg"
+      },
+      "children": [
+        "vms_stat",
+        "hosts_stat"
+      ]
+    },
+    "vms_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Running VMs (hermes-named)",
+        "value": "336/336"
+      }
+    },
+    "hosts_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Hosts reachable",
+        "value": "11/11"
+      }
+    },
+    "config_compliance_text": {
+      "type": "Text",
+      "props": {
+        "text": "Fully compliant: cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory",
+        "variant": "caption"
+      }
+    },
+    "config_issues": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "lg"
+      },
+      "children": [
+        "corrections_stat",
+        "repair_stat"
+      ]
+    },
+    "corrections_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Corrections queued",
+        "value": "0"
+      }
+    },
+    "repair_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Repair intents",
+        "value": "0"
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
-🟡 FLEET SWEEP — 1 WATCH, 0 critical, config clean
+🟡 FLEET SWEEP — 1 WATCH, 0 critical, 0 config fixes
 
-pve5 thin-pool local-lvm 77.3% (WATCH band 70-85%) — up from 67.3% ~4.5h ago, +10pts. Prep migration plan; pause new placement on pve5 if it keeps climbing toward 85%.
+🟡 WATCH
+pve5 thin-pool local-lvm 71.3% (70–85% band) — easing from 77.3% earlier today but still above 70%. Prep migration plan; pause new placement on pve5 if it climbs toward 85% CRIT.
 
-Config clean: 332/332 running VMs compliant (cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory). 0 drift, 0 fixes queued, 0 repair intents. 11/11 hosts reachable.
+✅ Config clean: 336/336 running VMs hermes-named & fully compliant (cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory). 11/11 hosts reachable. 0 corrections queued, 0 repair intents.

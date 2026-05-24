@@ -64,4 +64,4 @@ date,skill,model,input_tokens,output_tokens,cache_read,cache_creation
 2026-05-24,heartbeat,claude-opus-4-7,21,10832,596836,61716
 2026-05-24,heartbeat,claude-opus-4-7,19,13786,478349,52392
 2026-05-24,proxmox-capacity,claude-opus-4-7,37,11468,847974,56752
-2026-05-24,hermesos-growth-desk,claude-opus-4-7,33,15186,616816,108339
+2026-05-24,fleet-sweep,claude-opus-4-7,53,18757,1503241,57655
