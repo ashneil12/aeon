@@ -12,6 +12,9 @@
 | Date | Type | Key Topics |
 |------|------|------------|
 
+## Topics
+- [Growth](topics/growth.md) — HermesOS Growth Desk (Chrysostom): positioning, post/reply drafts, narrative pulse. Read-only/drafts-only.
+
 ## Skills Built
 | Skill | Date | Notes |
 |-------|------|-------|

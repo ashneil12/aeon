@@ -1,0 +1,211 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "HermesOS Growth Desk",
+        "description": "First run, drafts only — nothing posted yet"
+      },
+      "children": [
+        "stack_main"
+      ]
+    },
+    "stack_main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "section_context",
+        "separator1",
+        "section_status",
+        "separator2",
+        "section_decisions",
+        "separator3",
+        "section_blocker"
+      ]
+    },
+    "section_context": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading_context",
+        "text_context"
+      ]
+    },
+    "heading_context": {
+      "type": "Heading",
+      "props": {
+        "text": "Market Context",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "text_context": {
+      "type": "Text",
+      "props": {
+        "text": "The agent-hosting world is splitting into throwaway-container vs real-VM camps this week. HermesOS sits dead-center.",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "section_status": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading_status",
+        "text_drafts",
+        "text_file_location"
+      ]
+    },
+    "heading_status": {
+      "type": "Heading",
+      "props": {
+        "text": "Content Ready",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "text_drafts": {
+      "type": "Text",
+      "props": {
+        "text": "3 post drafts + 5 reply drafts + 1 hero-line A/B test",
+        "variant": "body"
+      },
+      "children": []
+    },
+    "text_file_location": {
+      "type": "Text",
+      "props": {
+        "text": "All drafts in: .outputs/hermesos-growth-desk.md",
+        "variant": "caption"
+      },
+      "children": []
+    },
+    "separator2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "section_decisions": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_decisions",
+        "decision_1",
+        "decision_2_group"
+      ]
+    },
+    "heading_decisions": {
+      "type": "Heading",
+      "props": {
+        "text": "Decisions Needed",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "decision_1": {
+      "type": "Alert",
+      "props": {
+        "title": "Greenlight Posting?",
+        "message": "Draft A rides the containers-vs-VMs debate while it is hot.",
+        "type": "info"
+      },
+      "children": []
+    },
+    "decision_2_group": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "alert_traction",
+        "stat_agents",
+        "stat_growth"
+      ]
+    },
+    "alert_traction": {
+      "type": "Alert",
+      "props": {
+        "title": "Public Traction Numbers?",
+        "message": "OK to cite real traction in public copy, or keep private?",
+        "type": "info"
+      },
+      "children": []
+    },
+    "stat_agents": {
+      "type": "Stat",
+      "props": {
+        "label": "Agents in Isolated VMs",
+        "value": "300+",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "stat_growth": {
+      "type": "Stat",
+      "props": {
+        "label": "Growth This Week",
+        "value": "~2.5x",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "separator3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "section_blocker": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "heading_blocker",
+        "text_blocker"
+      ]
+    },
+    "heading_blocker": {
+      "type": "Heading",
+      "props": {
+        "text": "Setup Blocker",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "text_blocker": {
+      "type": "Text",
+      "props": {
+        "text": "X auth is not set in the runner. Live X search and reply posting are blocked until a token is added.",
+        "variant": "body"
+      },
+      "children": []
+    }
+  }
+}
