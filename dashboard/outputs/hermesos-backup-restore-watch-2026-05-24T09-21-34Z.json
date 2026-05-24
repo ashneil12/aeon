@@ -1,0 +1,292 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "HermesOS backup audit",
+        "description": "Backup and disaster recovery assessment"
+      },
+      "children": [
+        "alert_verdict",
+        "sep1",
+        "section_aeon",
+        "sep2",
+        "section_fleet",
+        "sep3",
+        "section_nextsteps",
+        "sep4",
+        "note_security"
+      ]
+    },
+    "alert_verdict": {
+      "type": "Alert",
+      "props": {
+        "title": "Verdict: ACTION REQUIRED",
+        "message": "AEON brain is safe; fleet is NOT verifiably recoverable",
+        "type": "warning"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section_aeon": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_aeon",
+        "text_aeon_detail",
+        "grid_aeon_items"
+      ]
+    },
+    "heading_aeon": {
+      "type": "Heading",
+      "props": {
+        "text": "AEON Brain (Safe)",
+        "level": "h2"
+      }
+    },
+    "text_aeon_detail": {
+      "type": "Text",
+      "props": {
+        "text": "Repository in sync with origin/main. All 170 skills, memory, and runbooks tracked in git. Fork 100% healthy. Notify tool regenerates from workflow.",
+        "variant": "body"
+      }
+    },
+    "grid_aeon_items": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_repo_sync",
+        "stat_repo_items",
+        "stat_fork_health",
+        "stat_notify_tool"
+      ]
+    },
+    "stat_repo_sync": {
+      "type": "Stat",
+      "props": {
+        "label": "Repo Status",
+        "value": "In sync with origin/main"
+      }
+    },
+    "stat_repo_items": {
+      "type": "Stat",
+      "props": {
+        "label": "Tracked Items",
+        "value": "170 skills + memory + runbooks"
+      }
+    },
+    "stat_fork_health": {
+      "type": "Stat",
+      "props": {
+        "label": "Fork Health",
+        "value": "100% healthy"
+      }
+    },
+    "stat_notify_tool": {
+      "type": "Stat",
+      "props": {
+        "label": "Notify Tool",
+        "value": "Regenerates from workflow"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section_fleet": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_fleet",
+        "alert_fleet_critical",
+        "grid_fleet_stats",
+        "stack_fleet_issues"
+      ]
+    },
+    "heading_fleet": {
+      "type": "Heading",
+      "props": {
+        "text": "Fleet Status (NOT recoverable)",
+        "level": "h2"
+      }
+    },
+    "alert_fleet_critical": {
+      "type": "Alert",
+      "props": {
+        "title": "Critical Issues Detected",
+        "message": "Zero backup visibility across fleet infrastructure",
+        "type": "error"
+      }
+    },
+    "grid_fleet_stats": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat_vms",
+        "stat_hosts",
+        "stat_secrets"
+      ]
+    },
+    "stat_vms": {
+      "type": "Stat",
+      "props": {
+        "label": "Hermes VMs",
+        "value": "~319"
+      }
+    },
+    "stat_hosts": {
+      "type": "Stat",
+      "props": {
+        "label": "Hetzner Hosts",
+        "value": "11"
+      }
+    },
+    "stat_secrets": {
+      "type": "Stat",
+      "props": {
+        "label": "Unbackup'd Secrets",
+        "value": "~30"
+      }
+    },
+    "stack_fleet_issues": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "issue_1",
+        "issue_2",
+        "issue_3",
+        "issue_4"
+      ]
+    },
+    "issue_1": {
+      "type": "Text",
+      "props": {
+        "text": "~319 hermes VMs across 11 Hetzner hosts with zero backup visibility (no PBS/vzdump/restic anywhere in repo)",
+        "variant": "body"
+      }
+    },
+    "issue_2": {
+      "type": "Text",
+      "props": {
+        "text": "~30 secrets living only in GitHub Actions with no encrypted offline copy (includes Proxmox operator + Hetzner robot creds = total fleet lockout if GH account is lost)",
+        "variant": "body"
+      }
+    },
+    "issue_3": {
+      "type": "Text",
+      "props": {
+        "text": "No cold-storage target configured",
+        "variant": "body"
+      }
+    },
+    "issue_4": {
+      "type": "Text",
+      "props": {
+        "text": "No restore drill ever run",
+        "variant": "body"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section_nextsteps": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_nextsteps",
+        "stack_actions"
+      ]
+    },
+    "heading_nextsteps": {
+      "type": "Heading",
+      "props": {
+        "text": "Next Steps",
+        "level": "h2"
+      }
+    },
+    "stack_actions": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "action_1",
+        "action_2",
+        "action_3",
+        "action_4"
+      ]
+    },
+    "action_1": {
+      "type": "Text",
+      "props": {
+        "text": "1. Confirm/enable Proxmox VM backups offsite",
+        "variant": "body"
+      }
+    },
+    "action_2": {
+      "type": "Text",
+      "props": {
+        "text": "2. Export secrets to an encrypted offline store",
+        "variant": "body"
+      }
+    },
+    "action_3": {
+      "type": "Text",
+      "props": {
+        "text": "3. Pick a cold-storage target",
+        "variant": "body"
+      }
+    },
+    "action_4": {
+      "type": "Text",
+      "props": {
+        "text": "4. Write a restore runbook + schedule a quarterly drill",
+        "variant": "body"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "note_security": {
+      "type": "Alert",
+      "props": {
+        "title": "Security Note",
+        "message": "No secrets were read or printed — names only",
+        "type": "info"
+      }
+    }
+  }
+}
