@@ -13,6 +13,7 @@
 .xai-cache/
 .bankr-cache/
 .proxmox-cache/
+.posthog-cache/
 .pending-notify/
 .pending-replicate/
 .pending-supernotes/
