@@ -38,5 +38,6 @@ fetch recordings.json "/session_recordings/?limit=50"
 fetch events.json "/events/?limit=200"
 fetch errors.json "/events/?event=%24exception&limit=100"
 fetch persons_sample.json "/persons/?limit=50"
+fetch funnels.json "/funnels/?limit=50"
 
 date -u +%FT%TZ > "$OUT/generated_at.txt"
