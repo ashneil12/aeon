@@ -1,13 +1,12 @@
-`.proxmox-cache/` is gitignored, so the temp compute files won't pollute the repo. The three memory files are the only tracked changes — committing is handled by the cron workflow, so I'll leave that to it.
+The proxmox-capacity skill ran in **silent mode** — no transitions, not the digest slot, so no notification was sent (correct per the skill).
 
 ## Summary
 
-Ran **proxmox-capacity** against the fresh prefetched snapshot (`generated_at` 2026-05-24T04:41:50Z).
-
-- **Hosts checked:** all 7 (pve1–pve7), `${var}` empty so no scope filter. All reachable.
-- **Buckets:** every host **OK**. Worst signal fleet-wide was pve5's thin-pool at 67.4% (under the 70% WATCH threshold); no pool above the 95% pve1-style alarm line. Hetzner block was `null` in the snapshot, so that signal was skipped (consistent with recent runs).
-- **Transitions:** none — prior state was all-OK, current is all-OK.
-- **Notification mode:** **silent** — no transition, and hour 04 ≠ the 09:00 UTC digest slot. No `./notify` call made.
-- **Files updated:** `memory/proxmox-state.json` (buckets + timestamps), `memory/topics/proxmox-capacity.md` (history line), `memory/logs/2026-05-24.md` (04:41 log entry). Emitted the `PROXMOX_CAPACITY_OK` marker behavior for silent mode.
-
-No follow-up needed. Committing the memory changes is left to the cron workflow.
+- **Hosts checked:** 9 (pve1–pve9), all reachable. Source: `.proxmox-cache/snapshot.json` (generated 08:13:26Z).
+- **Buckets:** all **OK**. Worst signals were pve5 thin-pool at 67.3% (still under the 70% WATCH line) and pve4 memory at 57%. No thin-pool anywhere near the 95% pve1-style danger threshold.
+- **Fleet change:** pve8 and pve9 are **new** — absent from prior state (UNKNOWN→OK). Per the skill, new hosts coming up OK is not a deterioration, so it is not alert-grade.
+- **Transitions:** none (no host moved to a worse bucket; none unreachable).
+- **Notification mode:** **silent** — hour is 08 UTC, not the 09:00 digest slot, and no deterioration. Printed `PROXMOX_CAPACITY_OK`.
+- **Hetzner traffic:** null in snapshot (prefetch returned no Robot data); traffic signal skipped, as in prior runs.
+- **Files updated:** `memory/proxmox-state.json` (now tracks all 9 hosts), `memory/topics/proxmox-capacity.md` (history line appended), `memory/logs/2026-05-24.md` (activity log entry).
+- **Follow-up:** none urgent. pve5 thin-pool has hovered near 70% all week — worth keeping the migration plan noted in the morning brief in view, but it's currently OK.
