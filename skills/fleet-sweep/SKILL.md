@@ -125,6 +125,8 @@ When nothing to report: print `FLEET_SWEEP_CLEAN` to stdout, do NOT call notify.
 
 No direct PVE API access from this skill. Read state from the prefetched snapshot. Queue auto-fixes by writing JSON pending files. The postprocess step handles all API writes outside the sandbox.
 
+In this sandbox, file-based helper execution can be blocked: `python3 <script>` may require a permission prompt and `jq -f <filter-file>` may trip the dangerous-flag filter. Prefer inline `jq` filters and short one-shot commands that read `.proxmox-cache/snapshot.json` directly.
+
 ## Summary
 
 End with `## Summary` listing: hosts swept, VMs swept, CRITICAL count, WATCH count, queued-fix count (and breakdown by type), needs_reboot count, notify mode (silent / quiet / loud / dry-run).
