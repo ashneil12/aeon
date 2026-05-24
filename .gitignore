@@ -30,6 +30,7 @@ skills.lock
 # Scratch / temp files
 tmp_*
 drift_scan.jq
+.filter.jq
 *.tmp
 *_tmp.txt
 hashcheck.py

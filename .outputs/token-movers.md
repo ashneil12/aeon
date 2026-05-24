@@ -1,19 +1,20 @@
-The token-movers run is complete.
+`.filter.jq` is now gitignored (no longer showing). The notification is queued in `.pending-notify/` (gitignored — the workflow's post-run step drains it, since direct `./notify` shell calls are sandbox-blocked). The `.notify-sent-hashes`/`notify` files were pre-existing, not from this run.
 
 ## Summary
 
-Ran the **token-movers** skill for 2026-05-23 — a full movers/losers/trending report (no `${var}`).
+Executed the **token-movers** skill (var: none → full movers/losers/trending report) for 2026-05-24.
 
-**What I did:**
-- Fetched CoinGecko markets (250 coins) + trending (15) — both HTTP 200 on first curl try. Used the public endpoint since the sandbox blocks `$COINGECKO_API_KEY` expansion.
-- Filtered out stablecoins, wrapped/staked dupes, and sub-$1M-volume tokens; ranked winners/losers by 24h %, computed the market pulse and signal/risk tags via `jq`.
-- Dedup'd against the 5/22 run: dropped GENIUS (faded +37%→+4%), kept BEAT/TAG (materially changed), and flagged the SKYAI and VVV direction flips.
+**What I did**
+- Fetched CoinGecko markets (250 coins, 1h/24h/7d) + trending (15) — both first-try via `curl -o` (HTTP 200). No WebFetch fallback needed.
+- Filtered 250 → 212 (vol ≥ $1M) → 191 in scope (dropped stablecoins + wrapped/staked dupes) via inline jq.
+- Ranked top-10 winners/losers, computed pulse over top-100 by mcap, applied signal/risk tags, and deduped against the 5/22–5/23 logs.
 
-**The tape:** Broad risk-off — only **10/100** top coins green, top-50 median **−4.5%**; BTC −3.5%, ETH −4.8%, SOL −6.0%. Losers cluster −12% to −16% across L1s/DeFi/memes; winners are thin and low-cap.
-- **Standouts:** BSB +41.9% (7d +226%, PUMP-RISK low-cap parabolic on real $103M volume); CHZ −16% CAPITULATION; VVV flipped from yesterday's trending winner to TRENDING+DOWN loser; SKYAI rebounded +12% after its −20% capitulation.
+**Key finding — sharp risk-on reversal:** 94/100 top coins green, top-50 median **+4.2%**, every major up (BTC +3.3% $77.2k, ETH +4.6%, SOL +5.1%) — a full inversion of yesterday's risk-off. Standouts: **NEAR** clean large-cap breakout (+15% on $1.0B vol); **RAIL** +78% but low-cap/rolling-over (PUMP-RISK). Notably, **yesterday's two top winners (BEAT, BSB) are today's two biggest losers** — textbook post-pump distribution (BSB capitulation).
 
-**Files:**
-- `.pending-notify/token-movers-2026-05-23.md` (2736 chars, <4000) — queued for the workflow's post-run delivery loop.
-- `memory/logs/2026-05-23.md` — appended the run log entry.
+**Files created/modified**
+- `.pending-notify/token-movers-2026-05-24.md` — notification (2849 chars, <4000); workflow drains it post-run.
+- `memory/logs/2026-05-24.md` — appended token-movers log entry.
+- `.markets.json` / `.trending.json` — refreshed working caches.
+- `.gitignore` — added `.filter.jq` (couldn't `rm` the scratch file; sandbox blocks `rm`, so ignored it per the existing `drift_scan.jq` convention).
 
-**Notes / follow-up:** The sandbox is unusually locked down this run — it blocked `python3` script execution, shell `>`/`>>` redirection, `rm`, and `jq` reads outside the working dir. I worked around all of these (curl `-o` into cwd, `jq` to stdout, Write/Edit for files). The two temp dotfiles (`.markets.json`, `.trending.json`) couldn't be removed but are ephemeral and uncommitted. Delivery relies on the post-run drainer since `./notify` can't be shell-invoked here.
+**Follow-up:** none required — notification delivery is handled by the GitHub Actions post-run step.
