@@ -1,16 +1,14 @@
-`PROXMOX_CAPACITY_OK`
+Done. This was a silent run — no transitions, not the digest slot.
 
 ## Summary
 
-Ran the proxmox-capacity skill against the prefetched snapshot (`generated_at 2026-05-24T16:17:35Z`).
-
-- **Hosts checked:** 11 (pve1–pve9, pve11, pve12; `var` unscoped). All reachable. Hetzner block was `null`, so the traffic signal was skipped.
-- **Buckets:** `pve5 = WATCH` (local-lvm thin-pool at 77.6% / 891 GB — crept up from 76.6% at the 12:10 run). All 10 other hosts `OK`. Worst signals were disk-driven everywhere; fleet-wide memory ≤57.2% and 5-min load ≤0.31× vCPU. No thin-pool exceeded 0.95, so no pve1-style emergency.
-- **Transitions detected:** none. pve5 has been WATCH since the 12:10 OK→WATCH alert; no host moved to a worse bucket or went unreachable.
-- **Notification mode:** **SILENT** — no transition and hour is 16 UTC (not the 09:00 digest slot). No `./notify` or `./notify-jsonrender` calls made.
+- **Hosts checked:** 11 (pve1–pve9, pve11, pve12) from `.proxmox-cache/snapshot.json` (generated 2026-05-24T21:00:07Z).
+- **Buckets:** All `OK` except **pve5 = WATCH** (largest thin-pool `local-lvm` at 71.0% = 633.1/891.2 GB).
+- **Transitions detected:** None. pve5 holds WATCH — its disk actually *eased* 77.6% → 71.0% since the 16:21 run (still in the 70–85% band, trending down). No pool exceeded 85% or the 95% emergency threshold.
+- **Notification mode:** **Silent.** Current hour is 21 UTC (digest slot is 09:00), and no host deteriorated or went unreachable, so no `./notify` call.
+- **Note:** Hetzner section in the snapshot is null (no servers/traffic), so buckets were computed from the 3 available signals (disk, memory, load) — consistent with all prior runs this week.
 - **Files updated:**
-  - `memory/proxmox-state.json` — timestamps → `2026-05-24T16:21:18Z`, buckets unchanged.
-  - `memory/topics/proxmox-capacity.md` — appended the 16:21 history line.
+  - `memory/proxmox-state.json` — all 11 host buckets + `checked_at` timestamps refreshed to 2026-05-24T21:04:15Z.
+  - `memory/topics/proxmox-capacity.md` — appended the 21:04 history line.
   - `memory/logs/2026-05-24.md` — appended the run log entry.
-
-**Follow-up:** none required. Watch pve5's slow disk fill (now 77.6%); it will alert again only on a WATCH→CRITICAL crossing (>85%) or appear in the next 09:00 digest.
+- **Follow-up:** None alert-grade. pve5 thin-pool remains the one thing worth a passive eye — it's oscillated around the 70% line all week; a migration/cleanup plan is prudent if it climbs back toward the 85% CRITICAL band.
