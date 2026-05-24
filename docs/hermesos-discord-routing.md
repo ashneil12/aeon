@@ -24,12 +24,12 @@ ash-approval:     1508015942603636766
 ## Bots
 
 ```txt
-Augustine:  1475231715298639932  in guild
-Anselm:     1475267561867317298  in guild, finance-risk tested
-Aquinas:    1475269739168272496  in guild, dev-review tested
-Benedict:   1475270170493714504  token stored, invite needed
-Chrysostom: 1475557087239999599  token stored, invite needed
-Gabriel:    1472693001431289937  token stored, invite needed
+Augustine:  1475231715298639932  in guild, role 1508116223651741828 assigned
+Anselm:     1475267561867317298  in guild, role 1508116229406068948 assigned, finance-risk tested
+Aquinas:    1475269739168272496  in guild, role 1508116226696548476 assigned, dev-review tested
+Benedict:   1475270170493714504  token stored, role 1508116232895856852 created, invite needed
+Chrysostom: 1475557087239999599  token stored, role 1508116235731075172 created, invite needed
+Gabriel:    1472693001431289937  token stored, role 1508116238583337084 created, invite needed
 ```
 
 ## Invite URLs
