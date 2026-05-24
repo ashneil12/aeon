@@ -15,13 +15,7 @@
   },
   "roles": {
     "ash": "1475273682350768179",
-    "team": "1475280026638483486",
-    "augustine": "1508116223651741828",
-    "aquinas": "1508116226696548476",
-    "anselm": "1508116229406068948",
-    "benedict": "1508116232895856852",
-    "chrysostom": "1508116235731075172",
-    "gabriel": "1508116238583337084"
+    "team": "1475280026638483486"
   },
   "bots": {
     "augustine": {
@@ -56,10 +50,55 @@
     }
   },
   "routes": [
-    {"match": ["fleet-sweep", "proxmox-capacity", "hermesos-backup-restore-watch", "security", "backup", "restore", "incident"], "owner": "benedict", "channel": "ops_alerts"},
-    {"match": ["posthog-session-analyzer", "hermesos-growth-desk", "growth", "posthog", "activation", "social"], "owner": "chrysostom", "channel": "growth_desk"},
-    {"match": ["hermesos-finance-risk-review", "cost-report", "finance", "risk", "stripe", "revenue"], "owner": "anselm", "channel": "finance_risk"},
-    {"match": ["upstream", "code-health", "repo-pulse", "pr-review", "ci", "github"], "owner": "aquinas", "channel": "dev_review"}
+    {
+      "match": [
+        "fleet-sweep",
+        "proxmox-capacity",
+        "hermesos-backup-restore-watch",
+        "security",
+        "backup",
+        "restore",
+        "incident"
+      ],
+      "owner": "benedict",
+      "channel": "ops_alerts"
+    },
+    {
+      "match": [
+        "posthog-session-analyzer",
+        "hermesos-growth-desk",
+        "growth",
+        "posthog",
+        "activation",
+        "social"
+      ],
+      "owner": "chrysostom",
+      "channel": "growth_desk"
+    },
+    {
+      "match": [
+        "hermesos-finance-risk-review",
+        "cost-report",
+        "finance",
+        "risk",
+        "stripe",
+        "revenue"
+      ],
+      "owner": "anselm",
+      "channel": "finance_risk"
+    },
+    {
+      "match": [
+        "upstream",
+        "code-health",
+        "repo-pulse",
+        "pr-review",
+        "ci",
+        "github"
+      ],
+      "owner": "aquinas",
+      "channel": "dev_review"
+    }
   ],
   "fallback": {
     "owner": "gabriel",

@@ -24,28 +24,19 @@ ash-approval:     1508015942603636766
 ## Bots
 
 ```txt
-Augustine:  1475231715298639932  in guild, role 1508116223651741828 assigned
-Anselm:     1475267561867317298  in guild, role 1508116229406068948 assigned, finance-risk tested
-Aquinas:    1475269739168272496  in guild, role 1508116226696548476 assigned, dev-review tested
-Benedict:   1475270170493714504  token stored, role 1508116232895856852 created, invite needed
-Chrysostom: 1475557087239999599  token stored, role 1508116235731075172 created, invite needed
-Gabriel:    1472693001431289937  token stored, role 1508116238583337084 created, invite needed
+Augustine:  1475231715298639932  in guild
+Anselm:     1475267561867317298  in guild, finance-risk tested
+Aquinas:    1475269739168272496  in guild, dev-review tested
+Benedict:   1475270170493714504  in guild, ops-alerts tested
+Chrysostom: 1475557087239999599  in guild, growth-desk tested
+Gabriel:    1472693001431289937  in guild, agent-runs tested
 ```
+
+Note: Discord automatically creates non-mentionable managed integration roles for bots. AEON does not use those for routing. Department routing uses direct bot/user mentions with explicit `allowed_mentions`; approval routing may still mention the Ash role.
 
 ## Invite URLs
 
-Use these if a bot is not yet in Operator's Hub. Permissions are scoped for view/send/history/embed/attach/react/slash/thread-send, not admin.
-
-```txt
-Benedict:
-https://discord.com/oauth2/authorize?client_id=1475270170493714504&permissions=277025508416&scope=bot+applications.commands&guild_id=1441937325121867879&disable_guild_select=true
-
-Chrysostom:
-https://discord.com/oauth2/authorize?client_id=1475557087239999599&permissions=277025508416&scope=bot+applications.commands&guild_id=1441937325121867879&disable_guild_select=true
-
-Gabriel:
-https://discord.com/oauth2/authorize?client_id=1472693001431289937&permissions=277025508416&scope=bot+applications.commands&guild_id=1441937325121867879&disable_guild_select=true
-```
+All department bots are currently in Operator's Hub. No invite action is pending. If a bot is removed later, regenerate an invite URL from its client ID with scoped view/send/history/embed/attach/react/slash/thread-send permissions.
 
 ## Routing implementation
 
