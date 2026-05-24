@@ -1,0 +1,152 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Morning Brief — 2026-05-24"
+      },
+      "children": [
+        "focus-heading",
+        "focus-items",
+        "sep1",
+        "yesterday-heading",
+        "yesterday-items",
+        "sep2",
+        "running-heading",
+        "running-items"
+      ]
+    },
+    "focus-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Focus today",
+        "level": "h2"
+      }
+    },
+    "focus-items": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "focus-1",
+        "focus-2",
+        "focus-3"
+      ]
+    },
+    "focus-1": {
+      "type": "Text",
+      "props": {
+        "text": "cost-report dispatch — why now: only weekly slot is tomorrow; missed 5/18, never dispatched"
+      }
+    },
+    "focus-2": {
+      "type": "Text",
+      "props": {
+        "text": "Consolidate MEMORY.md — why now: never consolidated; stale defaults mis-flag heartbeat/brief P2 daily"
+      }
+    },
+    "focus-3": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 thin-pool trend — why now: crept across 70% WATCH all week; plan before it sticks"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "yesterday-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Since yesterday",
+        "level": "h2"
+      }
+    },
+    "yesterday-items": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "yesterday-1",
+        "yesterday-2",
+        "yesterday-3",
+        "yesterday-4",
+        "yesterday-5"
+      ]
+    },
+    "yesterday-1": {
+      "type": "Text",
+      "props": {
+        "text": "VMs grew 217→231 across the day, all hermes-named, 231/231 config-compliant, 0 corrections"
+      }
+    },
+    "yesterday-2": {
+      "type": "Text",
+      "props": {
+        "text": "pve5 disk flickered 70.2%→69.7%→67.4% (eased this morning); recurring CPU-load spikes subsided"
+      }
+    },
+    "yesterday-3": {
+      "type": "Text",
+      "props": {
+        "text": "fleet-sweep + morning-brief breaches both recovered by 14:23 — back inside cadence"
+      }
+    },
+    "yesterday-4": {
+      "type": "Text",
+      "props": {
+        "text": "token-movers: broad crypto risk-off, only 10/100 top-100 green (BTC −3.5%, ETH −4.8%)"
+      }
+    },
+    "yesterday-5": {
+      "type": "Text",
+      "props": {
+        "text": "repo-pulse hermesdeploy flat at 0 stars/forks (QUIET, unchanged since 5/17)"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "running-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Running today",
+        "level": "h2"
+      }
+    },
+    "running-items": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "running-1",
+        "running-2"
+      ]
+    },
+    "running-1": {
+      "type": "Text",
+      "props": {
+        "text": "proxmox-capacity @ 08/12/16/20:00 UTC · fleet-sweep @ 08/12/16/20:30 UTC"
+      }
+    },
+    "running-2": {
+      "type": "Text",
+      "props": {
+        "text": "heartbeat @ 08/14/20:00 UTC · token-movers @ 12:00 UTC · repo-pulse @ 15:00 UTC"
+      }
+    }
+  }
+}

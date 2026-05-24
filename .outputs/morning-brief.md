@@ -1,19 +1,17 @@
-*Morning Brief — 2026-05-23*
+*Morning Brief — 2026-05-24*
 
 *Focus today*
-1. Root-cause cost-report (never dispatched) — why now: enabled but 0 runs since 5/18, Mon slot next
-2. pve5 recurring load spikes — why now: 2nd CRITICAL load pile-up in 5d, cause unknown
-3. Consolidate stale MEMORY.md — why now: dead template priorities mis-flag every heartbeat
+1. cost-report dispatch — why now: only weekly slot is tomorrow; missed 5/18, never dispatched
+2. Consolidate MEMORY.md — why now: never consolidated; stale defaults mis-flag heartbeat/brief P2 daily
+3. pve5 thin-pool trend — why now: crept across 70% WATCH all week; plan before it sticks
 
 *Since yesterday*
-- pve5 hit 12x load5 (CRITICAL), pve7 1.6x, pve3 WATCH @ 20:50 UTC — all recovered to OK by 00:19 (transient process pile-up, not CPU/IO-bound)
-- repo-pulse + token-movers both cleared their multi-day staleness breach (ran 5/22) — all daily skills healthy again
-- fleet-sweep auto-fixed 2 new pve2 VMs (233/247: cpulimit/onboot/aio); 20:50 sweep confirms 214/214 compliant, fix queue empty
-- cost-report still never-dispatched (lone open watch item since 5/18) — likely cron/config
+- VMs grew 217→231 across the day, all hermes-named, 231/231 config-compliant, 0 corrections
+- pve5 disk flickered 70.2%→69.7%→67.4% (eased this morning); recurring CPU-load spikes subsided
+- fleet-sweep + morning-brief breaches both recovered by 14:23 — back inside cadence
+- token-movers: broad crypto risk-off, only 10/100 top-100 green (BTC −3.5%, ETH −4.8%)
+- repo-pulse hermesdeploy flat at 0 stars/forks (QUIET, unchanged since 5/17)
 
 *Running today*
-- proxmox-capacity @ 12:00, then every 4h
-- fleet-sweep @ 12:30, then every 4h
-- token-movers @ 12:00 UTC
-- repo-pulse @ 15:00 UTC
-- heartbeat @ 14:00, 20:00 UTC
+- proxmox-capacity @ 08/12/16/20:00 UTC · fleet-sweep @ 08/12/16/20:30 UTC
+- heartbeat @ 08/14/20:00 UTC · token-movers @ 12:00 UTC · repo-pulse @ 15:00 UTC
