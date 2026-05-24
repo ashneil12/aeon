@@ -1,21 +1,17 @@
-Heartbeat complete. All checks green, no notification warranted.
+Heartbeat complete. All checks ran; nothing alert-grade to notify.
 
 ## Summary
 
-Ran the heartbeat skill for the 14:00 UTC slot (executed 14:33 UTC, ~33m dispatch lag).
+**Result: `HEARTBEAT_OK · STATUS_PAGE=WATCH`** — no notification sent.
 
-**Findings (all priority tiers):**
-- **🔴 P0 — Failed/stuck skills:** None. All 11 tracked skills in `cron-state.json` are `success`, 100% rate, 0 consecutive failures. No stuck/dispatched, no API degradation, no chronic failures. Heartbeat self-check healthy (last success ~5h ago).
-- **🟡 P1 — Stalled PRs/urgent issues:** Clean. 0 open PRs; issues disabled on the repo.
-- **🔵 P2 — Memory flags:** Only the stale MEMORY.md template (consolidation item, dedup-suppressed).
-- **🔵 P3 — Missing scheduled skills:** `cost-report` (weekly Mon 07:00) still has no cron-state entry — never dispatched. Already in last-48h logs → dedup, no re-notify. Next chance Mon 2026-05-25.
+**Checks**
+- **P0 (failed/stuck skills):** All green. 11 tracked skills in `cron-state.json`, all `last_status=success`, 100% success rate, 0 consecutive failures. No stuck/dispatched skills, no API degradation. Heartbeat self-check healthy (last success ~42m ago).
+- **P1 (PRs/issues):** 0 open PRs; issues disabled on `ashneil12/aeon`.
+- **P2 (memory flags):** Only the stale MEMORY.md template (consolidation item) — not alert-grade.
+- **P3 (missing scheduled skills):** `cost-report` (weekly Monday) still has no `cron-state.json` entry — never dispatched, next chance Mon 2026-05-25. Sole standing flag, but logged repeatedly in the last 48h → dedup-suppressed, no re-notify.
 
-**Overall:** 🟡 WATCH (driven solely by the dedup-suppressed `cost-report` flag).
+**Files modified**
+- `docs/status.md` — regenerated, overall 🟡 WATCH. **Fixed a regression:** the prior 14:33 run had dropped `morning-brief` from the table; this run restores the full set of **12 enabled skills**. Next scheduled run: proxmox-capacity at 16:00 UTC. Token pulse omitted (no `articles/token-report-*.md`).
+- `memory/logs/2026-05-24.md` — appended the 15:16 UTC heartbeat entry.
 
-**Notification:** None sent — no new alert-grade items.
-
-**Files modified:**
-- `docs/status.md` — regenerated (WATCH, 11 skills sorted by last-run desc, cost-report at bottom, 0 open issues, next run repo-pulse 15:00 UTC, Token pulse omitted as no token-report file exists).
-- `memory/logs/2026-05-24.md` — appended heartbeat log entry.
-
-**Follow-up (not new, standing):** `cost-report` has never dispatched; watch the Monday 2026-05-25 07:00 UTC slot to confirm it fires. The workflow auto-commits `docs/status.md` and the log to `main`.
+**Follow-up:** `cost-report` cron dispatch is the one thing worth watching — if it's still absent after Monday 2026-05-25 07:00 UTC, it's a real scheduler gap rather than just an un-reached weekly slot.
