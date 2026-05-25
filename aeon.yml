@@ -6,7 +6,7 @@
 
 skills:
   # --- Morning aggregation (7 AM UTC) ---
-  morning-brief: { enabled: true, schedule: "0 7 * * *" }
+  morning-brief: { enabled: false, schedule: "0 7 * * *" }
   daily-routine: { enabled: false, schedule: "0 7 * * *" }
   rss-digest: { enabled: false, schedule: "0 7 * * *" }
   hacker-news-digest: { enabled: false, schedule: "0 7 * * *" } # top HN stories filtered by MEMORY.md interests
@@ -28,7 +28,7 @@ skills:
 
   # --- Midday (12 PM UTC) ---
   token-alert: { enabled: false, schedule: "0 12 * * *" }
-  token-movers: { enabled: true, schedule: "0 12 * * *" }
+  token-movers: { enabled: false, schedule: "0 12 * * *" }
   on-chain-monitor: { enabled: false, schedule: "0 12 * * *" }
   defi-monitor: { enabled: false, schedule: "0 12 * * *" }
   treasury-info: { enabled: false, schedule: "0 12 * * *" }
@@ -66,7 +66,7 @@ skills:
   push-recap: { enabled: false, schedule: "0 15 * * *" }
   repo-article: { enabled: false, schedule: "0 15 * * *" }
   repo-actions: { enabled: false, schedule: "0 15 * * *" }
-  repo-pulse: { enabled: true, schedule: "0 15 * * *", var: "ashneil12/hermesdeploy" }
+  repo-pulse: { enabled: false, schedule: "0 15 * * *", var: "ashneil12/hermesdeploy" }
   star-milestone: { enabled: false, schedule: "15 15 * * *" } # daily — announce when watched repos cross star-count milestones
   star-momentum-alert: { enabled: false, schedule: "10 10 * * *", model: "claude-sonnet-4-6", var: "" } # daily — project next milestone crossing date from 14-day repo-pulse history; alert only when projected date lands in 7-14d window on Tue/Wed/Thu (Show HN dispatch slot)
   project-lens: { enabled: false, schedule: "30 15 * * 1,3,5" } # articles through rotating analytical lenses
@@ -83,7 +83,7 @@ skills:
   create-skill: { enabled: false, schedule: "workflow_dispatch", var: "" } # one-shot skill creator — set var to a description prompt
 
   # --- X / social (5 PM UTC) ---
-  hermesos-growth-desk: { enabled: true, schedule: "0 17 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom daily growth/comms desk; drafts only, no posting without Ash approval
+  hermesos-growth-desk: { enabled: false, schedule: "0 17 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom daily growth/comms desk; drafts only, no posting without Ash approval
   fetch-tweets: { enabled: false, schedule: "0 17 * * *" }
   refresh-x: { enabled: false, schedule: "0 17 * * *" }
   list-digest: { enabled: false, schedule: "0 17 * * *" }
@@ -122,8 +122,8 @@ skills:
   vercel-projects: { enabled: false, schedule: "0 18 * * 0", model: "claude-sonnet-4-6", var: "" } # Sunday — catalog Vercel projects
 
   # --- Cost tracking (Monday 7 AM UTC, weekly) ---
-  hermesos-finance-risk-review: { enabled: true, schedule: "30 7 * * 1", model: "claude-opus-4-7", var: "" } # Anselm weekly infra/cost/revenue/regulatory risk review
-  cost-report: { enabled: true, schedule: "0 7 * * 1", model: "claude-sonnet-4-6" } # weekly API cost breakdown by skill and model
+  hermesos-finance-risk-review: { enabled: false, schedule: "30 7 * * 1", model: "claude-opus-4-7", var: "" } # Anselm weekly infra/cost/revenue/regulatory risk review
+  cost-report: { enabled: false, schedule: "0 7 * * 1", model: "claude-sonnet-4-6" } # weekly API cost breakdown by skill and model
 
   # --- Weekly (Monday only) ---
   ai-framework-watch: { enabled: false, schedule: "30 8 * * 1", model: "claude-sonnet-4-6", var: "" } # Monday 08:30 UTC — weekly competitive-intelligence digest across 9 AI agent frameworks (anchor + 8 peers). Momentum signals, 7d/30d star deltas, release listings, breaking-change flags. Set var to a watchlist slug (e.g. langgraph) for a single-framework deep dive.
@@ -139,7 +139,7 @@ skills:
   spawn-instance: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: "name: purpose"
   fleet-control: { enabled: false, schedule: "0 9,15 * * *" } # fleet health checks twice daily, dispatch via var
   weekly-review: { enabled: false, schedule: "0 19 * * 1" }
-  weekly-shiplog: { enabled: true, schedule: "0 9 * * 1" } # Monday — narrative of everything shipped last week
+  weekly-shiplog: { enabled: false, schedule: "0 9 * * 1" } # Monday — narrative of everything shipped last week
   skill-leaderboard: { enabled: false, schedule: "0 17 * * 0", model: "claude-sonnet-4-6" } # Sunday — rank popular skills across forks
   fork-contributor-leaderboard: { enabled: false, schedule: "30 17 * * 0", model: "claude-sonnet-4-6" } # Sunday — rank community contributors across forks and upstream PRs
   contributor-reward: { enabled: false, schedule: "30 9 * * 1", model: "claude-sonnet-4-6", var: "" } # Monday — turn Sunday's leaderboard into a tier-priced rewards plan in memory/distributions.yml; pass dry-run to preview
@@ -159,17 +159,17 @@ skills:
   create-campaign: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — provision Meta campaigns/ad sets on AdManage.ai (PAUSED) and write IDs back so schedule-ads can launch into them
 
   # --- Infra (Hermes Proxmox/Hetzner) ---
-  posthog-session-analyzer: { enabled: true, schedule: "30 8 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom/Aquinas daily UX+privacy analysis; no-ops with setup checklist until POSTHOG secrets exist
-  hermesos-backup-restore-watch: { enabled: true, schedule: "0 8 * * 2", model: "claude-opus-4-7", var: "" } # Benedict weekly backup/restore audit; never uploads secrets
-  proxmox-capacity: { enabled: true, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across the active Proxmox token set (currently pve1-pve9 plus pve11-pve12; pve10 is canary/control-plane) + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
-  fleet-sweep: { enabled: true, schedule: "30 */4 * * *", var: "" } # every 4h at :30 (offset from proxmox-capacity's :00) — comprehensive HermesOS fleet audit: host capacity + per-VM config drift (cpulimit/aio/discard/balloon), auto-fixes cpulimit, reports rest with runbooks
+  posthog-session-analyzer: { enabled: false, schedule: "30 8 * * *", model: "claude-opus-4-7", var: "" } # Chrysostom/Aquinas daily UX+privacy analysis; no-ops with setup checklist until POSTHOG secrets exist
+  hermesos-backup-restore-watch: { enabled: false, schedule: "0 8 * * 2", model: "claude-opus-4-7", var: "" } # Benedict weekly backup/restore audit; never uploads secrets
+  proxmox-capacity: { enabled: false, schedule: "0 */4 * * *", var: "" } # every 4h — per-host capacity drift across the active Proxmox token set (currently pve1-pve9 plus pve11-pve12; pve10 is canary/control-plane) + Hetzner Robot traffic; silent unless a host transitions buckets, full digest at 09:00 UTC
+  fleet-sweep: { enabled: false, schedule: "30 */4 * * *", var: "" } # every 4h at :30 (offset from proxmox-capacity's :00) — comprehensive HermesOS fleet audit: host capacity + per-VM config drift (cpulimit/aio/discard/balloon), auto-fixes cpulimit, reports rest with runbooks
 
   # --- Utilities ---
   auto-workflow: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — var: URL to analyze
   onboard: { enabled: false, schedule: "workflow_dispatch", var: "" } # one-shot setup validator — checks secrets/workflows/memory writability and notifies a checklist with fix commands; pair with ./onboard CLI
 
   # --- Fallback (must be last) ---
-  heartbeat: { enabled: true, schedule: "0 8,14,20 * * *" }
+  heartbeat: { enabled: false, schedule: "0 8,14,20 * * *" }
 
 # Reactive triggers — event-driven skill dispatch based on cron-state.json conditions.
 # Skills with schedule: "reactive" are never cron-matched. Instead, the scheduler
@@ -214,7 +214,7 @@ chains:
 # Default model for all skills. Override per-run via workflow_dispatch.
 # Options: claude-opus-4-7, claude-sonnet-4-6, claude-haiku-4-5-20251001
 # Bankr gateway also supports: gemini-3-pro, gemini-3-flash, gpt-5.2, kimi-k2.5, qwen3-coder
-model: claude-opus-4-7
+model: claude-sonnet-4-6
 
 # AI Gateway — route Claude Code requests through an LLM gateway.
 # provider: direct (default, uses ANTHROPIC_API_KEY) | bankr (uses BANKR_LLM_KEY)
