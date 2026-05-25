@@ -1,0 +1,244 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "PostHog (HermesOS) weekly"
+      },
+      "children": [
+        "header-stack",
+        "sep1",
+        "key-findings",
+        "sep2",
+        "friction-section",
+        "sep3",
+        "performance-section",
+        "sep4",
+        "privacy-alert",
+        "sep5",
+        "cost-opt",
+        "sep6",
+        "handoff-link"
+      ]
+    },
+    "header-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "verdict-badge",
+        "sample-metrics"
+      ]
+    },
+    "verdict-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "WATCH",
+        "variant": "outline"
+      }
+    },
+    "sample-metrics": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat-recordings",
+        "stat-events",
+        "stat-exceptions"
+      ]
+    },
+    "stat-recordings": {
+      "type": "Stat",
+      "props": {
+        "label": "Recordings",
+        "value": "50"
+      }
+    },
+    "stat-events": {
+      "type": "Stat",
+      "props": {
+        "label": "Events",
+        "value": "200"
+      }
+    },
+    "stat-exceptions": {
+      "type": "Stat",
+      "props": {
+        "label": "Exceptions",
+        "value": "100"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "key-findings": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "findings-heading",
+        "finding1",
+        "finding2"
+      ]
+    },
+    "findings-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Key Findings",
+        "level": "h2"
+      }
+    },
+    "finding1": {
+      "type": "Text",
+      "props": {
+        "text": "Zero real app errors — 99% of captured exceptions are browser-extension noise (runtime.sendMessage tab-not-found + Google-Translate DOM error), all handled, none from our code. Funnels failed to fetch this run."
+      }
+    },
+    "finding2": {
+      "type": "Text",
+      "props": {
+        "text": "Public landing is healthy."
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "friction-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "friction-heading",
+        "friction1",
+        "friction2"
+      ]
+    },
+    "friction-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Friction",
+        "level": "h2"
+      }
+    },
+    "friction1": {
+      "type": "Text",
+      "props": {
+        "text": "Concentrated in onboarding: 2 rageclicks on /get-started"
+      }
+    },
+    "friction2": {
+      "type": "Text",
+      "props": {
+        "text": "Heavy back-and-forth through the LLM provider/managed-credits setup step"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "performance-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "perf-heading",
+        "perf-issues"
+      ]
+    },
+    "perf-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Dashboard Performance",
+        "level": "h2"
+      }
+    },
+    "perf-issues": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "perf1",
+        "perf2"
+      ]
+    },
+    "perf1": {
+      "type": "Text",
+      "props": {
+        "text": "Welcome + instance-detail LCP ~4s, layout shift on instance detail"
+      }
+    },
+    "perf2": {
+      "type": "Text",
+      "props": {
+        "text": "Public landing itself is healthy"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {}
+    },
+    "privacy-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Privacy & Security",
+        "message": "Session recording is still on across /chat, /wallet, /billing, /settings and instance consoles with an empty URL blocklist and console capture enabled. Email/name/geo are stored in plaintext. Recommend blocklisting those sensitive routes now as step one of a staged recording retirement.",
+        "type": "warning"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {}
+    },
+    "cost-opt": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "cost-heading",
+        "cost-text"
+      ]
+    },
+    "cost-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Cost Optimization",
+        "level": "h2"
+      }
+    },
+    "cost-text": {
+      "type": "Text",
+      "props": {
+        "text": "Worth filtering the extension exceptions to cut ~99% of error-capture cost"
+      }
+    },
+    "sep6": {
+      "type": "Separator",
+      "props": {}
+    },
+    "handoff-link": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Full handoff: memory/topics/posthog-sessions.md",
+        "href": "memory/topics/posthog-sessions.md"
+      }
+    }
+  }
+}

@@ -14,6 +14,7 @@
 
 ## Topics
 - [Growth](topics/growth.md) — HermesOS Growth Desk (Chrysostom): positioning, post/reply drafts, narrative pulse. Read-only/drafts-only.
+- [PostHog Sessions](topics/posthog-sessions.md) — Weekly recording/session/error analysis for HermesOS. Privacy-staged retirement; PII-free output.
 
 ## Skills Built
 | Skill | Date | Notes |
