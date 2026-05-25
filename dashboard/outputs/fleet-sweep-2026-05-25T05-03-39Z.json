@@ -1,0 +1,166 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Fleet Sweep"
+      },
+      "children": [
+        "main_stack"
+      ]
+    },
+    "main_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "header_text",
+        "watch_stack",
+        "separator1",
+        "config_stack"
+      ]
+    },
+    "header_text": {
+      "type": "Text",
+      "props": {
+        "text": "🟡 0 critical, 1 watch, config clean",
+        "variant": "lead"
+      }
+    },
+    "watch_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "watch_title",
+        "watch_storage",
+        "watch_details",
+        "watch_action_alert"
+      ]
+    },
+    "watch_title": {
+      "type": "Text",
+      "props": {
+        "text": "🟡 WATCH",
+        "variant": "lead"
+      }
+    },
+    "watch_storage": {
+      "type": "Progress",
+      "props": {
+        "label": "pve5 thin-pool local-lvm",
+        "value": 71,
+        "max": 100
+      }
+    },
+    "watch_details": {
+      "type": "Text",
+      "props": {
+        "text": "71.0% (70-85% band) — flat vs prior sweep (71.0%), eased from 77.3% peak 05-24 14:03",
+        "variant": "body"
+      }
+    },
+    "watch_action_alert": {
+      "type": "Alert",
+      "props": {
+        "message": "Prep migration plan; pause new placement on pve5 only if it re-climbs toward 85% CRIT",
+        "type": "warning"
+      }
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "config_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "config_title",
+        "vms_stat",
+        "compliance_detail",
+        "drift_stat",
+        "hosts_stat",
+        "infrastructure_metrics"
+      ]
+    },
+    "config_title": {
+      "type": "Text",
+      "props": {
+        "text": "✅ CONFIG CLEAN",
+        "variant": "lead"
+      }
+    },
+    "vms_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "VMs hermes-named compliant",
+        "value": "362/362"
+      }
+    },
+    "compliance_detail": {
+      "type": "Text",
+      "props": {
+        "text": "Compliance checks: cpulimit, onboot=1, scsi0 aio=threads+discard=on, balloon≤mem",
+        "variant": "caption"
+      }
+    },
+    "drift_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Drift / Corrections queued",
+        "value": "0 / 0"
+      }
+    },
+    "hosts_stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Hosts reachable",
+        "value": "11/11"
+      }
+    },
+    "infrastructure_metrics": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "thin_pools_metric",
+        "mem_metric",
+        "load_metric"
+      ]
+    },
+    "thin_pools_metric": {
+      "type": "Text",
+      "props": {
+        "text": "All other thin-pools < 62%",
+        "variant": "body"
+      }
+    },
+    "mem_metric": {
+      "type": "Text",
+      "props": {
+        "text": "Memory < 58%",
+        "variant": "body"
+      }
+    },
+    "load_metric": {
+      "type": "Text",
+      "props": {
+        "text": "Load5 / vCPU < 0.22x",
+        "variant": "body"
+      }
+    }
+  }
+}
