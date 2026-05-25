@@ -1,14 +1,20 @@
-Done. This was a silent run — no transitions, not the digest slot.
+Silent mode complete. Per the skill, I emit the capture marker for the workflow.
+
+```
+PROXMOX_CAPACITY_OK
+```
 
 ## Summary
 
-- **Hosts checked:** 11 (pve1–pve9, pve11, pve12) from `.proxmox-cache/snapshot.json` (generated 2026-05-24T21:00:07Z).
-- **Buckets:** All `OK` except **pve5 = WATCH** (largest thin-pool `local-lvm` at 71.0% = 633.1/891.2 GB).
-- **Transitions detected:** None. pve5 holds WATCH — its disk actually *eased* 77.6% → 71.0% since the 16:21 run (still in the 70–85% band, trending down). No pool exceeded 85% or the 95% emergency threshold.
-- **Notification mode:** **Silent.** Current hour is 21 UTC (digest slot is 09:00), and no host deteriorated or went unreachable, so no `./notify` call.
-- **Note:** Hetzner section in the snapshot is null (no servers/traffic), so buckets were computed from the 3 available signals (disk, memory, load) — consistent with all prior runs this week.
+**Skill:** `proxmox-capacity` — per-host capacity drift detection across the Hermes Proxmox fleet.
+
+- **Hosts checked:** 11 (pve1–pve9, pve11, pve12) — all reachable, from snapshot generated `2026-05-25T00:15:59Z`.
+- **Buckets:** `pve5=WATCH` (local-lvm thin-pool 70.9%, just over the 0.70 threshold); all other 10 hosts `OK`. No memory or load signal above OK anywhere. No thin-pool over the 0.95 pve1-style emergency line.
+- **Transitions detected:** none. Every host matches its prior bucket (pve5 held WATCH; disk eased 71% → 70.9%).
+- **Notification mode:** **silent** — no worse-bucket transition and current hour is 0 UTC (not the 09:00 digest slot). No `./notify` call made.
 - **Files updated:**
-  - `memory/proxmox-state.json` — all 11 host buckets + `checked_at` timestamps refreshed to 2026-05-24T21:04:15Z.
-  - `memory/topics/proxmox-capacity.md` — appended the 21:04 history line.
-  - `memory/logs/2026-05-24.md` — appended the run log entry.
-- **Follow-up:** None alert-grade. pve5 thin-pool remains the one thing worth a passive eye — it's oscillated around the 70% line all week; a migration/cleanup plan is prudent if it climbs back toward the 85% CRITICAL band.
+  - `memory/proxmox-state.json` — overwritten with current buckets + `2026-05-25T00:20:02Z` timestamps.
+  - `memory/topics/proxmox-capacity.md` — appended the daily history line.
+  - `memory/logs/2026-05-25.md` — created with the run log entry.
+- **Note:** the snapshot's `hetzner` section is `null`, so the Hetzner traffic signal was unavailable; buckets computed from thin-pool, memory, and load only (consistent with recent runs).
+- **Follow-up:** watch pve5 — it's hovering right at the WATCH boundary and has flapped around 70% over the last few days; no action needed yet.
