@@ -1,0 +1,201 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "Fleet Sweep"
+      },
+      "children": [
+        "alert-watch-banner",
+        "sep-1",
+        "section-pve5",
+        "sep-2",
+        "section-config"
+      ]
+    },
+    "alert-watch-banner": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "title": "🟡 1 WATCH — Storage Re-climbing",
+        "message": "pve5 thin-pool trending upward in 70-85% band. Prepare migration plan; pause new placement only if trending toward 85% CRIT."
+      },
+      "children": []
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "section-pve5": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-pve5",
+        "progress-pve5",
+        "grid-pve5",
+        "text-pve5-context"
+      ]
+    },
+    "heading-pve5": {
+      "type": "Heading",
+      "props": {
+        "text": "pve5 Thin-Pool (local-lvm)",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "progress-pve5": {
+      "type": "Progress",
+      "props": {
+        "value": 73.1,
+        "max": 100,
+        "label": "Storage Usage: 73.1%"
+      },
+      "children": []
+    },
+    "grid-pve5": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat-capacity",
+        "stat-current",
+        "stat-change",
+        "stat-peak"
+      ]
+    },
+    "stat-capacity": {
+      "type": "Stat",
+      "props": {
+        "label": "Capacity",
+        "value": "651.6G / 891.2G"
+      },
+      "children": []
+    },
+    "stat-current": {
+      "type": "Stat",
+      "props": {
+        "label": "Current",
+        "value": "73.1%"
+      },
+      "children": []
+    },
+    "stat-change": {
+      "type": "Stat",
+      "props": {
+        "label": "Change since 04:57",
+        "value": "+2.1pts",
+        "delta": "+2.1",
+        "trend": "up"
+      },
+      "children": []
+    },
+    "stat-peak": {
+      "type": "Stat",
+      "props": {
+        "label": "Peak (2026-05-24)",
+        "value": "77.3%"
+      },
+      "children": []
+    },
+    "text-pve5-context": {
+      "type": "Text",
+      "props": {
+        "text": "Only host in 70-85% band. Comparison: pve2=60.8%, pve6=60.4%.",
+        "variant": "caption"
+      },
+      "children": []
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "section-config": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-config",
+        "alert-config",
+        "grid-hosts",
+        "text-compliance"
+      ]
+    },
+    "heading-config": {
+      "type": "Heading",
+      "props": {
+        "text": "Configuration & Health",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "alert-config": {
+      "type": "Alert",
+      "props": {
+        "type": "success",
+        "title": "Config Clean (0 critical, 0 corrections)",
+        "message": "438/438 VMs running hermes-named & fully compliant. Settings: cpulimit set, onboot=1, scsi0 aio=threads+discard=on, balloon≤memory. No corrections queued."
+      },
+      "children": []
+    },
+    "grid-hosts": {
+      "type": "Grid",
+      "props": {
+        "columns": 3,
+        "gap": "md"
+      },
+      "children": [
+        "stat-hosts",
+        "stat-maxmem",
+        "stat-maxload"
+      ]
+    },
+    "stat-hosts": {
+      "type": "Stat",
+      "props": {
+        "label": "Hosts Reachable",
+        "value": "11/11"
+      },
+      "children": []
+    },
+    "stat-maxmem": {
+      "type": "Stat",
+      "props": {
+        "label": "Max Memory (pve4)",
+        "value": "60.1%"
+      },
+      "children": []
+    },
+    "stat-maxload": {
+      "type": "Stat",
+      "props": {
+        "label": "Max Load5/vCPU (pve6)",
+        "value": "0.30x"
+      },
+      "children": []
+    },
+    "text-compliance": {
+      "type": "Text",
+      "props": {
+        "text": "No power/repair actions needed.",
+        "variant": "caption"
+      },
+      "children": []
+    }
+  }
+}
