@@ -1,11 +1,11 @@
-*Weekly Shiplog — 2026-05-18*
+*Weekly Shiplog — 2026-05-25*
 
-HermesOS rolled out the xAI Grok SuperGrok OAuth flow end-to-end across all three fork repos while simultaneously firefighting a Cloudflare 200-record cap that had been silently leaking DNS on every tenant destroy — and Aeon completed its fork-intelligence layer with four new skills.
+The Venice multimodal stack landed across all three Hermes repos this week — agents can now generate and edit images, make video, do speech-to-text, embeddings and web search, and a managed proxy path runs all of it without the user supplying an API key — while the dashboard gained real Clerk-backed analytics and Aeon turned its skills into installable packs.
 
 Themes:
-- SuperGrok OAuth ships end-to-end across the stack
-- A Cloudflare cap fired, pve5 buckled, fleet got tougher
-- Aeon's fork-intelligence layer fills out
+- Multimodal lands across agent, WebUI, and managed proxy
+- Real analytics dashboard backed by Clerk + live fleet data
+- Aeon skills become installable packs
 
-~1,300 commits · 65 PRs · ~+25k / −5k
-https://github.com/ashneil12/aeon/blob/main/articles/weekly-shiplog-2026-05-18.md
+~1,200 commits · 117 PRs merged · +12k / −0.2k
+https://github.com/ashneil12/aeon/blob/main/articles/weekly-shiplog-2026-05-25.md

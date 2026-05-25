@@ -1,0 +1,143 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Weekly Shiplog — 2026-05-25"
+      },
+      "children": [
+        "stack_main"
+      ]
+    },
+    "stack_main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text_main",
+        "separator_1",
+        "heading_themes",
+        "stack_themes",
+        "separator_2",
+        "heading_stats",
+        "stack_stats",
+        "separator_3",
+        "storylink_article"
+      ]
+    },
+    "text_main": {
+      "type": "Text",
+      "props": {
+        "text": "The Venice multimodal stack landed across all three Hermes repos this week — agents can now generate and edit images, make video, do speech-to-text, embeddings and web search, and a managed proxy path runs all of it without the user supplying an API key — while the dashboard gained real Clerk-backed analytics and Aeon turned its skills into installable packs.",
+        "variant": "body"
+      }
+    },
+    "separator_1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading_themes": {
+      "type": "Heading",
+      "props": {
+        "text": "Themes",
+        "level": "h3"
+      }
+    },
+    "stack_themes": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text_theme_1",
+        "text_theme_2",
+        "text_theme_3"
+      ]
+    },
+    "text_theme_1": {
+      "type": "Text",
+      "props": {
+        "text": "Multimodal lands across agent, WebUI, and managed proxy"
+      }
+    },
+    "text_theme_2": {
+      "type": "Text",
+      "props": {
+        "text": "Real analytics dashboard backed by Clerk + live fleet data"
+      }
+    },
+    "text_theme_3": {
+      "type": "Text",
+      "props": {
+        "text": "Aeon skills become installable packs"
+      }
+    },
+    "separator_2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "heading_stats": {
+      "type": "Heading",
+      "props": {
+        "text": "Stats",
+        "level": "h3"
+      }
+    },
+    "stack_stats": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "stat_commits",
+        "stat_prs",
+        "stat_change"
+      ]
+    },
+    "stat_commits": {
+      "type": "Stat",
+      "props": {
+        "label": "Commits",
+        "value": "~1,200"
+      }
+    },
+    "stat_prs": {
+      "type": "Stat",
+      "props": {
+        "label": "PRs merged",
+        "value": "117"
+      }
+    },
+    "stat_change": {
+      "type": "Stat",
+      "props": {
+        "label": "Net change",
+        "value": "+12k / −0.2k"
+      }
+    },
+    "separator_3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "storylink_article": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Full Weekly Shiplog Article",
+        "href": "https://github.com/ashneil12/aeon/blob/main/articles/weekly-shiplog-2026-05-25.md",
+        "source": "GitHub"
+      }
+    }
+  }
+}
