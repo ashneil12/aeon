@@ -1,20 +1,22 @@
-`.filter.jq` is now gitignored (no longer showing). The notification is queued in `.pending-notify/` (gitignored — the workflow's post-run step drains it, since direct `./notify` shell calls are sandbox-blocked). The `.notify-sent-hashes`/`notify` files were pre-existing, not from this run.
+The token-movers run is complete. Notification staged for delivery and the log is written.
 
 ## Summary
 
-Executed the **token-movers** skill (var: none → full movers/losers/trending report) for 2026-05-24.
+Ran **token-movers** (no var → full movers/losers/trending) for 2026-05-25.
 
-**What I did**
-- Fetched CoinGecko markets (250 coins, 1h/24h/7d) + trending (15) — both first-try via `curl -o` (HTTP 200). No WebFetch fallback needed.
-- Filtered 250 → 212 (vol ≥ $1M) → 191 in scope (dropped stablecoins + wrapped/staked dupes) via inline jq.
-- Ranked top-10 winners/losers, computed pulse over top-100 by mcap, applied signal/risk tags, and deduped against the 5/22–5/23 logs.
+**Data:** CoinGecko markets (250 coins) + trending (15) both fetched first-try via curl (HTTP 200); no WebFetch fallback needed. Filtered 250 → 193 in scope (dropped stablecoins, sub-$1M-volume, wrapped/staked dupes).
 
-**Key finding — sharp risk-on reversal:** 94/100 top coins green, top-50 median **+4.2%**, every major up (BTC +3.3% $77.2k, ETH +4.6%, SOL +5.1%) — a full inversion of yesterday's risk-off. Standouts: **NEAR** clean large-cap breakout (+15% on $1.0B vol); **RAIL** +78% but low-cap/rolling-over (PUMP-RISK). Notably, **yesterday's two top winners (BEAT, BSB) are today's two biggest losers** — textbook post-pump distribution (BSB capitulation).
+**Market pulse:** _Quiet at the top_ — majors flat (BTC +0.3% $77.3k, ETH −0.2%, SOL −0.4%); top-50 median +0.18%, 60/100 green. A stark reversal of yesterday's sharp risk-on (94/100 green, BTC +3.3%) — today all the action is mid-cap alt rotation while last week's parabolic low-caps distribute.
 
-**Files created/modified**
-- `.pending-notify/token-movers-2026-05-24.md` — notification (2849 chars, <4000); workflow drains it post-run.
-- `memory/logs/2026-05-24.md` — appended token-movers log entry.
-- `.markets.json` / `.trending.json` — refreshed working caches.
-- `.gitignore` — added `.filter.jq` (couldn't `rm` the scratch file; sandbox blocks `rm`, so ignored it per the existing `drift_scan.jq` convention).
+**Key signals:**
+- **DEXE** +20.4% [BREAKOUT] — cleanest fresh mover (#81, 7d +26%)
+- **BSB** −24.5% [CAPITULATION] — completes a 3-day pump→dump arc (was 5/23's #1 winner at +42%)
+- **GENIUS** −17.1% [CAPITULATION] — round-trips its 5/24 breakout
+- **RAIL** −4.5% (1h −5.2%) — yesterday's +78% parabola cooling off exactly as flagged; 7d still +196%
+- **XAN/Anoma** trending #687 +35% [PUMP-RISK] microcap new-listing
 
-**Follow-up:** none required — notification delivery is handled by the GitHub Actions post-run step.
+**Files:**
+- `.pending-notify/token-movers-2026-05-25.md` (2411 chars, <4000) — neutral tone (soul empty). Direct `./notify` blocked by sandbox `$(cat)` substitution; the workflow's post-run step (aeon.yml:751-808) drains `.pending-notify/` to all configured channels.
+- `memory/logs/2026-05-25.md` — appended run entry with full dedup notes vs 5/23 & 5/24.
+
+**Follow-up:** none — delivery happens automatically in the post-run drain step.
